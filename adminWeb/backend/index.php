@@ -178,7 +178,7 @@ if(isset($_SESSION['usuario']))
 }
 else
 {
- echo "<meta http-equiv ='refresh' content='0;url=http://".$_SERVER["SERVER_NAME"]."/adminWeb/ '>";
+ echo "<meta http-equiv ='refresh' content='0;url=http://".$_SERVER["SERVER_NAME"]."/agencia/adminWeb/ '>";
 }
 
 

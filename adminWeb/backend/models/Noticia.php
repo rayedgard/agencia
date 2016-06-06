@@ -9,7 +9,7 @@ class Noticia
     private $fecha;
     private $foto;
     private $idioma_id;
-    private $estado
+    private $estado;
 
     private $idioma_nombre;
    
@@ -39,7 +39,7 @@ class Noticia
         {
             $result = array();
             
-            $stm = $this->pdo->prepare('SELECT n.id,n.nombre,n.detalle,n.link,n.fecha,n.foto,n.idioma_id,n.estado,i.nombre AS idioma_nombre FROM noticia n INNER JOIN idioma i ON i.id=n.idioma_id WHERE n.estado=1');
+            $stm = $this->pdo->prepare('SELECT n.id,n.nombre,n.detalle,n.link,n.fecha,n.foto,n.idioma_id,n.estado,i.nombre AS idioma_nombre FROM noticia n INNER JOIN idioma i ON i.id=n.idioma_id');
             $stm->execute();
             
             foreach($stm->fetchAll(PDO::FETCH_OBJ) as $r)
