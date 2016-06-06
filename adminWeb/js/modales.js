@@ -29,6 +29,11 @@ function openModal(idBoton, urll){
             
         url="../backend/views/itinerario.php"+urll;
     }
+
+
+
+
+
 	
     $.colorbox({
     	iframe:true,

@@ -12,6 +12,9 @@
 	  window.scrollTo(0,1); 
 	} 
 </script>
+
+
+<script src="js/modales.js"></script>
  <!-- Bootstrap Core CSS -->
 <link href="../css/bootstrap.min.css" rel='stylesheet' type='text/css' />
 <!-- Custom CSS -->
@@ -220,10 +223,45 @@ if(isset($_GET['action']))
 														
 								<li><a href="index.php?p=<?php echo urlencode(encripta('idioma.php','rayedgard')); ?>"><i class="lnr lnr-heart-pulse">&nbsp;</i>Idioma</a></li>
 
-								<li><a href="index.php?p=<?php echo urlencode(encripta('banner.php','rayedgard')); ?>"><i class="lnr lnr-heart-pulse">&nbsp;</i>Banner</a></li>
+						
+								<li><a href="#"  name="?" class="modala"><i class="lnr lnr-heart-pulse">&nbsp;</i>Banner General</a></li>
 
 																
-									
+								<li><a href="#"  name="?" class="modalb"><i class="lnr lnr-heart-pulse">&nbsp;</i>Galeria General</a></li>
+
+								<!--/////////////// CODIGO QUE LLAMA EL POPUP INICIAL ////////////////-->
+									  <script>
+								    $('.modala').click(function(){
+
+								      function openColorBox(){
+								        $.colorbox({iframe:true, overlayClose: false, fixed: true ,width:"60%", height:"80%", href:"views/bannergeneral.php"});
+								      }
+								      setTimeout(openColorBox, 1000);
+								      });
+								    </script>
+								<!--/////////////// FIN EL POPUP INICIAL ////////////////-->
+
+
+								<!--/////////////// CODIGO QUE LLAMA EL POPUP INICIAL ////////////////-->
+									  <script>
+								    $('.modalb').click(function(){
+
+								      function openColorBox(){
+								        $.colorbox({iframe:true, overlayClose: false, fixed: true ,width:"60%", height:"80%", href:"views/galeriageneral.php"});
+								      }
+								      setTimeout(openColorBox, 1000);
+								      });
+								    </script>
+								<!--/////////////// FIN EL POPUP INICIAL ////////////////-->
+
+
+
+
+
+
+
+
+
 							</ul>
 
         				</li>
@@ -272,13 +310,6 @@ if(isset($_GET['action']))
 							</ul>
 
         				</li>
-
-
-
-
-
-						
-
 
 
 
@@ -425,5 +456,24 @@ if(isset($_GET['action']))
 <script src="../js/scripts.js"></script>
 <!-- Bootstrap Core JavaScript -->
    <script src="../js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>
