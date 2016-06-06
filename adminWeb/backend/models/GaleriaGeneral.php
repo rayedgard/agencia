@@ -24,14 +24,14 @@ class GaleriaGeneral
      * @param type $rows
      * @return \Sede
      */
-    public function Listar($idDestino)
+    public function Listar()
     {
         $this->pdo = new Conexion();
         try
         {
             $result = array();
             
-            $stm = $this->pdo->prepare('SELECT id,nombre, FROM galeriaGeneral');
+            $stm = $this->pdo->prepare('SELECT id,nombre FROM galeriageneral');
             $stm->execute();
             
             foreach($stm->fetchAll(PDO::FETCH_OBJ) as $r)
@@ -164,15 +164,16 @@ class GaleriaGeneral
         
         try
         {
-            $sql ="INSERT INTO Galeriageneral (nombre)
+            $sql ="INSERT INTO galeriageneral (nombre)
                    VALUES (?)";
             $this->pdo->prepare($sql)
                     ->execute(
                         array(
-                                $data->__GET('nombre'),
+                                $data->__GET('nombre')
                                                           
                             )
                         );
+         
         } 
         catch (Exception $ex) 
         {
