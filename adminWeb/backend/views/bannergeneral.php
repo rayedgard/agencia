@@ -23,6 +23,7 @@
 
 <?php
 require_once '../models/BannerGeneral.php';
+require_once '../models/Idioma.php';
 require_once '../../config/funciones.php';
 
 //---------------------/////////
@@ -47,6 +48,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].$linea;
 
 // Logica
 $banner = new BannerGeneral();
+$idioma = new Idioma();
 $titulo = "Gesti&oacute;n de Banners General";
 
 if(isset($_REQUEST['action']))
@@ -88,7 +90,8 @@ if(isset($_REQUEST['action']))
 
 			/*-------Fin guarda imagenes-----------------*/
 
-					
+			$banner->__SET('idioma_id',		$_REQUEST['idioma_id']);
+
 			$banner->Registrar($banner);
 			//header('Location: index.php');
 			/*/------------PARA LAS ACCIONES-----------------/*/ 			
@@ -99,7 +102,7 @@ if(isset($_REQUEST['action']))
 
 		case 'eliminar':
 			$id=desencripta($_REQUEST['id'],"rayedgard");
-			$nombreFoto=$_GET['nn'];//captuamos en nombre de la foto para eliminarla
+			$nombreFoto=desencripta($_GET['nn'],"rayedgard");//captuamos en nombre de la foto para eliminarla
 			$banner->Eliminar($id);//elima en la base de datos
 
 			//header('Location: index.php');
@@ -208,6 +211,22 @@ else
 										</div>
 
 
+										<div class="form-group">
+											<label for="txtarea1" class="col-sm-2 control-label">Idioma</label>
+											<div class="col-sm-8">
+												<select name="idioma_id" id="selector1" class="form-control1">
+													
+													<?php 
+														
+												foreach($idioma->ListarCombo() as $r): ?>		
+
+									                    <option name="idioma_id" value="<?php echo $r->__GET('id'); ?>" <?php echo $banner->__GET('idioma_id') == $r->__GET('id') ? 'selected/' : ''; ?>><?php echo $r->__GET('nombre'); ?>
+									                    </option >
+
+								                	<?php endforeach; ?>
+												</select>
+											</div>
+										</div>
 
 										 <div class="panel-footer">
 											<div class="row">
@@ -252,6 +271,7 @@ else
 								  <th>Titulo</th>
 								  <th>Detalle</th>
 								  <th>foto</th>
+								  <th>Idioma</th>
 								  <th>Option</th>
 								  <th></th>
 								</tr>
@@ -270,11 +290,11 @@ else
 			                       			<img src="../images/bannergeneral/<?php echo $r->__GET('foto');  ?>" height="30" width="30"/> 
 			                             </td>
 
-			                            
-			                        	<td> 
+			                            <td><?php echo $r->__GET('idioma_nombre'); ?></td>
 
-                            
-                                      <a href="#"  onclick="javascript:direc('?action=<?php echo urlencode(encripta('eliminar','rayedgard'));?>&id=<?php echo urlencode(encripta($r->id,'rayedgard')); ?>&nn=<?php echo urlencode(encripta($r->foto,'rayedgard')); ?>','<?php echo $r->__GET('titulo'); ?>')" class="btn btn-sm btn-danger">Eliminar</a>
+			                        	<td>
+			                        	
+                                            <a href="#"  onclick="javascript:direc('?action=<?php echo urlencode(encripta('eliminar','rayedgard'));?>&id=<?php echo urlencode(encripta($r->id,'rayedgard')); ?>&nn=<?php echo urlencode(encripta($r->foto,'rayedgard')); ?>','<?php echo $r->__GET('titulo'); ?>')" class="btn btn-sm btn-danger">Eliminar</a>
                                        
 
                                           </td>
