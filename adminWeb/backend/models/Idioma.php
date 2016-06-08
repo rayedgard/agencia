@@ -53,26 +53,18 @@ class Idioma
 
         }
     }
-<<<<<<< HEAD
+
 
 
 
     public function ListarIdioma($table="idioma",$rows="*",$where=1)
-=======
-   public function ListarIdioma($table="idioma",$rows="*",$where=1)
->>>>>>> d60d087f7ac8ff1f69ad9d321698191f1c3a32c3
     {
         $this->pdo = new Conexion();
         try
         {
             $result = array();
-<<<<<<< HEAD
             // echo('SELECT '.$rows. ' FROM '.$table.' WHERE '.$where.' and idioma.id = "2"');
             $stm = $this->pdo->prepare('SELECT idioma.id, idioma.nombre FROM '.$table.' WHERE '.$where);
-=======
-            
-            $stm = $this->pdo->prepare('SELECT '.$rows. ' FROM '.$table.' WHERE '.$where);
->>>>>>> d60d087f7ac8ff1f69ad9d321698191f1c3a32c3
             $stm->execute();
             
             foreach($stm->fetchAll(PDO::FETCH_ASSOC) as $r)
@@ -87,12 +79,10 @@ class Idioma
 
         }
     }
-<<<<<<< HEAD
 
 
 
-=======
->>>>>>> d60d087f7ac8ff1f69ad9d321698191f1c3a32c3
+
     
     /**
      * lista la el id y nombre para cargar en un combo

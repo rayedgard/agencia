@@ -65,7 +65,7 @@ class ControlesTags
         {
             $result = array();
             
-            $stm = $this->pdo->prepare('SELECT *  FROM controlestags  WHERE id='.$idIdioma.' AND tipoTag="'.$link.'"' );
+            $stm = $this->pdo->prepare('SELECT *  FROM controlestags  WHERE idioma_id='.$idIdioma.' AND tipoTag="'.$link.'"' );
             $stm->execute();
             
             foreach($stm->fetchAll(PDO::FETCH_ASSOC) as $r)
@@ -90,7 +90,7 @@ class ControlesTags
         {
             $result = array();
             
-            $stm = $this->pdo->prepare('SELECT *  FROM controlestags  WHERE id='.$idIdioma.' AND tipoTag="'.$link.'"  and identificador = "'.$control."'" );
+            $stm = $this->pdo->prepare('SELECT *  FROM controlestags  WHERE idioma_id='.$idIdioma.' AND tipoTag="'.$link.'"  and identificador = "'.$control."'" );
             $stm->execute();
             
             foreach($stm->fetchAll(PDO::FETCH_ASSOC) as $r)

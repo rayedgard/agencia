@@ -15,12 +15,13 @@ $subCategoria =new Subcategoria();
 $categoria=new Categoria();
 $controles=new ControlesTags();
 
-if(isset($_REQUEST['actionIdioma']))
+if($_POST["accion"]=='actionIdioma')
 {
+    $id = $_POST["idIdioma"];
 	//recuperamos registros de consultas
-	$contt=$controles->ListarTags('3','linkMenu');
-	$destinosList=$destinos->ListarComboArray('3','linkMenu');
-	$categoriaList=$categoria->ListarComboArray('3','linkMenu');
+	$contt=$controles->ListarTags($id,'linkMenu');
+	$destinosList=$destinos->ListarComboArray($id,'linkMenu');
+	$categoriaList=$categoria->ListarComboArray($id,'linkMenu');
 	//----------------------------------------------
 		//$direcciones=array("#home",);
 		$combo="";
@@ -37,12 +38,12 @@ if(isset($_REQUEST['actionIdioma']))
 					 $dataCont=$contt[$i]['identificador'];
 					 $nameCont=$contt[$i]['nombre'];
 					 if ($dataCont!='link_destinos' && $dataCont!='link_paquetes') {
-					 	$combo = "<li  id='".$contt[$i]['id']."'> <a href='#".$contt[$i]['nombre']."'>".$contt[$i]['nombre']."</a></li>";
+					 	$combo = "<li  id='".$contt[$i]['idioma_id']."'> <a href='#".$contt[$i]['nombre']."'>".$contt[$i]['nombre']."</a></li>";
             		 	array_push($botones,$combo);
 					 }
 					 if($dataCont=='link_destinos')
 					 {
-					 	$cc="<li> <a href='#".$nameCont."'>". $nameCont." </a><ul>";
+					 	$cc="<li> <a href='blog.html' ".$nameCont."'>". $nameCont." </a><ul>";
 					 	//listando botones destino
             				array_push($botones,$cc);
             				
@@ -88,14 +89,15 @@ if(isset($_REQUEST['actionIdioma']))
  
 }
 
-if (isset($_REQUEST['actionIdiomaLavels'])) 
+if ($_POST["accion"]=='actionIdiomaLavels') 
 {
+    $id = $_POST["idIdioma"];
 	
 	$controles1=new ControlesTags();
-	$botonesReadMore=$controles1->ListarTags('3','BtnLavel');//btones "read more"
-	$listaAbout=$controles1->ListarTags('3','H2Lavel');//titulos del index
-	$listarAboutTexto=$controles1->ListarTags('3','p_texto');//texto de "acerca de nosotros"
-	$listarBotonesForm=$controles1->ListarTags('3','form_lvl'); // texto de items del formulario de envio
+	$botonesReadMore=$controles1->ListarTags($id,'BtnLavel');//btones "read more"
+	$listaAbout=$controles1->ListarTags($id,'H2Lavel');//titulos del index
+	$listarAboutTexto=$controles1->ListarTags($id,'p_texto');//texto de "acerca de nosotros"
+	$listarBotonesForm=$controles1->ListarTags($id,'form_lvl'); // texto de items del formulario de envio
 
 	$Hlavels=array();
 	$stringCabecera="|";
@@ -119,6 +121,7 @@ if (isset($_REQUEST['actionIdiomaLavels']))
         		$itemsForm=$listarBotonesForm[$u]['nombre']."|";
         		array_push($Hlavels,$itemsForm);
         	}
+            print_r(count($Hlavels));
         	for ($h=0; $h <count($Hlavels) ; $h++) 
         	{ 
            		echo $Hlavels[$h];

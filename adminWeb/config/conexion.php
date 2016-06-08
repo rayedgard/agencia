@@ -4,14 +4,10 @@
    private $tipo_de_base = 'mysql';
    private $host = '192.168.1.8';
    private $nombre_de_base = 'agencia';
-<<<<<<< HEAD
    private $charset='utf8mb4';
    private $usuario = 'dev';
    private $contrasena = 'dev123'; 
-=======
-   private $usuario = 'root';
-   private $contrasena = 'defcon'; 
->>>>>>> d60d087f7ac8ff1f69ad9d321698191f1c3a32c3
+
    public function __construct() {
       //Sobreescribo el método constructor de la clase PDO.
       try{
