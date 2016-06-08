@@ -7,7 +7,7 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<!--creacion de formularios html con js-->
-		<script type="text/javascript" src="/js/funcionesWeb.js"></script>
+
 		<title>PATROS - HTML5 FREE TEMPLATE</title>
 		<!-- Bootstrap Core CSS -->
 		<link href="css/bootstrap.min.css" rel="stylesheet">
@@ -37,22 +37,38 @@
 					<a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="company logo" /></a>
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav navbar-right custom-menu">
-						<li class="active"><a href="#home">Home</a></li>
+					<ul class="nav navbar-nav navbar-right custom-menu" id="listaMenu">
+						<!-- <li class="active"><a href="#home">Home</a></li>
 						<li><a href="#about">About</a></li>
-						<li><a href="#services">Services</a></li>
+						<li class="dropdown">
+        					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1
+        					<span class="caret"></span></a>
+        						<ul class="dropdown-menu">
+         							 <li><a href="#">Page 1-1</a></li>
+         							 <li><a href="#">Page 1-2</a></li>
+         							 <li><a href="#">Page 1-3</a></li>
+       							 </ul>
+      					</li>
 						<li><a href="#meet-team">Team</a></li>
 						<li><a href="#portfolio1">Portofolio</a></li>
 						<li><a href="#contact">Contact</a></li>
 						<li><a href="blog.html">Blog</a></li>
-						<li><a href="single-post.html">Single</a></li>
+						<li><a href="single-post.html">Single</a></li> -->
+						<!-- <li>
+							<a href="#">data</a>
+							<ul>
+								<li>
+									<a href="">data2 </a>
+								</li>
+							</ul>
+						</li> -->
 					</ul>
 				</div>
 			</div>
 		</nav>
 
 		<!-- Header Carousel -->
-		<header id="home" class="carousel slide">
+		<header id="Inicio" class="carousel slide">
 			<ul class="cb-slideshow">
 				<li><span>image1</span>
 					<div class="container">
@@ -116,7 +132,7 @@
 				</li>
 			</ul>
 			<div class="intro-scroller">
-				<a class="inner-link" href="#about">
+				<a class="inner-link" href="#Nosotros">
 					<div class="mouse-icon" style="opacity: 1;">
 						<div class="wheel"></div>
 					</div>
@@ -125,18 +141,19 @@
 		</header>
 			
 		<!-- Page Content -->
-		<section id="about">
+		<section id="Nosotros">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-offset-1 col-md-10">
-						<div class="text-center">
-							<h2>About Us</h2>
+						<div class="text-center" id="div_nosotros">
+						<!-- <h2 id="h2_nosotros">About Us</h2> -->
+						<div id="div_nosotros1"></div>
 							<img class="img-responsive displayed" src="images/short.png" alt="Company about"/>
 							<div class="row">
-								<div class="col-md-12">
-									<p>
+								<div class="col-md-12" id="div_aboutTexto">
+									<!-- <p>
 									Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley. It has survived not only five centuries, but also the leap into electronic typesetting, remaining <span class="color-elements">essentially unchanged.</span>
-									</p>
+									</p> -->
 								</div>
 							</div>
 						</div>
@@ -145,10 +162,12 @@
 			</div>
 		</section>
 
-		<section id="services">
+		<section id="Destinos">
 			<div class="orangeback">
 				<div class="container">
-					<div class="text-center homeport2"><h2>Services</h2></div>
+					<div class="text-center homeport2">
+				<!-- 	<h2 id="h2_destinos">Services</h2> --><div id="h2_destinos"></div>
+					</div>
 					<div class="row">
 						<div class="col-md-12 homeservices1">
 							<div class="col-md-3 portfolio-item">
@@ -205,9 +224,10 @@
 			</div>
 		</section>
 
-		<section id="bloghome">
+		<section id="Paquetes">
 			<div class="container">
-				<div class="text-center"><h2>Latest Blog Posts</h2>
+				<div class="text-center"><!-- <h2 id="h2_paquetes">Latest Blog Posts</h2> -->
+				<div id="h2_paquetes"></div>
 					<img class="img-responsive displayed" src="images/short.png" alt="about">
 				</div>
 				<div class="row">
@@ -221,7 +241,7 @@
 								</figcaption>           
 							</figure>
 							<p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet.</p>
-							<div class="text-center"><a class="btn btn-primary btn-noborder-radius hvr-bounce-to-bottom">Read More</a></div>
+							<div class="text-center" id="btn_readMore1"><!-- <a class="btn btn-primary btn-noborder-radius hvr-bounce-to-bottom">Read More</a> --></div>
 						</div>
 						<div class="col-md-4 col-sm-12 col-xs-12 portfolio-item">
 							<figure class="effect-oscar">
@@ -232,7 +252,7 @@
 								</figcaption>           
 							</figure>
 							<p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet.</p>
-							<div class="text-center"><a class="btn btn-primary btn-noborder-radius hvr-bounce-to-bottom">Read More</a></div>
+							<div class="text-center"  id="btn_readMore2"><!-- <a class="btn btn-primary btn-noborder-radius hvr-bounce-to-bottom">Read More</a> --></div>
 						</div>
 						<div class="col-md-4 col-sm-12 col-xs-12 portfolio-item">
 							<figure class="effect-oscar">
@@ -243,17 +263,18 @@
 								</figcaption>           
 							</figure>
 							<p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet.</p>
-							<div class="text-center"><a class="btn btn-primary btn-noborder-radius hvr-bounce-to-bottom">Read More</a></div>
+							<div class="text-center"  id="btn_readMore3"><!-- <a class="btn btn-primary btn-noborder-radius hvr-bounce-to-bottom">Read More</a> --></div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
 
-		<section id="meet-team">
+		<section id="Equipo">
 			<div class="container">
 				<div class="text-center">
-				<h2>Team Members</h2>
+				<!-- <h2>Team Members</h2> -->
+				<div id="h2_team"></div>
 				<img class="img-responsive displayed" src="images/short.png" alt="about">
 				</div>
 				<div class="row teamspace">
@@ -338,7 +359,8 @@
 		<div class="container">
 		<div class="row">
 			<div class="text-center">
-			<h2>Portfolio</h2>
+			<!-- <h2>Portfolio</h2> -->
+			<div id="h2_galeria"></div>
 			<img class="img-responsive displayed" src="images/short.png" alt="about">
 			</div>
 
@@ -384,14 +406,15 @@
 					<div class="col-md-12">
 						<div class="col-lg-12">
 							<div class="text-center color-elements">
-							<h2>Contact Us</h2>
+							<!-- <h2>Contact Us</h2> -->
+							<div id="h2_contactanos"></div>
 							</div>
 						</div>
 						<div class="col-lg-6 col-md-8">
 							<form class="inline" id="contactForm" method="post" >
-								<div class="row">
-									<div class="col-sm-6 height-contact-element">
-										<div class="form-group">
+								<div class="row" id="Form_Definitivo">
+									<!-- <div class="col-sm-6 height-contact-element">
+										<div class="form-group" id="form_fullName">
 											<input type="text" name="first_name" class="form-control custom-labels" id="name" placeholder="FULL NAME" required data-validation-required-message="Please write your name!"/>
 											<p class="help-block text-danger"></p>
 										</div>
@@ -425,17 +448,17 @@
 									</div>
 									<div class="col-sm-12 contact-msg">
 									<div id="success"></div>
-									</div>
+									</div> -->
 								</div>
 							</form>
 						</div>
 						<div class="col-lg-5 col-md-3 col-lg-offset-1 col-md-offset-1">
 							<div class="row">
-								<div class="col-md-12 height-contact-element">
-									<div class="form-group">
+								<div class="col-md-12 height-contact-element" id="form_location">
+									<!-- <div class="form-group">
 										<i class="fa fa-2x fa-map-marker"></i>
 										<span class="text">LOCATION</span>
-									</div>
+									</div> -->
 								</div>
 								<div class="col-md-12 height-contact-element">
 									<div class="form-group">
@@ -458,8 +481,8 @@
 
 		<section id="follow-us">
 			<div class="container"> 
-				<div class="text-center height-contact-element">
-					<h2>FOLLOW US</h2>
+				<div class="text-center height-contact-element" id="form_siguenoss">
+					<!-- <h2>FOLLOW US</h2> -->
 				</div>
 				<img class="img-responsive displayed" src="images/short.png" alt="short" />
 				<div class="text-center height-contact-element">
@@ -497,7 +520,7 @@
 		<!-- Portfolio -->
 		<script src="js/jquery.quicksand.js"></script>	    
 	
-
+		<script type="text/javascript" src="js/funcionesWeb.js"></script>
 		<!--Jquery Smooth Scrolling-->
 		<script>
 			$(document).ready(function(){
