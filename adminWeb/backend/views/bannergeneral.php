@@ -101,6 +101,7 @@ if(isset($_REQUEST['action']))
 			break;
 
 		case 'eliminar':
+		
 			$id=desencripta($_REQUEST['id'],"rayedgard");
 			$nombreFoto=desencripta($_GET['nn'],"rayedgard");//captuamos en nombre de la foto para eliminarla
 			$banner->Eliminar($id);//elima en la base de datos
