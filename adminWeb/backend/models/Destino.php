@@ -68,6 +68,29 @@ class Destino
 
         }
     }
+
+        public function ListarDestino($id)
+    {
+        $this->pdo = new Conexion();
+        try
+        {
+            $result = array();
+            
+            $stm = $this->pdo->prepare('SELECT d.id,d.nombre,d.etiqueta,d.detalle, b.foto AS foto_destino  FROM destino d INNER JOIN bannerdestino b ON b.destino_id=d.id WHERE d.estado=1 and d.idioma_id='.$id);
+            $stm->execute();
+            
+            foreach($stm->fetchAll(PDO::FETCH_ASSOC) as $r)
+            {
+                array_push($result, $r);
+            }
+            return $result;
+        } 
+        catch (Exception $ex) 
+        {
+            die($ex->getMessage());
+
+        }
+    }
     
     /**
      * lista la el id y nombre para cargar en un combo

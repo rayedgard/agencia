@@ -58,6 +58,29 @@ class Categoria
 
         }
     }
+
+    public function ListarCategoria($id)
+    {
+        $this->pdo = new Conexion();
+        try
+        {
+            $result = array();
+            
+            $stm = $this->pdo->prepare('SELECT c.id,c.nombre, c.tipo, c.idioma_id,c.estado, c.foto FROM categoria c WHERE c.estado=1 AND c.idioma_id='.$id);
+            $stm->execute();
+            
+            foreach($stm->fetchAll(PDO::FETCH_ASSOC) as $r)
+            {
+                array_push($result, $r);
+            }
+            return $result;
+        } 
+        catch (Exception $ex) 
+        {
+            die($ex->getMessage());
+
+        }
+    }
     
     /**
      * lista la el id y nombre para cargar en un combo

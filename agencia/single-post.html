@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 	<head>
 		<meta charset="utf-8">
@@ -30,8 +30,24 @@
 	</head>
 
     <body data-spy="scroll">
+		<div class="container-fluid navbar-fixed-top" style="height: 25px; z-index:100;">
+
+				<div class="row">
+					<div class="col-md-2" style="padding-right: 0px;">
+						<h6 style="float: left;"><u>Correo: info@paprikatours.com</u></h6>
+					</div>
+					<div class="col-md-8" style="padding-left: 0px;">
+						<h6 style="float: left;">Telefono: 00 51 54 600139</h6>
+					</div>
+					<div class="col-md2">
+						<select onfocus="this.blur()" id="idiomas" class="form-control" style="height: 25px; width: 120px; float: right; background-color: #ec7f5d; border: none; color: fff; padding-top: 0px;">
+							<!-- comobo de idomas de base de datos -->
+						</select>
+					</div>
+				</div>
+		</div>
 		<!-- Navigation -->
-		<nav class="navbar navbar-inverse navbar-fixed-top">
+		<nav class="navbar navbar-inverse navbar-fixed-top" style="z-index:1;">
 			<div class="container">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -396,6 +412,6 @@
                 });
             });
         </script>
-
+		<script type="text/javascript" src="js/funcionesWeb.js"></script> 
     </body>
 </html>

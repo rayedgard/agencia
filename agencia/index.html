@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,11 +19,40 @@
 			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 			<![endif]-->
+			<style>
+				/*select {
+				     background: transparent;
+				     border: none;
+				     font-size: 14px;
+				     height: 30px;
+				     padding: 5px;
+				     width: 250px;
+				     text-decoration: none;
+				  }
+				select:active, select:active * { outline: none !important; -moz-outline-style: none !important; }
+				select:focus, select:focus * { outline: none !important; -moz-outline-style: none !important; }*/
+			</style>
 	</head>
 
 	<body data-spy="scroll">
+		<div class="container-fluid navbar-fixed-top" style="height: 25px; z-index:100;">
+
+				<div class="row">
+					<div class="col-md-2" style="padding-right: 0px;">
+						<h6 style="float: left;"><u>Correo: info@paprikatours.com</u></h6>
+					</div>
+					<div class="col-md-8" style="padding-left: 0px;">
+						<h6 style="float: left;">Telefono: 00 51 54 600139</h6>
+					</div>
+					<div class="col-md2">
+						<select onfocus="this.blur()" id="idiomas" class="form-control" style="height: 25px; width: 120px; float: right; background-color: #ec7f5d; border: none; color: fff; padding-top: 0px;">
+							<!-- comobo de idomas de base de datos -->
+						</select>
+					</div>
+				</div>
+		</div>
 		<!-- Navigation -->
-		<nav class="navbar navbar-inverse navbar-fixed-top">
+		<nav class="navbar navbar-inverse navbar-fixed-top" style="z-index:1;">
 			<div class="container">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -51,8 +80,23 @@
 
 		<!-- Header Carousel -->
 		<header id="home" class="carousel slide">
-			<ul class="cb-slideshow">
-				<li><span>image1</span>
+			<ul class="cb-slideshow" id="banerGeneral">
+			
+			<!-- <li>
+				<span style="background-image: url(../adminWeb/backend/images/bannergeneral/icpna1.jpg);  -webkit-animation-delay: 6s; -moz-animation-delay: 6s; -o-animation-delay: 6s; -ms-animation-delay: 6s; animation-delay: 6s;"> Imagen</span> 
+				<div class="container" style="-webkit-animation-delay: 6s; -moz-animation-delay: 6s; -o-animation-delay: 6s; -ms-animation-delay: 6s; animation-delay: 6s;"> 
+					<div class="row" style="-webkit-animation-delay: 6s; -moz-animation-delay: 6s; -o-animation-delay: 6s; -ms-animation-delay: 6s; animation-delay: 6s;"> 
+						<div class="col-lg-12" style="-webkit-animation-delay: 6s; -moz-animation-delay: 6s; -o-animation-delay: 6s; -ms-animation-delay: 6s; animation-delay: 6s;"> 
+							<div class="text-center" style="-webkit-animation-delay: 6s; -moz-animation-delay: 6s; -o-animation-delay: 6s; -ms-animation-delay: 6s; animation-delay: 6s;">
+								<h3>gdfgdf</h3> 
+							</div> 
+						</div>
+					</div> 
+					<h4>gddgffdg</h4> 
+				</div> 
+			</li> -->
+			<!-- <li><span style="background-image: url(../adminWeb/backend/images/bannergeneral/icpna1.jpg);  -webkit-animation-delay: 6s; -moz-animation-delay: 6s; -o-animation-delay: 6s; -ms-animation-delay: 6s; animation-delay: 6s;"> Imagen</span> <div class="container" style="-webkit-animation-delay: 6s; -moz-animation-delay: 6s; -o-animation-delay: 6s; -ms-animation-delay: 6s; animation-delay: 6s;"> <div class="row" style="-webkit-animation-delay: 6s; -moz-animation-delay: 6s; -o-animation-delay: 6s; -ms-animation-delay: 6s; animation-delay: 6s;"> <div class="col-lg-12" style="-webkit-animation-delay: 6s; -moz-animation-delay: 6s; -o-animation-delay: 6s; -ms-animation-delay: 6s; animation-delay: 6s;"> <div class="text-center" style="-webkit-animation-delay: 6s; -moz-animation-delay: 6s; -o-animation-delay: 6s; -ms-animation-delay: 6s; animation-delay: 6s;"><h3>gdfgdf</h3> </div> </div> </div> <h4>gddgffdg</h4> </div> </li><li><span style="background-image: url(../adminWeb/backend/images/bannergeneral/machu-picchu-2016.jpg);  -webkit-animation-delay: 12s; -moz-animation-delay: 12s; -o-animation-delay: 12s; -ms-animation-delay: 12s; animation-delay: 12s;"> Imagen</span> <div class="container" style="-webkit-animation-delay: 12s; -moz-animation-delay: 12s; -o-animation-delay: 12s; -ms-animation-delay: 12s; animation-delay: 12s;"> <div class="row" style="-webkit-animation-delay: 12s; -moz-animation-delay: 12s; -o-animation-delay: 12s; -ms-animation-delay: 12s; animation-delay: 12s;"> <div class="col-lg-12" style="-webkit-animation-delay: 12s; -moz-animation-delay: 12s; -o-animation-delay: 12s; -ms-animation-delay: 12s; animation-delay: 12s;"> <div class="text-center" style="-webkit-animation-delay: 12s; -moz-animation-delay: 12s; -o-animation-delay: 12s; -ms-animation-delay: 12s; animation-delay: 12s;"><h3>asdada</h3> </div> </div> </div> <h4>dasda</h4> </div> </li> -->
+				<!-- <li><span>image1</span>
 					<div class="container">
 						<div class="row">
 							<div class="col-lg-12">
@@ -111,7 +155,7 @@
 						</div>
 						<h4>Lorem Ipsum is simply dummy text of typesetting industry.</h4>
 					</div>
-				</li>
+				</li> -->
 			</ul>
 			<div class="intro-scroller">
 				<a class="inner-link" href="#about">
@@ -148,15 +192,12 @@
 				<div class="container">
 					<div class="text-center homeport2"><h2>Services</h2></div>
 					<div class="row">
-						<div class="col-md-12 homeservices1">
-							<div class="col-md-3 portfolio-item">
+						<div class="col-md-12 homeservices1" id="destinosIndex">
+							<!-- <div class="col-md-3 portfolio-item">
 								<div class="text-center">
-									<a href="javascript:void(0);">
 									<span class="fa-stack fa-lg">
-									  <i class="fa fa-circle fa-stack-2x"></i>
-									  <i class="fa fa-line-chart fa-stack-1x"></i>
+										<img src="../adminWeb/backend/images/bannerDestino/bnr1.jpg" class="img-responsive img-circle" style="width:100%; height:100%; ">
 									</span>
-									</a>
 									<h3><a href="#">Strategy</a></h3>
 									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
 								</div>
@@ -196,7 +237,7 @@
 									<h3><a href="#">Flexibility</a></h3>
 									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
 								</div>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
@@ -209,8 +250,8 @@
 					<img class="img-responsive displayed" src="images/short.png" alt="about">
 				</div>
 				<div class="row">
-					<div class="col-md-12 homeport1">
-						<div class="col-md-4 col-sm-12 col-xs-12 portfolio-item">
+					<div class="col-md-12 homeport1" id="viajesIndex">
+						<!-- <div class="col-md-4 col-sm-12 col-xs-12 portfolio-item">
 							<figure class="effect-oscar">
 								<img src="images/blog1.jpg" alt="img09" class="img-responsive" />
 								<figcaption>
@@ -242,7 +283,7 @@
 							</figure>
 							<p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet.</p>
 							<div class="text-center"><a class="btn btn-primary btn-noborder-radius hvr-bounce-to-bottom">Read More</a></div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
@@ -254,8 +295,8 @@
 				<h2>Team Members</h2>
 				<img class="img-responsive displayed" src="images/short.png" alt="about">
 				</div>
-				<div class="row teamspace">
-					<div class="col-xs-12 col-sm-6 col-md-3">
+				<div class="row teamspace" id="perfilesIndex">
+					<!-- <div class="col-xs-12 col-sm-6 col-md-3">
 						<div class="team-member">
 							<div class="team-img">
 								<img class="img-responsive" src="images/person1.jpg" alt="">
@@ -326,7 +367,7 @@
 								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
 							</ul>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</section>
@@ -347,8 +388,8 @@
 			  <li data-value="mobileapps"><a href="#">Mobile Apps</a></li>
 			</ul>
  
-			<ul class="port2">
-			  <li data-type="development" data-id="id-1" class="port3">
+			<ul class="port2" id="galeriaIndex">
+			  <!-- <li data-type="development" data-id="id-1" class="port3">
 				<a href="#" id="development1"><img src="images/port1.jpg" alt=""></a></li>
 			  <li data-type="webdesign" data-id="id-2" class="port3">
 				<a href="#" id="webdesign1"><img src="images/port2.jpg" alt=""></a>
@@ -364,7 +405,7 @@
 			  </li>
 			  <li data-type="mobileapps" data-id="id-6" class="port3">
 				<a href="#" id="mobileapps2"><img src="images/port6.jpg" alt=""></a>
-			  </li>
+			  </li> -->
 			</ul>
 		  </div> 
 		</div>
@@ -821,6 +862,7 @@
 
 </script>
 
+<script type="text/javascript" src="js/funcionesWeb.js"></script> 
 
 </body>
 </html>
