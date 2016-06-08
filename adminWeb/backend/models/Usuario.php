@@ -195,6 +195,40 @@ class Usuario
 
         }
     }
+
+
+
+     public function CambiaContrasenia($usuario,$contraseniaActual,$contraseniaNueva)
+    {
+
+
+       $this->pdo = new Conexion();
+           
+        try
+        {
+            $sql = "UPDATE usuario SET pass =? WHERE nombre=? AND pass=?";
+            $stm = $this->pdo->prepare($sql);
+            $stm->execute(array(md5($contraseniaNueva),$usuario,md5($contraseniaActual)));
+            $numero = $stm->rowCount();
+             
+              
+            if($numero==1)
+            {
+                return "LOS DATOS DE GUARDARON SATISFACTORIAMENTE";
+            }
+            else
+            {
+                return "LA CONTRASEÑA ANTERIOR QUE INTRODUCIO ESTA ERRADA";
+            }
+
+
+        } catch (Exception $ex) 
+        {
+            die($ex->getMessage());
+        }
+    }
+
+
 }
 
 

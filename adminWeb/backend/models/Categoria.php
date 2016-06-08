@@ -5,6 +5,7 @@ class Categoria
     private $id;
     private $nombre;
     private $tipo;
+    private $foto;
     private $idioma_id;
     private $estado;
 
@@ -36,7 +37,7 @@ class Categoria
         {
             $result = array();
             
-            $stm = $this->pdo->prepare('SELECT c.id,c.nombre, c.tipo, c.idioma_id,c.estado,i.nombre AS idioma_nombre FROM categoria c INNER JOIN idioma i ON i.id=c.idioma_id WHERE c.estado=1');
+            $stm = $this->pdo->prepare('SELECT c.id,c.nombre, c.tipo,c.foto, c.idioma_id,c.estado,i.nombre AS idioma_nombre FROM categoria c INNER JOIN idioma i ON i.id=c.idioma_id');
             $stm->execute();
             
             foreach($stm->fetchAll(PDO::FETCH_OBJ) as $r)
@@ -45,8 +46,9 @@ class Categoria
                 $alm->__SET('id',$r->id);
                 $alm->__SET('nombre',$r->nombre);
                 $alm->__SET('tipo',$r->tipo);
-                $alm->__SET('estado',$r->estado);
+                $alm->__SET('foto',$r->foto);
                 $alm->__SET('idioma_id',$r->idioma_id);
+                $alm->__SET('estado',$r->estado);
                 $alm->__SET('idioma_nombre',$r->idioma_nombre);
                 $result[] = $alm;
             }
@@ -135,6 +137,7 @@ class Categoria
             $alm->__SET('id',$r->id);
             $alm->__SET('nombre',$r->nombre);
             $alm->__SET('tipo',$r->tipo);
+            $alm->__SET('foto',$r->foto);
             $alm->__SET('idioma_id',$r->idioma_id);
             $alm->__SET('estado',$r->estado);
                         
@@ -174,6 +177,7 @@ class Categoria
             $sql = "UPDATE categoria SET 
                             nombre=?,
                             tipo=?,
+                            foto=?,
                             idioma_id=?,
                             estado=?
                             
@@ -183,6 +187,7 @@ class Categoria
                         array(
                                 $data->__GET('nombre'),
                                 $data->__GET('tipo'),
+                                $data->__GET('foto'),
                                 $data->__GET('idioma_id'),
                                 $data->__GET('estado'),
                                 $data->__GET('id'),
@@ -205,13 +210,14 @@ class Categoria
         
         try
         {
-            $sql ="INSERT INTO Categoria (nombre,tipo,idioma_id,estado)
-                   VALUES (?, ?, ?, ?)";
+            $sql ="INSERT INTO Categoria (nombre,tipo,foto,idioma_id,estado)
+                   VALUES (?, ?, ?, ?, ?)";
             $this->pdo->prepare($sql)
                     ->execute(
                         array(
                                 $data->__GET('nombre'),
                                 $data->__GET('tipo'),
+                                $data->__GET('foto'),
                                 $data->__GET('idioma_id'),
                                 $data->__GET('estado'),
                             )

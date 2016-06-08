@@ -6,6 +6,9 @@ class BannerGeneral
     private $titulo;
     private $detalle;
     private $foto;
+    private $idioma_id;
+
+    private $idioma_nombre;
 
 
 
@@ -33,7 +36,7 @@ class BannerGeneral
         {
             $result = array();
             
-            $stm = $this->pdo->prepare('SELECT id,titulo,detalle,foto FROM bannergeneral');
+            $stm = $this->pdo->prepare('SELECT b.id,b.titulo,b.detalle,b.foto,b.idioma_id, i.nombre AS idioma_nombre FROM bannergeneral b INNER JOIN idioma i ON i.id=b.idioma_id');
             $stm->execute();
             
             foreach($stm->fetchAll(PDO::FETCH_OBJ) as $r)
@@ -43,6 +46,8 @@ class BannerGeneral
                 $alm->__SET('titulo',$r->titulo);
                 $alm->__SET('detalle',$r->detalle);
                 $alm->__SET('foto',$r->foto);
+                $alm->__SET('idioma_id',$r->idioma_id);
+                $alm->__SET('idioma_nombre',$r->idioma_nombre);
                 $result[] = $alm;
             }
             return $result;
@@ -100,6 +105,8 @@ class BannerGeneral
             $alm->__SET('titulo',$r->titulo);
             $alm->__SET('detalle',$r->detalle);
             $alm->__SET('foto',$r->foto);
+            $alm->__SET('idioma_id',$r->idioma_id);
+
  
                                  
             return $alm;
@@ -138,7 +145,8 @@ class BannerGeneral
             $sql = "UPDATE bannergeneral SET 
                             titulo=?,
                             detalle=?,
-                            foto=?
+                            foto=?,
+                            idioma_id
                                                       
                     WHERE id=? ";
             $this->pdo->prepare($sql)
@@ -147,6 +155,7 @@ class BannerGeneral
                                 $data->__GET('titulo'),
                                 $data->__GET('detalle'),
                                 $data->__GET('foto'),
+                                $data->__GET('idioma_id'),
                                 $data->__GET('id'),
                                 )
                         );
@@ -167,14 +176,15 @@ class BannerGeneral
         
         try
         {
-            $sql ="INSERT INTO bannergeneral (titulo,detalle,foto)
-                   VALUES (?, ?, ?)";
+            $sql ="INSERT INTO bannergeneral (titulo,detalle,foto,idioma_id)
+                   VALUES (?, ?, ?, ?)";
             $this->pdo->prepare($sql)
                     ->execute(
                         array(
                                 $data->__GET('titulo'),
                                 $data->__GET('detalle'),
                                 $data->__GET('foto'),
+                                $data->__GET('idioma_id'),
                              
                            
                             )

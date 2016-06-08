@@ -28,7 +28,7 @@
 
 <?php
 
-require_once '../models/Empleado.php';
+require_once '../models/Usuario.php';
 
 require_once '../../config/funciones.php';
 
@@ -45,17 +45,17 @@ require_once $_SERVER['DOCUMENT_ROOT'].$linea;
 
 
 // Logica
-$empleado = new Empleado();
+$usuario = new Usuario();
 
 
 
 
-//variables para asignar empleado
+//variables para asignar usuario
 if(isset($_GET['ide']))
 	$ide = $_GET['ide'];
 
 if(isset($_GET['n']))
-	$nombreEmpleado = $_GET['n'];
+	$nombreusuario = $_GET['n'];
 
 	
 
@@ -72,11 +72,11 @@ if(isset($_REQUEST['action']))
 	{
 		case 'verifica':
 
-			//echo $_SESSION['idEmpleado']."<br>";
+			//echo $_SESSION['idusuario']."<br>";
 			//echo $_REQUEST['contraseniaAnterior']."<br>";
 			//echo $_REQUEST['contraseniaNueva']."<br>";
 
-			$mensaje=$empleado->cambiaContrasenia($_SESSION['nombre'],$_REQUEST['contraseniaAnterior'],$_REQUEST['contraseniaNueva']);
+			$mensaje=$usuario->cambiaContrasenia($_SESSION['usuario'],$_REQUEST['contraseniaAnterior'],$_REQUEST['contraseniaNueva']);
 			
 
 			echo "
