@@ -60,6 +60,29 @@ class Categoria
 
         }
     }
+
+    public function ListarCategoria($id)
+    {
+        $this->pdo = new Conexion();
+        try
+        {
+            $result = array();
+            
+            $stm = $this->pdo->prepare('SELECT c.id,c.nombre, c.tipo, c.idioma_id,c.estado, c.foto FROM categoria c WHERE c.estado=1 AND c.idioma_id='.$id);
+            $stm->execute();
+            
+            foreach($stm->fetchAll(PDO::FETCH_ASSOC) as $r)
+            {
+                array_push($result, $r);
+            }
+            return $result;
+        } 
+        catch (Exception $ex) 
+        {
+            die($ex->getMessage());
+
+        }
+    }
     
     /**
      * lista la el id y nombre para cargar en un combo
@@ -83,6 +106,33 @@ class Categoria
                 $alm->__SET('nombre',$r->nombre);
                 $alm->__SET('idioma_nombre',$r->idioma_nombre);
                 $result[] = $alm;
+            }
+            return $result;
+        } 
+        catch (Exception $ex) 
+        {
+            die($ex->getMessage());
+
+        }
+
+    }
+    /*
+    lista datos para cargar combo devolviendo array
+
+    */
+        public function ListarComboArray($idioma)
+    {
+        $this->pdo = new Conexion();
+        try
+        {
+            $result = array();
+            
+            $stm = $this->pdo->prepare('SELECT id,nombre FROM categoria  WHERE estado=1 and idioma_id='.$idioma);
+            $stm->execute();
+            
+            foreach($stm->fetchAll(PDO::FETCH_ASSOC) as $r)
+            {
+                array_push($result,$r);
             }
             return $result;
         } 

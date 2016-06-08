@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 	<head>
 		<meta charset="utf-8">
@@ -30,8 +30,24 @@
 	</head>
 
 	<body data-spy="scroll">
+		<div class="container-fluid navbar-fixed-top" style="height: 25px; z-index:100;">
+
+				<div class="row">
+					<div class="col-md-2" style="padding-right: 0px;">
+						<h6 style="float: left;"><u>Correo: info@paprikatours.com</u></h6>
+					</div>
+					<div class="col-md-8" style="padding-left: 0px;">
+						<h6 style="float: left;">Telefono: 00 51 54 600139</h6>
+					</div>
+					<div class="col-md2">
+						<select onfocus="this.blur()" id="idiomas" class="form-control" style="height: 25px; width: 120px; float: right; background-color: #ec7f5d; border: none; color: fff; padding-top: 0px;">
+							<!-- comobo de idomas de base de datos -->
+						</select>
+					</div>
+				</div>
+		</div>
 		<!-- Navigation -->
-		<nav class="navbar navbar-inverse navbar-fixed-top">
+		<nav class="navbar navbar-inverse navbar-fixed-top" style="z-index:1;">
 			<div class="container">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -65,147 +81,11 @@
 		            <h1 class="page-header sidebar-title">
 		                Company Blog
 		            </h1>
+		            <div id="listaDestinos">
+		            	
+		            </div>
 		            <!-- First Blog Post -->
-		            <div class="row blogu">
-		                <div class="col-sm-4 col-md-4 ">
-		                    <div class="blog-thumb">
-		                        <a href="single-post.html">
-		                            <img class="img-responsive" src="images/blog-photo1.jpg" alt="photo">
-		                        </a>
-		                    </div>
-		                </div>
-		                <div class="col-sm-8 col-md-8">
-		                    <h2 class="blog-title">
-		                        <a href="single-post.html">Post title 1</a>
-		                    </h2>
-		                    <p><i class="fa fa-calendar-o"></i>  August 28, 2013 
-		                        <span class="comments-padding"></span>
-		                        <i class="fa fa-comment"></i> 0 comments
-		                    </p>
-		                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
-		                </div>
-		            </div>
-		            <hr>
-		            <!-- Second Blog Post -->
-		            <div class="row">
-		                <div class="col-sm-4 col-md-4">
-		                    <div class="blog-thumb">
-		                        <a href="single-post.html">
-		                            <img class="img-responsive" src="images/blog-photo2.jpg" alt="photo">
-		                        </a>
-		                    </div>
-		                </div>
-		                <div class="col-sm-8 col-md-8">
-		                    <h2 class="blog-title">
-		                        <a href="single-post.html">Post title 2</a>
-		                    </h2>
-		                    <p><i class="fa fa-calendar-o"></i> August 28, 2013 
-		                       <span class="comments-padding"></span>
-		                       <i class="fa fa-comment"></i> 3 comments
-		                    </p>
-		                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
-		                </div>
-		            </div>
-		            <hr>
-		            <!-- Third Blog Post -->
-		            <div class="row">
-		                <div class="col-sm-4 col-md-4">
-		                    <div class="blog-thumb">
-		                        <a href="single-post.html">
-		                        <img class="img-responsive" src="images/blog-photo3.jpg" alt="photo">
-		                        </a>
-		                    </div>
-		                </div>
-		                <div class="col-sm-8 col-md-8">
-		                    <h2 class="blog-title">
-		                        <a href="single-post.html">Post title 3</a>
-		                    </h2>
-		                    <p><i class="fa fa-calendar-o"></i>  August 28, 2013 
-		                        <span class="comments-padding"></span>
-		                        <i class="fa fa-comment"></i> 1 comment
-		                    </p>
-		                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
-		                </div>
-		            </div>
-		            <hr>
-		            <!-- Fourth Blog Post -->
-		            <div class="row">
-		                <div class="col-sm-4 col-md-4">
-		                    <div class="blog-thumb">
-		                        <a href="single-post.html">
-		                            <img class="img-responsive" src="images/blog-photo1.jpg" alt="photo">
-		                        </a>
-		                    </div>
-		                </div>
-		                <div class="col-sm-8 col-md-8">
-		                    <h2 class="blog-title">
-		                        <a href="single-post.html">Post title 4</a>
-		                    </h2>
-		                    <p><i class="fa fa-calendar-o"></i> August 28, 2013 
-		                       <span class="comments-padding"></span>
-		                       <i class="fa fa-comment"></i> 3 comments
-		                    </p>
-		                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
-		                </div>
-		            </div>
-
-		             <hr>
-		            <!-- Fifth Blog Post -->
-		            <div class="row">
-		                <div class="col-sm-4 col-md-4">
-		                    <div class="blog-thumb">
-		                        <a href="single-post.html">
-		                            <img class="img-responsive" src="images/blog-photo2.jpg" alt="photo">
-		                        </a>
-		                    </div>
-		                </div>
-		                <div class="col-sm-8 col-md-8">
-		                    <h2 class="blog-title">
-		                        <a href="single-post.html">Post title 5</a>
-		                    </h2>
-		                    <p><i class="fa fa-calendar-o"></i> August 28, 2013 
-		                       <span class="comments-padding"></span>
-		                       <i class="fa fa-comment"></i> 3 comments
-		                    </p>
-		                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
-		                </div>
-		            </div>
-
-		             <hr>
-		            <!-- Six Blog Post -->
-		            <div class="row">
-		                <div class="col-sm-4 col-md-4">
-		                    <div class="blog-thumb">
-		                        <a href="single-post.html">
-		                            <img class="img-responsive" src="images/blog-photo3.jpg" alt="photo">
-		                        </a>
-		                    </div>
-		                </div>
-		                <div class="col-sm-8 col-md-8">
-		                    <h2 class="blog-title">
-		                        <a href="single-post.html">Post title 6</a>
-		                    </h2>
-		                    <p><i class="fa fa-calendar-o"></i> August 28, 2013 
-		                       <span class="comments-padding"></span>
-		                       <i class="fa fa-comment"></i> 3 comments
-		                    </p>
-		                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, veritatis, tempora, necessitatibus inventore nisi quam quia repellat ut tempore laborum possimus eum dicta id animi corrupti debitis ipsum officiis rerum.</p>
-		                </div>
-		            </div>
 		            
-
-
-		            <hr>
-		            <div class="text-center"> 
-		                <ul class="pagination"> 
-		                    <li class="active"> <a href="#">1</a> </li> 
-		                    <li> <a href="#">2</a> </li> 
-		                    <li> <a href="#">3</a> </li> 
-		                    <li> <a href="#">4</a> </li> 
-		                    <li> <a href="#">5</a> </li> 
-		                    <li> <a href="#">Next</a> </li> 
-		                </ul> 
-		            </div>
 		        </div>
 		            <!-- Blog Sidebar Column -->
 		            <aside class="col-md-4 sidebar-padding">
@@ -451,6 +331,7 @@
 
             });
         </script>
-
+		<!-- <script type="text/javascript" src="js/funcionesWeb.js"></script>  -->
+		<script type="text/javascript" src="js/funcionesDestino.js"></script>
     </body>
 </html>
