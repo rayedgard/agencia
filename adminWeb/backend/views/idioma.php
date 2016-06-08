@@ -281,7 +281,8 @@ else
 								
 								<?php 
 								$cont=1;
-								foreach($idioma->Listar('idioma') as $r): ?>
+								
+								
 			                        <tr <?php echo $r->__GET('estado') == 1 ? 'class="colorrowactivo"' : 'class="colorinactivo"'    ?>>
 			                        	<td><?php echo $cont++; ?></td>
 			                            <td><?php echo $r->__GET('nombre'); ?></td>

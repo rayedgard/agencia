@@ -116,6 +116,33 @@ class Categoria
         }
 
     }
+    /*
+    lista datos para cargar combo devolviendo array
+
+    */
+        public function ListarComboArray($idioma)
+    {
+        $this->pdo = new Conexion();
+        try
+        {
+            $result = array();
+            
+            $stm = $this->pdo->prepare('SELECT id,nombre FROM categoria  WHERE estado=1 and idioma_id='.$idioma);
+            $stm->execute();
+            
+            foreach($stm->fetchAll(PDO::FETCH_ASSOC) as $r)
+            {
+                array_push($result,$r);
+            }
+            return $result;
+        } 
+        catch (Exception $ex) 
+        {
+            die($ex->getMessage());
+
+        }
+
+    }
     
     /**
      * Obtiene los datos de un registro especifico

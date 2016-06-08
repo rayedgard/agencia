@@ -123,7 +123,34 @@ class Destino
         }
 
     }
-    
+    /*
+    lista id y nombre para cargar un combo , pero devulve un arreglo
+    de tales datos
+
+    */
+        public function ListarComboArray($idioma)
+    {
+        $this->pdo = new Conexion();
+        try
+        {
+            $result = array();
+            
+            $stm = $this->pdo->prepare('SELECT id, nombre FROM destino WHERE estado=1 and idioma_id='.$idioma);
+            $stm->execute();
+            
+            foreach($stm->fetchAll(PDO::FETCH_ASSOC) as $r)
+            {
+                 array_push($result,$r);
+            }
+            return $result;
+        } 
+        catch (Exception $ex) 
+        {
+            die($ex->getMessage());
+
+        }
+
+    }
     /**
      * Obtiene los datos de un registro especifico
      * @param type $id
