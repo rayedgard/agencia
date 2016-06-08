@@ -22,8 +22,7 @@
 <!--/////////////// FIN POPUP INICIAL ////////////////-->
 
 <?php
-require_once '../models/BannerGeneral.php';
-require_once '../models/Idioma.php';
+require_once '../models/GaleriaGeneral.php';
 require_once '../../config/funciones.php';
 
 //---------------------/////////
@@ -43,13 +42,10 @@ require_once $_SERVER['DOCUMENT_ROOT'].$linea;
 
 
 
-//variables
-
 
 // Logica
-$banner = new BannerGeneral();
-$idioma = new Idioma();
-$titulo = "Gesti&oacute;n de Banners General";
+$galeria = new GaleriaGeneral();
+$titulo = "Gesti&oacute;n de fotografias";
 
 if(isset($_REQUEST['action']))
 {
@@ -61,16 +57,13 @@ if(isset($_REQUEST['action']))
 	{
 		case 'registrar':
 		
-		
-			$banner->__SET('titulo',     $_REQUEST['titulo']);
-			$banner->__SET('detalle',     $_REQUEST['detalle']);
 
 			/*------linea de codigo para guardar la imagen o foto-------------*/
 			$nombre_temporal1= $_FILES["foto"]["tmp_name"];
 			$nombre_archivo1 =$_FILES["foto"]["name"];
 			$tipo_archivo1 = $_FILES["foto"]["type"]; 
 			$tamano_archivo1 =$_FILES["foto"]["size"];
-			$path1="../images/bannergeneral/";
+			$path1="../images/galeriageneral/";
 
 			if (!((strpos($tipo_archivo1, "gif") || strpos($tipo_archivo1, "png") || strpos($tipo_archivo1,"jpeg") || strpos($tipo_archivo1,"jpg")  && ($tamano_archivo1 < 30000000)))) 
 			{ 
@@ -78,7 +71,7 @@ if(isset($_REQUEST['action']))
 						
 			}
 			else{ 
-				  $banner->__SET('foto', $nombre_archivo1);
+				  $galeria->__SET('nombre', $nombre_archivo1);
 
 				//antes de enviar los caracteres que pasamos por la URL debemos ponerlo en buen recaudo encriptar
 				if(is_uploaded_file($nombre_temporal1)){
@@ -90,25 +83,24 @@ if(isset($_REQUEST['action']))
 
 			/*-------Fin guarda imagenes-----------------*/
 
-			$banner->__SET('idioma_id',		$_REQUEST['idioma_id']);
-
-			$banner->Registrar($banner);
+	
+			
+			$galeria->Registrar($galeria);
 			//header('Location: index.php');
 			/*/------------PARA LAS ACCIONES-----------------/*/ 			
 			
-			echo "<meta http-equiv ='refresh' content='0;url=bannergeneral.php?'>"; 	
-					/*/------------FIN ACCIONES-----------------/*/
+			echo "<meta http-equiv ='refresh' content='0;url=galeriageneral.php'>"; 	
+			/*/------------FIN ACCIONES-----------------/*/
 			break;
 
 		case 'eliminar':
-		
 			$id=desencripta($_REQUEST['id'],"rayedgard");
-			$nombreFoto=desencripta($_GET['nn'],"rayedgard");//captuamos en nombre de la foto para eliminarla
-			$banner->Eliminar($id);//elima en la base de datos
+			$nombreFoto=$_GET['nn'];//captuamos en nombre de la foto para eliminarla
+			$galeria->Eliminar($id);//elima en la base de datos
 
 			//header('Location: index.php');
 			if($nombreFoto!=null or $nombreFoto!="")
-				unlink("../images/bannergeneral/".$nombreFoto); //elimina en la carpeta
+				unlink("../images/galeriageneral/".$nombreFoto); //elimina en la carpeta
 			break;
 
 	
@@ -170,39 +162,14 @@ else
 						<div class="tab-pane active" id="horizontal-form" >
 							<div class="bs-example4" data-example-id="contextual-table">
 								<!--CAMBIO EN action  y method-->
-								<form class="form-horizontal" action="bannergeneral.php?action=<?php echo urlencode(encripta("registrar","rayedgard")); ?>" method="post" enctype="multipart/form-data">
+								<form class="form-horizontal" action="galeriageneral.php?action=<?php echo urlencode(encripta("registrar","rayedgard")); ?>" method="post" enctype="multipart/form-data">
 
 									
 									
-
-										<div class="form-group">
-											<label for="focusedinput" class="col-sm-2 control-label">Titulo</label>
-											<div class="col-sm-8">
-
-														
-												<!--CAMBIO EN name y value-->
-												<input type="text" name="titulo" value="<?php echo $banner->__GET('titulo'); ?>" class="form-control1" id="focusedinput" placeholder="Escriba un titulo" title="Escriba un titulo" required="">										
-
-											</div>										
-										</div>
-
-
-										<div class="form-group">
-											<label for="focusedinput" class="col-sm-2 control-label">Detalle</label>
-											<div class="col-sm-8">
-
-														
-												<!--CAMBIO EN name y value-->
-												<input type="text" name="detalle" value="<?php echo $banner->__GET('detalle'); ?>" class="form-control1" id="focusedinput" placeholder="Escriba el detalle" title="Escriba el detalle" required="">										
-
-											</div>										
-										</div>
-
-
 										<div class="form-group">
 											<label for="focusedinput" class="col-sm-2 control-label">foto</label>
 											<div class="col-sm-4">
-												<input  type="file" name="foto" id="exampleInputFile" value="<?php echo $banner->__GET('nombre'); ?>" >												
+												<input  type="file" name="foto" id="exampleInputFile" value="<?php echo $galeria->__GET('nombre'); ?>" >												
 												<input type="hidden" name="MAX_FILE_SIZE" value="900000">
 												<p class="help-block">Formatos PNG, JPG, GIF.</p>
 											
@@ -212,22 +179,6 @@ else
 										</div>
 
 
-										<div class="form-group">
-											<label for="txtarea1" class="col-sm-2 control-label">Idioma</label>
-											<div class="col-sm-8">
-												<select name="idioma_id" id="selector1" class="form-control1">
-													
-													<?php 
-														
-												foreach($idioma->ListarCombo() as $r): ?>		
-
-									                    <option name="idioma_id" value="<?php echo $r->__GET('id'); ?>" <?php echo $banner->__GET('idioma_id') == $r->__GET('id') ? 'selected/' : ''; ?>><?php echo $r->__GET('nombre'); ?>
-									                    </option >
-
-								                	<?php endforeach; ?>
-												</select>
-											</div>
-										</div>
 
 										 <div class="panel-footer">
 											<div class="row">
@@ -269,10 +220,8 @@ else
 							  <thead>
 								<tr>
 								  <th>#</th>
-								  <th>Titulo</th>
-								  <th>Detalle</th>
+								  <th>Nombre de foto</th>
 								  <th>foto</th>
-								  <th>Idioma</th>
 								  <th>Option</th>
 								  <th></th>
 								</tr>
@@ -282,20 +231,19 @@ else
 								
 								<?php 
 								$cont=1;
-								foreach($banner->Listar() as $r): ?>
+								foreach($galeria->Listar() as $r): ?>
 			                        <tr>
 			                        	<td><?php echo $cont++; ?></td>
-			                            <td><?php echo $r->__GET('titulo'); ?></td>
-			                            <td><?php echo $r->__GET('detalle'); ?></td>
+			                            <td><?php echo $r->__GET('nombre'); ?></td>
 			                        	 <td>
-			                       			<img src="../images/bannergeneral/<?php echo $r->__GET('foto');  ?>" height="30" width="30"/> 
+			                       			<img src="../images/galeriageneral/<?php echo $r->__GET('nombre');  ?>" height="30" width="30"/> 
 			                             </td>
 
-			                            <td><?php echo $r->__GET('idioma_nombre'); ?></td>
+			                            
+			                        	<td> 
 
-			                        	<td>
-			                        	
-                                            <a href="#"  onclick="javascript:direc('?action=<?php echo urlencode(encripta('eliminar','rayedgard'));?>&id=<?php echo urlencode(encripta($r->id,'rayedgard')); ?>&nn=<?php echo urlencode(encripta($r->foto,'rayedgard')); ?>','<?php echo $r->__GET('titulo'); ?>')" class="btn btn-sm btn-danger">Eliminar</a>
+                            
+                                      <a href="#"  onclick="javascript:direc('?action=<?php echo urlencode(encripta('eliminar','rayedgard'));?>&id=<?php echo urlencode(encripta($r->id,'rayedgard')); ?>&nn=<?php echo $r->__GET('nombre'); ?>','<?php echo $r->__GET('nombre'); ?>')" class="btn btn-sm btn-danger">Eliminar</a>
                                        
 
                                           </td>
@@ -309,11 +257,4 @@ else
 					</div>
 				</div>
 			</div>
-
-
-
-
-
-
-
 

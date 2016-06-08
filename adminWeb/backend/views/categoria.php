@@ -23,18 +23,107 @@ if(isset($_REQUEST['action']))
 			$categoria->__SET('id',         $id);
 			$categoria->__SET('nombre',     $_REQUEST['nombre']);
 			$categoria->__SET('tipo',     $_REQUEST['tipo']);
+			
+
+
+
+
+
+
+
+
+			$nombre_temporal1= $_FILES["foto"]["tmp_name"];
+			$nombre_archivo1 =$_FILES["foto"]["name"];
+			$tipo_archivo1 = $_FILES["foto"]["type"]; 
+			$tamano_archivo1 =$_FILES["foto"]["size"];
+			$path1="images/categoria/";
+
+			if($_FILES['foto']['name']!="")
+			{				
+			   if (!((strpos($tipo_archivo1, "gif") || strpos($tipo_archivo1, "png") || strpos($tipo_archivo1,"jpeg") || strpos($tipo_archivo1,"jpg")  && ($tamano_archivo1 < 3000000)))) 
+				{ 
+					echo "La extensión o el tamaño del archivo de IMAGEN no es correcta. <br><br><table><tr><td><li>Se permiten archivos *.gif, *.png o *.jpg<br><li>se permiten archivos de 3Mb maximo.</td></tr></table><br>";
+				}
+				else{ 
+					  $categoria->__SET('foto', $nombre_archivo1);
+					//antes de enviar los caracteres que pasamos por la URL debemos ponerlo en buen recaudo encriptar
+					if(is_uploaded_file($nombre_temporal1)){
+						copy($nombre_temporal1, $path1.$nombre_archivo1);
+						if($_REQUEST['foto1']!=null or $_REQUEST['foto1']!="")
+							unlink("images/categoria/".$_REQUEST['foto1']);
+					}
+					else{echo "<br>Ocurrio un error al subir los archivos. intentelo otra ves.";}
+				}
+		    }
+		    else
+		    {
+		    	$categoria->__SET('foto',  $_REQUEST['foto1']);
+		    }
+
+
+
+
+
+
+
+
 			$categoria->__SET('idioma_id',     $_REQUEST['idioma_id']);
 			$categoria->__SET('estado', $_REQUEST['estado']);
 			//echo $_REQUEST['nombre'];
 			$categoria->Actualizar($categoria);
 			//header('Location: index.php');
 			/*/------------PARA LAS ACCIONES-----------------/*/ 			
-			echo "<meta http-equiv ='refresh' content='20;url=index.php?p=". urlencode(encripta($p,'rayedgard'))."&idm=". urlencode(encripta($idm,'rayedgard'))."'>"; 			/*/------------FIN ACCIONES-----------------/*/
+			echo "<meta http-equiv ='refresh' content='0;url=index.php?p=". urlencode(encripta($p,'rayedgard'))."'>"; 			/*/------------FIN ACCIONES-----------------/*/
 			break;
 
 		case 'registrar':
 			$categoria->__SET('nombre',          $_REQUEST['nombre']);
 			$categoria->__SET('tipo', $_REQUEST['tipo']);
+			
+
+
+
+
+
+
+
+
+
+			/*------linea de codigo para guardar la imagen o foto-------------*/
+			$nombre_temporal1= $_FILES["foto"]["tmp_name"];
+			$nombre_archivo1 =$_FILES["foto"]["name"];
+			$tipo_archivo1 = $_FILES["foto"]["type"]; 
+			$tamano_archivo1 =$_FILES["foto"]["size"];
+			$path1="images/categoria/";
+
+			if (!((strpos($tipo_archivo1, "gif") || strpos($tipo_archivo1, "png") || strpos($tipo_archivo1,"jpeg") || strpos($tipo_archivo1,"jpg")  && ($tamano_archivo1 < 3000000)))) 
+			{ 
+				echo "La extensión o el tamaño del archivo de IMAGEN no es correcta. <br><br><table><tr><td><li>Se permiten archivos *.gif, *.png o *.jpg<br><li>se permiten archivos de 3Mb maximo.</td></tr></table><br>";
+						
+			}
+			else{ 
+				  $categoria->__SET('foto', $nombre_archivo1);
+
+				//antes de enviar los caracteres que pasamos por la URL debemos ponerlo en buen recaudo encriptar
+				if(is_uploaded_file($nombre_temporal1)){
+					copy($nombre_temporal1, $path1.$nombre_archivo1);	
+				}
+				else{echo "<br>Ocurrio un error al subir los archivos. intentelo otra ves.";}
+		 				
+			}
+
+			/*-------Fin guarda imagenes-----------------*/
+
+
+
+
+
+
+
+
+
+
+
 			$categoria->__SET('idioma_id', $_REQUEST['idioma_id']);
 			$categoria->__SET('estado', $_REQUEST['estado']);
 
@@ -46,8 +135,19 @@ if(isset($_REQUEST['action']))
 			break;
 
 		case 'eliminar':
+			
+	
+
+				$id=desencripta($_REQUEST['id'],"rayedgard");
+			$nombreFoto=desencripta($_GET['nn'],"rayedgard");//captuamos en nombre de la foto para eliminarla
 			$categoria->Eliminar($id);
-			//header('Location: index.php');
+
+			if($nombreFoto!=null or $nombreFoto!="")
+				unlink("images/categoria/".$nombreFoto); //elimina en la carpeta
+
+
+
+
 			break;
 
 		case 'editar':
@@ -111,7 +211,7 @@ else
 						<div class="tab-pane active" id="horizontal-form" >
 							<div class="bs-example4" data-example-id="contextual-table">
 								<!--CAMBIO EN action  y method-->
-								<form class="form-horizontal" action="index.php?p=<?php echo urlencode(encripta($p,'rayedgard'));?>&action=<?php echo $categoria->id > 0 ?  encripta("actualizar","rayedgard") :  encripta("registrar","rayedgard"); ?>&id=<?php echo encripta($categoria->id,'rayedgard');?>" method="post">
+								<form class="form-horizontal" action="index.php?p=<?php echo urlencode(encripta($p,'rayedgard'));?>&action=<?php echo $categoria->id > 0 ?  encripta("actualizar","rayedgard") :  encripta("registrar","rayedgard"); ?>&id=<?php echo encripta($categoria->id,'rayedgard');?>" method="post"  enctype="multipart/form-data">
 
 									
 										<div class="form-group">
@@ -140,6 +240,24 @@ else
 						                           </option >								                
 												</select>
 											</div>
+										</div>
+
+
+										<div class="form-group">
+											<label for="focusedinput" class="col-sm-2 control-label">Foto</label>
+											<div class="col-sm-4">
+												<input  type="file" name="foto" id="exampleInputFile" value="<?php echo $categoria->__GET('foto'); ?>" >												
+												<input type="hidden" name="MAX_FILE_SIZE" value="900000">
+												<p class="help-block">Formatos PNG, JPG, GIF.</p>
+												<input type="text" name="foto1" id="exampleInputFile" value="<?php echo $categoria->__GET('foto'); ?>" hidden/>
+											</div>	
+
+											<div class="col-sm-4">
+
+												 <img src="images/categoria/<?php echo $categoria->__GET('foto');  ?>" height="60" width="60"/> 
+													
+
+											</div>	
 										</div>
 
 
@@ -221,6 +339,7 @@ else
 								  <th>#</th>
 								  <th>Nombre Categoria</th>
 								  <th>Tipo</th>
+								  <th>foto</th>
 								  <th>Idioma</th>
 								  <th>Estado</th>
 								  <th>Option</th>
@@ -237,6 +356,9 @@ else
 			                        	<td><?php echo $cont++; ?></td>
 			                            <td><?php echo $r->__GET('nombre'); ?></td>
 			                            <td><?php echo $r->__GET('tipo') == 1 ? 'Tours' : 'Circuito'; ?></td>
+			                            <td>
+			                       			<img src="images/categoria/<?php echo $r->__GET('foto');  ?>" height="30" width="30"/> 
+			                             </td>
 			                            <td><?php echo $r->__GET('idioma_nombre'); ?></td>
 			                            <td><?php echo $r->__GET('estado') == 1 ? 'Activo' : 'Inactivo'; ?></td>
 			                        	<td> 
@@ -246,7 +368,7 @@ else
                                         <a href="?p=<?php echo urlencode(encripta($p,'rayedgard'));?>&action=<?php echo urlencode(encripta('editar','rayedgard'));?>&id=<?php echo urlencode(encripta($r->id,'rayedgard')); ?>" class="btn btn-xs btn-primary">Editar</a>
                                       
 
-                                      <a href="#"  onclick="javascript:direc('?p=<?php echo urlencode(encripta($p,'rayedgard'));?>&action=<?php echo urlencode(encripta('eliminar','rayedgard'));?>&id=<?php echo urlencode(encripta($r->id,'rayedgard')); ?>','<?php echo $r->__GET('nombre'); ?>')" class="btn btn-sm btn-danger">Eliminar</a>
+                                      <a href="#"  onclick="javascript:direc('?p=<?php echo urlencode(encripta($p,'rayedgard'));?>&action=<?php echo urlencode(encripta('eliminar','rayedgard'));?>&id=<?php echo urlencode(encripta($r->id,'rayedgard')); ?>&nn=<?php echo urlencode(encripta($r->foto,'rayedgard'));?>','<?php echo $r->__GET('nombre'); ?>')" class="btn btn-sm btn-danger">Eliminar</a>
                                        
 
                                           </td>
