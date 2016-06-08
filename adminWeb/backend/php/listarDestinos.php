@@ -69,7 +69,7 @@ class listarDestinos
 
                         $imagen='<div class="row blogu"> <div class="col-sm-4 col-md-4 "> <div class="blog-thumb"> <a href="#"> <img class="img-responsive" src="../adminWeb/backend/images/bannerDestino/'.$listaDestinos[$i]["foto_destino"].'" alt="photo"> </a> </div> </div> <div class="col-sm-8 col-md-8"> <h2 class="blog-title">';
                         $titulo = '<a href="#" id="'.$listaDestinos[$i]["id"].'" class="linkDestino">'.$listaDestinos[$i]["nombre"].'</a>';
-                        $descripcion = '</h2> <p>'.$descrip.'</p> </div> </div>';
+                        $descripcion = '</h2> <p>'.$descrip.'</p> </div> </div> <br> <hr>';
                         $lista = $imagen.$titulo.$descripcion;
                         $listaDestinosIndex= $listaDestinosIndex.$lista;
                 }

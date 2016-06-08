@@ -57,7 +57,7 @@ var totalDestinos = {
 			data:{"idIdioma":id, "accion":"destino"},
 			success:function(respuesta){
 				// alert(respuesta);
-				$("#listaDestinos").append(respuesta);
+				$("#listaDestinos").html(respuesta);
 				$(".linkDestino").on('click',function(){
 					idDestino= $(this).prop('id');
 					document.location.href = "destinos.html?identidcador="+idDestino;

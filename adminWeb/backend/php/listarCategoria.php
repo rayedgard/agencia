@@ -44,7 +44,8 @@ class listaCategoria
 					 
 					$imagen = '<div class="col-md-4 col-sm-12 col-xs-12 portfolio-item"> <figure class="effect-oscar"> <img src="../adminWeb/backend/images/categoria/'.$listaModelo[$i]["foto"].'" alt="img09" class="img-responsive" /> ';
 					$nombre = '<figcaption> <h2>'.$listaModelo[$i]["nombre"].'</h2> <a href="#">View more</a> </figcaption> </figure>';
-                    $detalle = '<p class="text-center">'.$listaModelo[$i]["nombre"].'</p> <div class="text-center"><a class="btn btn-primary btn-noborder-radius hvr-bounce-to-bottom">Read More</a></div> </div>';
+                    // $detalle = '<p class="text-center">'.$listaModelo[$i]["nombre"].'</p> <div class="text-center"><a class="btn btn-primary btn-noborder-radius hvr-bounce-to-bottom">Read More</a></div> </div>';
+                    $detalle = '<div class="text-center"><a class="btn btn-primary btn-noborder-radius hvr-bounce-to-bottom">Read More</a></div> </div>';
             		$lista = $imagen.$nombre.$detalle;
 					 
             		$listaPaquetes = $listaPaquetes.$lista;						 
