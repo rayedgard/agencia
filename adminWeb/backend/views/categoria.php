@@ -339,7 +339,7 @@ else
 								  <th>#</th>
 								  <th>Nombre Categoria</th>
 								  <th>Tipo</th>
-								  <th>foto</th>
+								  <th>oto</th>
 								  <th>Idioma</th>
 								  <th>Estado</th>
 								  <th>Option</th>

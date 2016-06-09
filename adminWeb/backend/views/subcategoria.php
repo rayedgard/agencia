@@ -26,6 +26,58 @@ if(isset($_REQUEST['action']))
 			$subcategoria->__SET('id',         $id);
 			$subcategoria->__SET('nombre',     $_REQUEST['nombre']);
 			$subcategoria->__SET('detalle',     $_REQUEST['detalle']);
+
+
+
+
+
+
+
+
+
+
+			$nombre_temporal1= $_FILES["foto"]["tmp_name"];
+			$nombre_archivo1 =$_FILES["foto"]["name"];
+			$tipo_archivo1 = $_FILES["foto"]["type"]; 
+			$tamano_archivo1 =$_FILES["foto"]["size"];
+			$path1="images/subcategoria/";
+
+			if($_FILES['foto']['name']!="")
+			{				
+			   if (!((strpos($tipo_archivo1, "gif") || strpos($tipo_archivo1, "png") || strpos($tipo_archivo1,"jpeg") || strpos($tipo_archivo1,"jpg")  && ($tamano_archivo1 < 3000000)))) 
+				{ 
+					echo "La extensión o el tamaño del archivo de IMAGEN no es correcta. <br><br><table><tr><td><li>Se permiten archivos *.gif, *.png o *.jpg<br><li>se permiten archivos de 3Mb maximo.</td></tr></table><br>";
+				}
+				else{ 
+					  $subcategoria->__SET('foto', $nombre_archivo1);
+					//antes de enviar los caracteres que pasamos por la URL debemos ponerlo en buen recaudo encriptar
+					if(is_uploaded_file($nombre_temporal1)){
+						copy($nombre_temporal1, $path1.$nombre_archivo1);
+						if($_REQUEST['foto1']!=null or $_REQUEST['foto1']!="")
+							unlink("images/subcategoria/".$_REQUEST['foto1']);
+					}
+					else{echo "<br>Ocurrio un error al subir los archivos. intentelo otra ves.";}
+				}
+		    }
+		    else
+		    {
+		    	$subcategoria->__SET('foto',  $_REQUEST['foto1']);
+		    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 			$subcategoria->__SET('mapa',     $_REQUEST['mapa']);
 			$subcategoria->__SET('video',     $_REQUEST['video']);
 			$subcategoria->__SET('tarifa',     $_REQUEST['tarifa']);
@@ -50,6 +102,52 @@ if(isset($_REQUEST['action']))
 			
 			$subcategoria->__SET('nombre',     $_REQUEST['nombre']);
 			$subcategoria->__SET('detalle',     $_REQUEST['detalle']);
+
+
+
+
+
+
+
+
+
+			/*------linea de codigo para guardar la imagen o foto-------------*/
+			$nombre_temporal1= $_FILES["foto"]["tmp_name"];
+			$nombre_archivo1 =$_FILES["foto"]["name"];
+			$tipo_archivo1 = $_FILES["foto"]["type"]; 
+			$tamano_archivo1 =$_FILES["foto"]["size"];
+			$path1="images/subcategoria/";
+
+			if (!((strpos($tipo_archivo1, "gif") || strpos($tipo_archivo1, "png") || strpos($tipo_archivo1,"jpeg") || strpos($tipo_archivo1,"jpg")  && ($tamano_archivo1 < 3000000)))) 
+			{ 
+				echo "La extensión o el tamaño del archivo de IMAGEN no es correcta. <br><br><table><tr><td><li>Se permiten archivos *.gif, *.png o *.jpg<br><li>se permiten archivos de 3Mb maximo.</td></tr></table><br>";
+						
+			}
+			else{ 
+				  $subcategoria->__SET('foto', $nombre_archivo1);
+
+				//antes de enviar los caracteres que pasamos por la URL debemos ponerlo en buen recaudo encriptar
+				if(is_uploaded_file($nombre_temporal1)){
+					copy($nombre_temporal1, $path1.$nombre_archivo1);	
+				}
+				else{echo "<br>Ocurrio un error al subir los archivos. intentelo otra ves.";}
+		 				
+			}
+
+			/*-------Fin guarda imagenes-----------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
 			$subcategoria->__SET('mapa',     $_REQUEST['mapa']);
 			$subcategoria->__SET('video',     $_REQUEST['video']);
 			$subcategoria->__SET('tarifa',     $_REQUEST['tarifa']);
@@ -67,8 +165,21 @@ if(isset($_REQUEST['action']))
 			break;
 
 		case 'eliminar':
+			
+
+
+
+			$id=desencripta($_REQUEST['id'],"rayedgard");
+			$nombreFoto=desencripta($_GET['nn'],"rayedgard");//captuamos en nombre de la foto para eliminarla
 			$subcategoria->Eliminar($id);
-			//header('Location: index.php');
+
+			if($nombreFoto!=null or $nombreFoto!="")
+				unlink("images/subcategoria/".$nombreFoto); //elimina en la carpeta
+
+
+
+
+
 			break;
 
 		case 'editar':
@@ -161,6 +272,28 @@ else
 											</div>										
 										</div>
 
+
+
+
+
+
+
+										<div class="form-group">
+											<label for="focusedinput" class="col-sm-2 control-label">Foto</label>
+											<div class="col-sm-4">
+												<input  type="file" name="foto" id="exampleInputFile" value="<?php echo $subcategoria->__GET('foto'); ?>" >												
+												<input type="hidden" name="MAX_FILE_SIZE" value="900000">
+												<p class="help-block">Formatos PNG, JPG, GIF.</p>
+												<input type="text" name="foto1" id="exampleInputFile" value="<?php echo $subcategoria->__GET('foto'); ?>" hidden/>
+										</div>	
+
+
+
+
+
+
+
+
 										<div class="form-group">
 											<label for="focusedinput" class="col-sm-2 control-label">Mapa</label>
 											<div class="col-sm-8">
@@ -173,18 +306,25 @@ else
 											</div>										
 										</div>
 
+									
+
+
+
 										<div class="form-group">
-											<label for="focusedinput" class="col-sm-2 control-label">video</label>
+											<label for="focusedinput" class="col-sm-2 control-label">Video</label>
 											<div class="col-sm-8">
 
 														
 												<!--CAMBIO EN name y value-->
-												<textarea  name="video"  id="txtarea2" class="form-control1"><?php echo $subcategoria->__GET('video'); ?></textarea> 
-
+												<input type="text" name="video" value="<?php echo $subcategoria->__GET('video'); ?>" class="form-control1" id="focusedinput" placeholder="Escriba el codigo del video" title="Escriba el codigo del video" required="">										
 
 
 											</div>										
 										</div>
+
+
+
+
 
 										<div class="form-group">
 											<label for="focusedinput" class="col-sm-2 control-label">Tarifa</label>
@@ -327,6 +467,7 @@ else
 								  <th>#</th>
 								  <th>Nombre de Paquete</th>
 								  <th>Categoria</th>
+								  <th>Foto</th>
 								  <th>idioma</th>
 								  <th>estado</th>
 								  <th></th>
@@ -344,6 +485,12 @@ else
 			                        	<td><?php echo $cont++; ?></td>
 			                            <td><?php echo $r->__GET('nombre'); ?></td>
 			                        	<td><?php echo $r->__GET('categoria_nombre'); ?></td>
+
+			                        	 <td>
+			                       			<img src="images/subcategoria/<?php echo $r->__GET('foto');  ?>" height="30" width="30"/> 
+			                             </td>
+
+
 			                        	<td><?php echo $r->__GET('idioma_nombre'); ?> </td>
 			                            <td><?php echo $r->__GET('estado') == 1 ? 'Activo' : 'Inactivo'; ?></td>
 			                        	<td> 

@@ -21,9 +21,60 @@ if(isset($_REQUEST['action']))
 	switch($action)
 	{
 		case 'actualizar':
-			$destino->__SET('id',         $id);
+			$destino->__SET('id',          $id);
 			$destino->__SET('nombre',     $_REQUEST['nombre']);
 			$destino->__SET('etiqueta',     $_REQUEST['etiqueta']);
+
+
+
+
+
+
+
+
+			$nombre_temporal1= $_FILES["foto"]["tmp_name"];
+			$nombre_archivo1 =$_FILES["foto"]["name"];
+			$tipo_archivo1 = $_FILES["foto"]["type"]; 
+			$tamano_archivo1 =$_FILES["foto"]["size"];
+			$path1="images/destino/";
+
+			if($_FILES['foto']['name']!="")
+			{				
+			   if (!((strpos($tipo_archivo1, "gif") || strpos($tipo_archivo1, "png") || strpos($tipo_archivo1,"jpeg") || strpos($tipo_archivo1,"jpg")  && ($tamano_archivo1 < 3000000)))) 
+				{ 
+					echo "La extensión o el tamaño del archivo de IMAGEN no es correcta. <br><br><table><tr><td><li>Se permiten archivos *.gif, *.png o *.jpg<br><li>se permiten archivos de 3Mb maximo.</td></tr></table><br>";
+				}
+				else{ 
+					  $destino->__SET('foto', $nombre_archivo1);
+					//antes de enviar los caracteres que pasamos por la URL debemos ponerlo en buen recaudo encriptar
+					if(is_uploaded_file($nombre_temporal1)){
+						copy($nombre_temporal1, $path1.$nombre_archivo1);
+						if($_REQUEST['foto1']!=null or $_REQUEST['foto1']!="")
+							unlink("images/destino/".$_REQUEST['foto1']);
+					}
+					else{echo "<br>Ocurrio un error al subir los archivos. intentelo otra ves.";}
+				}
+		    }
+		    else
+		    {
+		    	$destino->__SET('foto',  $_REQUEST['foto1']);
+		    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 			$destino->__SET('detalle',     $_REQUEST['detalle']);
 			$destino->__SET('mapa',     $_REQUEST['mapa']);
 			$destino->__SET('clima',     $_REQUEST['clima']);
@@ -42,6 +93,58 @@ if(isset($_REQUEST['action']))
 		case 'registrar':
 			$destino->__SET('nombre',     $_REQUEST['nombre']);
 			$destino->__SET('etiqueta',     $_REQUEST['etiqueta']);
+
+
+
+
+
+
+
+
+
+
+				/*------linea de codigo para guardar la imagen o foto-------------*/
+			$nombre_temporal1= $_FILES["foto"]["tmp_name"];
+			$nombre_archivo1 =$_FILES["foto"]["name"];
+			$tipo_archivo1 = $_FILES["foto"]["type"]; 
+			$tamano_archivo1 =$_FILES["foto"]["size"];
+			$path1="images/destino/";
+
+			if (!((strpos($tipo_archivo1, "gif") || strpos($tipo_archivo1, "png") || strpos($tipo_archivo1,"jpeg") || strpos($tipo_archivo1,"jpg")  && ($tamano_archivo1 < 3000000)))) 
+			{ 
+				echo "La extensión o el tamaño del archivo de IMAGEN no es correcta. <br><br><table><tr><td><li>Se permiten archivos *.gif, *.png o *.jpg<br><li>se permiten archivos de 3Mb maximo.</td></tr></table><br>";
+						
+			}
+			else{ 
+				  $destino->__SET('foto', $nombre_archivo1);
+
+				//antes de enviar los caracteres que pasamos por la URL debemos ponerlo en buen recaudo encriptar
+				if(is_uploaded_file($nombre_temporal1)){
+					copy($nombre_temporal1, $path1.$nombre_archivo1);	
+				}
+				else{echo "<br>Ocurrio un error al subir los archivos. intentelo otra ves.";}
+		 				
+			}
+
+			/*-------Fin guarda imagenes-----------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 			$destino->__SET('detalle',     $_REQUEST['detalle']);
 			$destino->__SET('mapa',     $_REQUEST['mapa']);
 			$destino->__SET('clima',     $_REQUEST['clima']);
@@ -58,8 +161,23 @@ if(isset($_REQUEST['action']))
 			break;
 
 		case 'eliminar':
+		
+
+
+
+			$id=desencripta($_REQUEST['id'],"rayedgard");
+			$nombreFoto=desencripta($_GET['nn'],"rayedgard");//captuamos en nombre de la foto para eliminarla
 			$destino->Eliminar($id);
-			//header('Location: index.php');
+
+			if($nombreFoto!=null or $nombreFoto!="")
+				unlink("images/destino/".$nombreFoto); //elimina en la carpeta
+
+
+
+
+
+
+
 			break;
 
 		case 'editar':
@@ -150,6 +268,28 @@ else
 
 											</div>										
 										</div>
+
+
+
+
+
+
+
+										<div class="form-group">
+											<label for="focusedinput" class="col-sm-2 control-label">Foto</label>
+											<div class="col-sm-4">
+												<input  type="file" name="foto" id="exampleInputFile" value="<?php echo $destino->__GET('foto'); ?>" >												
+												<input type="hidden" name="MAX_FILE_SIZE" value="900000">
+												<p class="help-block">Formatos PNG, JPG, GIF.</p>
+												<input type="text" name="foto1" id="exampleInputFile" value="<?php echo $destino->__GET('foto'); ?>" hidden/>
+										</div>	
+
+
+
+
+
+
+
 										<div class="form-group">
 											<label for="focusedinput" class="col-sm-2 control-label">Detalle</label>
 											<div class="col-sm-8">
@@ -293,6 +433,7 @@ else
 								  <th>#</th>
 								  <th>Nombre de destino</th>
 								  <th>Etiqueta</th>
+								  <th>Foto</th>
 								  <th>idioma</th>
 								  <th>estado</th>
 								  <th></th>
@@ -310,6 +451,12 @@ else
 			                        	<td><?php echo $cont++; ?></td>
 			                            <td width="300"><?php echo $r->__GET('nombre'); ?></td>
 			                        	<td><?php echo $r->__GET('etiqueta'); ?></td>
+
+			                        	 <td>
+			                       			<img src="images/destino/<?php echo $r->__GET('foto');  ?>" height="30" width="30"/> 
+			                             </td>
+
+
 			                        	<td><?php echo $r->__GET('idioma_nombre'); ?></td>
 			                        	
 			                            <td><?php echo $r->__GET('estado') == 1 ? 'Activo' : 'Inactivo'; ?></td>

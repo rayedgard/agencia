@@ -5,6 +5,7 @@ class Subcategoria
     private $id;
     private $nombre;
     private $detalle;
+    private $foto;
     private $mapa;
     private $video;
     private $tarifa;
@@ -45,7 +46,7 @@ class Subcategoria
         {
             $result = array();
             
-            $stm = $this->pdo->prepare('SELECT s.id,s.nombre,s.detalle,s.mapa,s.video,s.tarifa,s.incluye,s.hoteles,s.restaurante,s.perfil_id,s.categoria_id,s.estado,c.nombre AS categoria_nombre,p.nombre AS perfil_nombre,i.nombre AS idioma_nombre FROM subcategoria s INNER JOIN categoria c ON c.id=s.categoria_id   INNER JOIN perfil p ON p.id=s.perfil_id INNER JOIN idioma i ON i.id = c.idioma_id');
+            $stm = $this->pdo->prepare('SELECT s.id,s.nombre,s.detalle,s.foto,s.mapa,s.video,s.tarifa,s.incluye,s.hoteles,s.restaurante,s.perfil_id,s.categoria_id,s.estado,c.nombre AS categoria_nombre,p.nombre AS perfil_nombre,i.nombre AS idioma_nombre FROM subcategoria s INNER JOIN categoria c ON c.id=s.categoria_id   INNER JOIN perfil p ON p.id=s.perfil_id INNER JOIN idioma i ON i.id = c.idioma_id');
             $stm->execute();
             
             foreach($stm->fetchAll(PDO::FETCH_OBJ) as $r)
@@ -54,6 +55,7 @@ class Subcategoria
                 $alm->__SET('id',$r->id);
                 $alm->__SET('nombre',$r->nombre);
                 $alm->__SET('detalle',$r->detalle);
+                $alm->__SET('foto',$r->foto);
                 $alm->__SET('mapa',$r->mapa);
                 $alm->__SET('video',$r->video);
                 $alm->__SET('tarifa',$r->tarifa);
@@ -130,6 +132,7 @@ class Subcategoria
             $alm->__SET('id',$r->id);
             $alm->__SET('nombre',$r->nombre);
             $alm->__SET('detalle',$r->detalle);
+            $alm->__SET('foto',$r->foto);
             $alm->__SET('mapa',$r->mapa);
             $alm->__SET('video',$r->video);
             $alm->__SET('tarifa',$r->tarifa);
@@ -176,6 +179,7 @@ class Subcategoria
             $sql = "UPDATE subcategoria SET 
                             nombre=?,
                             detalle=?,
+                            foto=?,
                             mapa=?,
                             video=?,
                             tarifa=?,
@@ -192,6 +196,7 @@ class Subcategoria
                         array(
                                 $data->__GET('nombre'),
                                 $data->__GET('detalle'),
+                                $data->__GET('foto'),
                                 $data->__GET('mapa'),
                                 $data->__GET('video'),
                                 $data->__GET('tarifa'),
@@ -219,8 +224,8 @@ class Subcategoria
         
         try
         {
-            $sql ="INSERT INTO subcategoria (nombre,detalle,mapa,video,tarifa,incluye,hoteles,restaurante,perfil_id,categoria_id,estado)
-                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $sql ="INSERT INTO subcategoria (nombre,detalle,foto,mapa,video,tarifa,incluye,hoteles,restaurante,perfil_id,categoria_id,estado)
+                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $this->pdo->prepare($sql)
                     ->execute(
                         array(
