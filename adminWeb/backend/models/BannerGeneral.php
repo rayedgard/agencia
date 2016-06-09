@@ -59,14 +59,14 @@ class BannerGeneral
         }
     }
 
-        public function listarBaner()
+        public function listarBaner($id)
     {
         $this->pdo = new Conexion();
         try
         {
             $result = array();
             
-            $stm = $this->pdo->prepare('SELECT id,titulo,detalle,foto FROM bannergeneral');
+            $stm = $this->pdo->prepare('SELECT id,titulo,detalle,foto FROM bannergeneral WHERE idioma_id ='.$id);
             $stm->execute();
             
             foreach($stm->fetchAll(PDO::FETCH_ASSOC) as $r)

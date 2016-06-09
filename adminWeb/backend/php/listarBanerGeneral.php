@@ -27,10 +27,11 @@ class listarBanerGeneral
 		try
         {
             $banerLista = array();
-             
-            $banerLista = $banerModelo->listarBaner();
+             $ids = $_POST["id"];
+            // print_r($ids);
+            $banerLista = $banerModelo->listarBaner($ids);
 
-            // print_r($banerLista[1]);
+            // print_r($banerLista);
 
 //             <li>
 // <span><img src="images/alumnos/'+obj[j].foto+'"/></span> <div class="container"> <div class="row"> <div class="col-lg-12"> <div class="text-center"> <h3>SEARCH ENGINE OPTIMIZATION!</h3> </div> </div> </div> <h4>Lorem Ipsum is simply dummy text of typesetting industry.</h4> </div> </li>
