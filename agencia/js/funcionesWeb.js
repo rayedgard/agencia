@@ -111,14 +111,11 @@ var destinosIndex = {
 	mostrarDestinosIndex:function(){
 			var id = idIdioma;
 
-			// alert(id);
-
 			$.ajax({
 			type:"POST",
 			url: "../adminWeb/backend/php/listarDestinos.php",
 			data:{"idIdioma":id, "accion":"index"},
 			success:function(respuesta){
-				// alert(respuesta);
 				$("#destinosIndex").html(respuesta);
 				// $("#idiomas").on("change",function(){
 				// 	// ajax
@@ -203,7 +200,8 @@ var menuIdiomas={
 
 			success:function(rs)
 			{
-				$("ul#listaMenu").html(rs);
+				// alert(rs);
+				$("#listaMenu").html(rs);
 			}
 
 

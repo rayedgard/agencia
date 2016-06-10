@@ -37,20 +37,22 @@ if($_POST["accion"]=='actionIdioma')
             for ($i=0; $i < count($contt) ; $i++) { 
 					 $dataCont=$contt[$i]['identificador'];
 					 $nameCont=$contt[$i]['nombre'];
+
 					 if ($dataCont!='link_destinos' && $dataCont!='link_paquetes') {
-					 	$combo = "<li  id='".$contt[$i]['idioma_id']."'> <a href='#".$contt[$i]['nombre']."'>".$contt[$i]['nombre']."</a></li>";
+					 	$combo = "<li> <a href='#".$contt[$i]['nombre']."' id='".$contt[$i]['idioma_id']."'>".$contt[$i]['nombre']."</a></li>";
             		 	array_push($botones,$combo);
 					 }
+
 					 if($dataCont=='link_destinos')
 					 {
-					 	$cc="<li> <a href='blog.html' ".$nameCont."'>". $nameCont." </a><ul>";
+					 	$cc="<li> <a href='#".$nameCont."'>". $nameCont." </a><ul>";
 					 	//listando botones destino
             				array_push($botones,$cc);
             				
             				for ($j=0; $j <count($destinosList) ; $j++) { 
             				$dataDestino=$destinosList[$j]['nombre'];
             				
-            				$combo2= "<li id='".$destinosList[$j]['id']."'> <a href='#".$dataDestino."'>".$dataDestino."</a></li>";
+            				$combo2= "<li> <a href='#".$dataDestino."' id='".$destinosList[$j]['id']."'>".$dataDestino."</a></li>";
             				array_push($botones,$combo2);
             				}
             				$finalCabecera="</ul></li>";
@@ -65,7 +67,7 @@ if($_POST["accion"]=='actionIdioma')
             				for ($h=0; $h <count($categoriaList) ; $h++) { 
             					$dataCategoria=$categoriaList[$h]['nombre'];
             					$dataIdCategoria=$categoriaList[$h]['id'];
-            					$combo3= "<li id='".$dataIdCategoria."'> <a href='#".$dataCategoria."'>".$dataCategoria."</a></li>";
+            					$combo3= "<li> <a href='#".$dataCategoria."' id='".$dataIdCategoria."'>".$dataCategoria."</a></li>";
             					array_push($botones,$combo3);
             					}
             					$finalPaquetes="</ul></li>";
@@ -73,10 +75,10 @@ if($_POST["accion"]=='actionIdioma')
 					 }
 
             }
-           
+           // print_r(count($botones));
             //-----------------------
-           	for ($h=0; $h <count($botones) ; $h++) { 
-           		echo $botones[$h];
+           	for ($x=0; $x <count($botones) ; $x++) { 
+           		echo $botones[$x];
            	}
 
 
@@ -102,10 +104,14 @@ if ($_POST["accion"]=='actionIdiomaLavels')
 	$Hlavels=array();
 	$stringCabecera="|";
 	$stringLvl="";
+    array_push($Hlavels,$stringCabecera);
+	if(sizeof($listarAboutTexto)>0)
+    {
+        $data=$listarAboutTexto[0]['nombre']."|";
+        array_push($Hlavels,$data);
+    }
 	
-	array_push($Hlavels,$stringCabecera);
-	$data=$listarAboutTexto[0]['nombre']."|";
-	array_push($Hlavels,$data);
+
 	try
         {
         	for ($i=0; $i <count($listaAbout) ; $i++) 
