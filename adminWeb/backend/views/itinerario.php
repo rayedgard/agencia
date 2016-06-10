@@ -163,7 +163,7 @@ if(isset($_REQUEST['action']))
 			//header('Location: index.php');
 			/*/------------PARA LAS ACCIONES-----------------/*/ 			
 			
-			echo "<meta http-equiv ='refresh' content='80;url=itinerario.php?idd=". urlencode(encripta($idd,'rayedgard'))."&n=".urlencode(encripta($nombre,'rayedgard'))." '>"; 	
+			echo "<meta http-equiv ='refresh' content='0;url=itinerario.php?idd=". urlencode(encripta($idd,'rayedgard'))."&n=".urlencode(encripta($nombre,'rayedgard'))." '>"; 	
 			
 		/*/------------FIN ACCIONES-----------------/*/
 			break;

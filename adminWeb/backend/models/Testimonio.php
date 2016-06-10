@@ -39,7 +39,7 @@ class Testimonio
         {
             $result = array();
             
-            $stm = $this->pdo->prepare('SELECT t.id,t.nombre,t.correo,t.fecha,t.detalle,t.foto,t.idioma_id,t.estado,i.nombre AS idioma_nombre FROM testimonio t INNER JOIN idioma i ON i.id=t.idioma_id WHERE t.estado=1');
+            $stm = $this->pdo->prepare('SELECT t.id,t.nombre,t.correo,t.fecha,t.detalle,t.foto,t.idioma_id,t.estado,i.nombre AS idioma_nombre FROM testimonio t INNER JOIN idioma i ON i.id=t.idioma_id');
             $stm->execute();
             
             foreach($stm->fetchAll(PDO::FETCH_OBJ) as $r)

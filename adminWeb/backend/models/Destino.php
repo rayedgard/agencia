@@ -5,6 +5,7 @@ class Destino
     private $id;
     private $nombre;
     private $etiqueta;
+    private $foto;
     private $detalle;
     private $mapa;
     private $clima;
@@ -41,7 +42,7 @@ class Destino
         {
             $result = array();
             
-            $stm = $this->pdo->prepare('SELECT d.id,d.nombre,d.etiqueta,d.detalle,d.mapa,d.clima,d.comollegar,d.servicios,d.idioma_id,d.estado,i.nombre AS idioma_nombre  FROM destino d INNER JOIN idioma i ON i.id=d.idioma_id WHERE d.estado=1');
+            $stm = $this->pdo->prepare('SELECT d.id,d.nombre,d.etiqueta,d.foto,d.detalle,d.mapa,d.clima,d.comollegar,d.servicios,d.idioma_id,d.estado,i.nombre AS idioma_nombre  FROM destino d INNER JOIN idioma i ON i.id=d.idioma_id WHERE d.estado=1');
             $stm->execute();
             
             foreach($stm->fetchAll(PDO::FETCH_OBJ) as $r)
@@ -50,6 +51,7 @@ class Destino
                 $alm->__SET('id',$r->id);
                 $alm->__SET('nombre',$r->nombre);
                 $alm->__SET('etiqueta',$r->etiqueta);
+                $alm->__SET('foto',$r->foto);
                 $alm->__SET('detalle',$r->detalle);
                 $alm->__SET('mapa',$r->mapa);
                 $alm->__SET('clima',$r->clima);
@@ -171,6 +173,7 @@ class Destino
             $alm->__SET('id',$r->id);
             $alm->__SET('nombre',$r->nombre);
             $alm->__SET('etiqueta',$r->etiqueta);
+            $alm->__SET('foto',$r->foto);
             $alm->__SET('detalle',$r->detalle);
             $alm->__SET('mapa',$r->mapa);
             $alm->__SET('clima',$r->clima);
@@ -214,6 +217,7 @@ class Destino
             $sql = "UPDATE destino SET 
                             nombre=?,
                             etiqueta=?,
+                            foto=?,
                             detalle=?,
                             mapa=?,
                             clima=?,
@@ -228,6 +232,7 @@ class Destino
                         array(
                                 $data->__GET('nombre'),
                                 $data->__GET('etiqueta'),
+                                $data->__GET('foto'),
                                 $data->__GET('detalle'),
                                 $data->__GET('mapa'),
                                 $data->__GET('clima'),
@@ -255,13 +260,14 @@ class Destino
         
         try
         {
-            $sql ="INSERT INTO destino (nombre,etiqueta,detalle,mapa,clima,comollegar,servicios,idioma_id,estado)
-                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $sql ="INSERT INTO destino (nombre,etiqueta,foto,detalle,mapa,clima,comollegar,servicios,idioma_id,estado)
+                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $this->pdo->prepare($sql)
                     ->execute(
                         array(
                                 $data->__GET('nombre'),
                                 $data->__GET('etiqueta'),
+                                $data->__GET('foto'),
                                 $data->__GET('detalle'),
                                 $data->__GET('mapa'),
                                 $data->__GET('clima'),

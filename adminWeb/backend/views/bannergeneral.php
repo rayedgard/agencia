@@ -72,7 +72,7 @@ if(isset($_REQUEST['action']))
 			$tamano_archivo1 =$_FILES["foto"]["size"];
 			$path1="../images/bannergeneral/";
 
-			if (!((strpos($tipo_archivo1, "gif") || strpos($tipo_archivo1, "png") || strpos($tipo_archivo1,"jpeg") || strpos($tipo_archivo1,"jpg")  && ($tamano_archivo1 < 30000000)))) 
+			if (!((strpos($tipo_archivo1, "gif") || strpos($tipo_archivo1, "png") || strpos($tipo_archivo1,"jpeg") || strpos($tipo_archivo1,"jpg")  && ($tamano_archivo1 < 60000000)))) 
 			{ 
 				echo "La extensión o el tamaño del archivo de IMAGEN no es correcta. <br><br><table><tr><td><li>Se permiten archivos *.gif, *.png o *.jpg<br><li>se permiten archivos de 3Mb maximo.</td></tr></table><br>";
 						
@@ -101,7 +101,7 @@ if(isset($_REQUEST['action']))
 			break;
 
 		case 'eliminar':
-		
+
 			$id=desencripta($_REQUEST['id'],"rayedgard");
 			$nombreFoto=desencripta($_GET['nn'],"rayedgard");//captuamos en nombre de la foto para eliminarla
 			$banner->Eliminar($id);//elima en la base de datos
