@@ -78,7 +78,31 @@ class Destino
         {
             $result = array();
             
-            $stm = $this->pdo->prepare('SELECT d.id,d.nombre,d.etiqueta,d.detalle, b.foto AS foto_destino  FROM destino d INNER JOIN bannerdestino b ON b.destino_id=d.id WHERE d.estado=1 and d.idioma_id='.$id);
+            $stm = $this->pdo->prepare('SELECT d.id,d.nombre,d.etiqueta,d.detalle, d.foto  FROM destino d WHERE d.estado=1 and d.idioma_id='.$id.' ORDER BY RAND() LIMIT 4');
+            $stm->execute();
+            
+            foreach($stm->fetchAll(PDO::FETCH_ASSOC) as $r)
+            {
+                array_push($result, $r);
+            }
+            return $result;
+        } 
+        catch (Exception $ex) 
+        {
+            die($ex->getMessage());
+
+        }
+    }
+
+
+    public function ListaDestino($id)
+    {
+        $this->pdo = new Conexion();
+        try
+        {
+            $result = array();
+            
+            $stm = $this->pdo->prepare('SELECT d.id,d.nombre,d.etiqueta,d.detalle, d.foto  FROM destino d WHERE d.estado=1 and d.idioma_id='.$id);
             $stm->execute();
             
             foreach($stm->fetchAll(PDO::FETCH_ASSOC) as $r)
@@ -125,6 +149,62 @@ class Destino
         }
 
     }
+
+    /*
+    lsita array de todos los datos de destinos en arreglo, teniendo como parametro el ID de el destino
+
+    */
+    public function ListarDestinoArray($id)
+    {
+        $this->pdo = new Conexion();
+        try
+        {
+            $result = array();
+            
+            $stm = $this->pdo->prepare('SELECT d.`id`, d.`nombre`, d.`etiqueta`, d.`detalle`, d.`foto`, d.`mapa`, d.`clima`, d.`comollegar`, d.`servicios`, d.`servicios`, d.`idioma_id`, d.`estado`  ,d.`foto` FROM destino d WHERE d.`estado` = 1 AND d.`id` = '.$id);
+            $stm->execute();
+            
+            foreach($stm->fetchAll(PDO::FETCH_ASSOC) as $r)
+            {
+                array_push($result, $r);
+            }
+            return $result;
+            
+        } 
+        catch (Exception $ex) 
+        {
+            die($ex->getMessage());
+
+        }
+    }
+
+    /*
+    listar nombre y etiqueta de destinos , devolver array
+    */
+    public function ListarDestinoArrayTodo()
+    {
+        $this->pdo = new Conexion();
+        try
+        {
+            $result = array();
+            
+            $stm = $this->pdo->prepare('SELECT nombre, etiqueta  FROM destino WHERE estado=1 ');
+            $stm->execute();
+            
+            foreach($stm->fetchAll(PDO::FETCH_ASSOC) as $r)
+            {
+                array_push($result, $r);
+            }
+            return $result;
+            
+        } 
+        catch (Exception $ex) 
+        {
+            die($ex->getMessage());
+
+        }
+    }
+
     /*
     lista id y nombre para cargar un combo , pero devulve un arreglo
     de tales datos

@@ -61,6 +61,31 @@ class Programa
         }
     }
     
+
+    public function programaSubcategoria($idPrograma)
+    {
+        $this->pdo = new Conexion();
+        try
+        {
+            $result = array();
+            
+            $stm = $this->pdo->prepare('SELECT p.id,p.fechainicio,p.fechafin,p.disponible,p.subcategoria_id,p.estado,s.nombre AS subcategoria_nombre FROM Programa p INNER JOIN subcategoria s ON s.id=p.subcategoria_id WHERE p.subcategoria_id='.$idPrograma);
+            $stm->execute();
+            
+            foreach($stm->fetchAll(PDO::FETCH_ASSOC) as $r)
+            {
+               array_push($result, $r);
+            }
+            return $result;
+        } 
+        catch (Exception $ex) 
+        {
+            die($ex->getMessage());
+
+        }
+    }
+
+
     /**
      * lista la el id y fechainicio para cargar en un combo
      * retorna: id, fechainicio

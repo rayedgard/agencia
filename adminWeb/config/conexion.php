@@ -1,5 +1,6 @@
 ﻿<?php 
-
+session_start();
+// $_SESSION["idioma"]="";
  class Conexion extends PDO { 
    private $tipo_de_base = 'mysql';
    private $host = 'localhost';

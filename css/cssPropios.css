@@ -34,11 +34,13 @@
 	}
 	.miMenu	nav ul li:hover a {
 		color: #fff;
+		text-transform: uppercase;
 	}
 	
 	.miMenu nav ul li a {
-		display: block; padding: 25px 40px;
+		display: block; padding: 15px 20px;
 		color: #fff; text-decoration: none;
+		text-transform: uppercase;
 	}
 
 	.miMenu nav ul ul {
@@ -52,13 +54,43 @@
 		position: relative;
 	}
 	.miMenu nav ul ul li a {
-			padding: 15px 40px;
+			padding: 10px 10px;
 			color: #fff;
+			text-transform: uppercase;
 		}	
 	.miMenu	nav ul ul li a:hover {
 				background: #7F6258;
+				text-transform: uppercase;
 			}
 
 	.miMenu nav ul ul ul {
-		position: absolute; left: 100%; top:0;
+		position: absolute; right: 100%; top:0;
 	}
+
+
+	#idiomas {
+		height: 25px; 
+		width: 120px; 
+		float: right; 
+		background-color: transparent; 
+		border: none; 
+		color: #fff; 
+		padding-top: 0px;
+	}
+
+	#idiomas option{
+		background-color: #7F6258;
+	}
+
+	#correoFijo{
+		text-decoration: none;
+		float: left; 
+		color: #fff; 
+		margin-top: 4px;
+		cursor: pointer; 
+	}
+
+	#correoFijo:hover{
+			text-decoration: underline ;
+
+		}  

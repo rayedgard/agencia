@@ -54,6 +54,29 @@ class Galeria
 
         }
     }
+
+        public function galeriaSubcategoria($idDestino)
+    {
+        $this->pdo = new Conexion();
+        try
+        {
+            $result = array();
+            
+            $stm = $this->pdo->prepare('SELECT g.id,g.nombre, g.subcategoria_id,s.nombre AS subcategoria_nombre FROM galeria g INNER JOIN subcategoria s ON s.id=g.subcategoria_id WHERE g.subcategoria_id ='.$idDestino);
+            $stm->execute();
+            
+            foreach($stm->fetchAll(PDO::FETCH_ASSOC) as $r)
+            {
+                array_push($result, $r);
+            }
+            return $result;
+        } 
+        catch (Exception $ex) 
+        {
+            die($ex->getMessage());
+
+        }
+    }
     
     /**
      * lista la el id y nombre para cargar en un combo

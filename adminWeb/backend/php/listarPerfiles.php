@@ -41,10 +41,10 @@ class listaPerfil
             		$descrip = strip_tags($listaModelo[$i]["detalle"]);
 		            $descrip = substr($descrip, 0, 151);
 					 
-					$imagen = '<div class="col-xs-12 col-sm-6 col-md-3"> <div class="team-member"> <div class="team-img"> <img class="img-responsive" src="../adminWeb/backend/images/perfil/'.$listaModelo[$i]["foto"].'" alt=""> </div>';
+					$imagen = '<div class="col-xs-12 col-sm-6 col-md-3"> <div class="team-member"> <div class="team-img"> <img class="img-responsive" src="adminWeb/backend/images/perfil/'.$listaModelo[$i]["foto"].'" alt=""> </div>';
 					$nombre = '<div class="team-info"> <h3>'.$listaModelo[$i]["nombre"].'</h3>';
                     $cargo = '<span>'.$listaModelo[$i]["cargo"].'</span>';
-                    $detalle = '</div>'.$descrip.'... <ul class="social-icons"> <li><a href="#"><i class="fa fa-facebook"></i></a></li> <li><a href="#"><i class="fa fa-twitter"></i></a></li> <li><a href="#"><i class="fa fa-google-plus"></i></a></li> <li><a href="#"><i class="fa fa-linkedin"></i></a></li> </ul> </div> </div>';
+                    $detalle = '</div>'.$descrip.'... </div> </div>';
             		$lista = $imagen.$nombre.$cargo.$detalle;
 					 
             		$listaNombres = $listaNombres.$lista;						 

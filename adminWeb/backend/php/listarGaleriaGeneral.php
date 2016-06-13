@@ -35,7 +35,7 @@ class listaGaleriaGeneral
             $galeria="";
             for ($i=0; $i < count($galeriaModelo) ; $i++) { 
 					 
-					 $imagen = '<li data-type="development" data-id="id-1" class="port3"> <a href="#" id="development1"><img src="../adminWeb/backend/images/galeriageneral/'.$galeriaModelo[$i]["nombre"].'" alt=""></a> </li>';
+					 $imagen = '<li data-type="development" data-id="id-1" class="port3"> <a href="#" id="development1"><img src="adminWeb/backend/images/galeriageneral/'.$galeriaModelo[$i]["nombre"].'" alt=""></a> </li>';
 					 
             		$galeria = $galeria.$imagen;						 
             }

@@ -55,6 +55,29 @@ class Galeriadestino
         }
     }
     
+
+        public function galeriaporDestino($idDestino)
+    {
+        $this->pdo = new Conexion();
+        try
+        {
+            $result = array();
+            
+            $stm = $this->pdo->prepare('SELECT g.id,g.nombre, g.destino_id FROM Galeriadestino g INNER JOIN destino s ON s.id=g.destino_id WHERE g.destino_id='.$idDestino);
+            $stm->execute();
+            
+            foreach($stm->fetchAll(PDO::FETCH_ASSOC) as $r)
+            {
+                array_push($result, $r);
+            }
+            return $result;
+        } 
+        catch (Exception $ex) 
+        {
+            die($ex->getMessage());
+
+        }
+    }
     /**
      * lista la el id y nombre para cargar en un combo
      * retorna: id, nombre

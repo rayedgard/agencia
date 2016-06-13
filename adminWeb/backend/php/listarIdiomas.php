@@ -1,5 +1,7 @@
 <?php 
 
+// session_start();
+
 include('../models/Idioma.php');
 
 //---------------------/////////
@@ -23,34 +25,76 @@ class listarIdiomas
 
 		$idioma = new Idioma();
 
-		try
-        {
-            $idiomaCombo = array();
-             
-            $idiomaCombo = $idioma->ListarIdioma();
+        $id= $_POST["id"];
 
-            $comoLleno="";
-            $combo="";
-            for ($i=0; $i < count($idiomaCombo) ; $i++) { 
-					 
-					$combo = "<option class='".$idiomaCombo[$i]['nombre']."' value='".$idiomaCombo[$i]['id']."'> ".$idiomaCombo[$i]['nombre']."</option>";
-					if ($idiomaCombo[$i]['nombre']=="Español") {
-						$comoLleno = $combo.''.$comoLleno;
-					}else{
-						$comoLleno = $comoLleno." ".$combo;
-					}
-            		
+        // print_r($_SESSION["idioma"]);
+        
+        if (isset($_SESSION["idioma"])) {
+                    try
+                {
+                    $idiomaCombo = array();
+                     
+                    $idiomaCombo = $idioma->ListarIdioma();
+
+                    $comoLleno="";
+                    $combo="";
+                    // print_r($_SESSION["idioma"]);
+                                            
+                    // $_SESSION["idIdioma"]= $id;
+                    for ($i=0; $i < count($idiomaCombo) ; $i++) { 
+                         
+                        $combo = "<option class='".$idiomaCombo[$i]['nombre']."' value='".$idiomaCombo[$i]['id']."'> ".$idiomaCombo[$i]['nombre']."</option>";
+                        if ($idiomaCombo[$i]['nombre']== $_SESSION["idioma"]) {
+                            $_SESSION["idioma"]= $idiomaCombo[$i]['nombre'];
+                            $comoLleno = $combo.''.$comoLleno;
+                        }else{
+                            $comoLleno = $comoLleno." ".$combo;
+                        }
+                        
+                    }
+                        // print_r($_SESSION["idioma"]);
+                    print_r($comoLleno);
+                } 
+                catch (Exception $ex) 
+                {
+                    die($ex->getMessage());
+
+                }
+        }else{
+
+            $_SESSION["idIdioma"] = $id;  
+
+        try
+        {
+                $idiomaCombo = array();
+                 
+                $idiomaCombo = $idioma->ListarIdioma();
+
+                $comoLleno="";
+                $combo="";
+                // print_r($_SESSION["idioma"]);
+                    for ($i=0; $i < count($idiomaCombo) ; $i++) { 
+                         
+                        $combo = "<option class='".$idiomaCombo[$i]['nombre']."' value='".$idiomaCombo[$i]['id']."'> ".$idiomaCombo[$i]['nombre']."</option>";
+                        if ($idiomaCombo[$i]['id']== $_SESSION["idIdioma"]) {
+                            $_SESSION["idioma"]= $idiomaCombo[$i]['nombre'];
+                            // $_SESSION["idIdioma"]= $idiomaCombo[$i]['id'];
+                            $comoLleno = $combo.''.$comoLleno;
+                        }else{
+                            $comoLleno = $comoLleno." ".$combo;
+                        }
+                        
+                    }
+
+                print_r($comoLleno);
+            } 
+            catch (Exception $ex) 
+            {
+                die($ex->getMessage());
+
             }
 
-            print_r($comoLleno);
-        } 
-        catch (Exception $ex) 
-        {
-            die($ex->getMessage());
-
         }
-
-
 	}
 }
 
