@@ -9,6 +9,7 @@ require_once 'adminWeb/backend/models/ControlesTag.php';
 $ruta = fopen("adminWeb/config/ruta.txt","r");
 $linea = fgets($ruta);
 fclose($ruta);
+$direccionMapa ="";
 // include($_SERVER['DOCUMENT_ROOT'].$linea);
 ?>
 
@@ -28,7 +29,6 @@ fclose($ruta);
 		<link rel="stylesheet" href="css/patros.css" >
 		<!-- CSS Propiestarios -->
 		<link rel="stylesheet" type="text/css" href="css/cssPropios.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.min.css" />
 		<!-- <script type="text/javascript" src="/js/funcionesDestino.js"></script> -->
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -174,24 +174,29 @@ fclose($ruta);
 			<div class="row">
 				<div class="col-md-8" style=" padding-left: 90px;">
 					<?php
-
+					$listaTagsDestinos2=new ControlesTags();
 					//instanciado objeto
 					$destinos=new Destino();
 					if (isset($_POST['id_fijo'])) {
 						$idDestino=$_POST['id_fijo'];
 
 						$DestinoLista=$destinos->ListarDestinoArray($idDestino);
+						$direccionMapa = $DestinoLista[0]['mapa'];
 						// print_r($DestinoLista);
+						
 						for ($i=0; $i <count($DestinoLista) ; $i++) { 
 							echo "<h2>".$DestinoLista[$i]['nombre']."</h2>";
 							echo "<h3>".$DestinoLista[$i]['etiqueta']."</h3>";
 							echo "<h5>".$DestinoLista[$i]['detalle']."</h5>";
-
-							echo '<ul class="nav nav-tabs" id="tages"> <li class="active"><a data-toggle="tab" href="#clima">Clima</a></li> <li><a data-toggle="tab" href="#comollegar">Como llegar</a></li> <li><a data-toggle="tab" href="#servicios">Servicios</a></li> </ul> <div class="tab-content"> <div id="clima" class="tab-pane fade in active"> <br> <h4>'.$DestinoLista[$i]['clima'].'</h4> </div> <div id="comollegar" class="tab-pane fade"> <br> <h4>'.$DestinoLista[$i]['comollegar'].' </h4> </div> <div id="servicios" class="tab-pane fade"> <br> <h4>'.$DestinoLista[$i]['servicios'].' </h4> </div> </div>';
+							$dataIdDestino=$DestinoLista[$i]['idioma_id'];
+							$resClima=$listaTagsDestinos2->ListarTagsLavelStr($dataIdDestino,'Box_destinos','BoxDestinos_clima'); 
+						$resllegar=$listaTagsDestinos2->ListarTagsLavelStr($dataIdDestino,'Box_destinos','BoxDestinos_llegar'); 
+						$resServicios=$listaTagsDestinos2->ListarTagsLavelStr($dataIdDestino,'Box_destinos','BoxDestinos_servicios'); 
+							echo '<ul class="nav nav-tabs" id="tages"> <li class="active"><a data-toggle="tab" href="#clima">'.$resClima.'</a></li> <li><a data-toggle="tab" href="#comollegar">'.$resllegar.'</a></li> <li><a data-toggle="tab" href="#servicios">'.$resServicios.'</a></li> </ul> <div class="tab-content"> <div id="clima" class="tab-pane fade in active"> <br> <h4>'.$DestinoLista[$i]['clima'].'</h4> </div> <div id="comollegar" class="tab-pane fade"> <br> <h4>'.$DestinoLista[$i]['comollegar'].' </h4> </div> <div id="servicios" class="tab-pane fade"> <br> <h4>'.$DestinoLista[$i]['servicios'].' </h4> </div> </div>';
 							// echo "<h5>".$DestinoLista[$i]['clima']."</h5>";
 							// echo "<h5>".$DestinoLista[$i]['comollegar']."</h5>";
 							// echo "<h5>".$DestinoLista[$i]['servicios']."</h5>";
-							$dataIdDestino=$DestinoLista[$i]['idioma_id'];
+							
 						}
 					}
 					
@@ -247,10 +252,10 @@ fclose($ruta);
 							?></label>
 									<br>
 					                <div class='input-group date' id='datetimepicker1' style="width: 340px; z-index:0;">
-					                    <input type='text' class="form-control" />
-					                    <span class="input-group-addon">
+					                    <input type='date' class="form-control" />
+					                    <!-- <span class="input-group-addon">
 					                        <span class="glyphicon glyphicon-calendar"></span>
-					                    </span>
+					                    </span> -->
 					                </div>
 					            </div>
 								<br>
@@ -337,10 +342,11 @@ fclose($ruta);
 								$dataTestimonio=new Testimonio();
 								$testimonioLista=$dataTestimonio->ListarArray();
 								for ($i=0; $i <count($testimonioLista) ; $i++) { 
-									echo "<li><img  class='img-responsive img-thumbnail' src='adminWeb/backend/images/testimonio/".$testimonioLista[$i]['foto']." '></li>";
-									echo "<li>".$testimonioLista[$i]['nombre']."</li>";
-									echo "<li>".$testimonioLista[$i]['detalle']."</li>";
-									echo "<li>".$testimonioLista[$i]['correo']."&nbsp &nbsp ".$testimonioLista[$i]['fecha']."</li> <hr>";
+									// echo "<li><img  class='img-responsive img-thumbnail' src='adminWeb/backend/images/testimonio/".$testimonioLista[$i]['foto']." '></li>";
+
+								echo "<li><h3><i class='fa fa-thumbs-up' aria-hidden='true'>&nbsp</i>".$testimonioLista[$i]['nombre']."</h3></li>";
+									echo "<li>&nbsp ".$testimonioLista[$i]['detalle']."</li>";
+									echo "<li>&nbsp ".$testimonioLista[$i]['correo']."&nbsp &nbsp ".$testimonioLista[$i]['fecha']."</li> <hr>";
 
 								}
 
@@ -403,7 +409,9 @@ fclose($ruta);
 
 		<div id="location">
 			<div class="row prodmap">
-				<div id="map-canvas-holder" class="map_holder" style="height: 400px;"></div>
+				<?php
+					echo '<iframe src="'. $direccionMapa . '" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>';
+				?>
 			</div>
 		</div>
 
@@ -547,9 +555,6 @@ fclose($ruta);
 
 		<!--Jquery Smooth Scrolling-->
 		<script>
-
-	        
-
 			$(document).ready(function(){
 
 				$('#tages a').click(function (e) {
@@ -557,7 +562,7 @@ fclose($ruta);
 				  $(this).tab('show')
 				})
 
-				$('#datetimepicker1').datepicker();
+				// $('#datetimepicker1').datepicker();
 
 				$('.custom-menu a[href^="#"], .intro-scroller .inner-link').on('click',function (e) {
 					e.preventDefault();
@@ -626,7 +631,7 @@ fclose($ruta);
 
 		<script type="text/javascript">
 	$(document).ready(function(){
-		inicializemap()
+		// inicializemap()
 
 		$('#contactForm').on('submit', function(e){
 			e.preventDefault();

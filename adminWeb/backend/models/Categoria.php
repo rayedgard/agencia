@@ -61,6 +61,31 @@ class Categoria
         }
     }
 
+// muestra 3 categorias aleatorios en el index
+    public function ListaCategoria($id)
+    {
+        $this->pdo = new Conexion();
+        try
+        {
+            $result = array();
+            
+            $stm = $this->pdo->prepare('SELECT c.id,c.nombre, c.tipo, c.idioma_id,c.estado, c.foto FROM categoria c WHERE c.estado=1 AND c.idioma_id='.$id.' ORDER BY RAND() LIMIT 3');
+            $stm->execute();
+            
+            foreach($stm->fetchAll(PDO::FETCH_ASSOC) as $r)
+            {
+                array_push($result, $r);
+            }
+            return $result;
+        } 
+        catch (Exception $ex) 
+        {
+            die($ex->getMessage());
+
+        }
+    }
+
+
     public function ListarCategoria($id)
     {
         $this->pdo = new Conexion();

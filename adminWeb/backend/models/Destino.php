@@ -71,7 +71,8 @@ class Destino
         }
     }
 
-        public function ListarDestino($id)
+    // muestra 4 destinosalea aleatorios en el index
+    public function ListarDestino($id)
     {
         $this->pdo = new Conexion();
         try
