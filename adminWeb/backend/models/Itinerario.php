@@ -59,6 +59,30 @@ class Itinerario
 
         }
     }
+
+
+        public function ItinerarioSubcategoria($idItinerario)
+    {
+        $this->pdo = new Conexion();
+        try
+        {
+            $result = array();
+            
+            $stm = $this->pdo->prepare('SELECT i.id,i.nombre,i.detalle,i.subcategoria_id,i.estado,s.nombre AS subcategoria_nombre FROM Itinerario i INNER JOIN subcategoria s ON s.id=i.subcategoria_id WHERE i.subcategoria_id='.$idItinerario);
+            $stm->execute();
+            
+            foreach($stm->fetchAll(PDO::FETCH_ASSOC) as $r)
+            {
+               array_push($result, $r);
+            }
+            return $result;
+        } 
+        catch (Exception $ex) 
+        {
+            die($ex->getMessage());
+
+        }
+    }
     
     /**
      * lista la el id y nombre para cargar en un combo

@@ -1,3 +1,24 @@
+<?php
+//llamar clases del model
+// require_once '../adminWeb/backend/models/Destino.php';
+require_once 'adminWeb/backend/models/Testimonio.php';
+require_once 'adminWeb/backend/models/ControlesTag.php';
+// require_once '../adminWeb/backend/models/ControlesTag.php';
+$ruta = fopen("adminWeb/config/ruta.txt","r");
+$linea = fgets($ruta);
+fclose($ruta);
+include($_SERVER['DOCUMENT_ROOT'].$linea);
+
+// $idIdiomaTags="3";
+//--------------------
+
+if (isset($_SESSION["idIdioma"])) {
+$idIdiomaTags=$_SESSION["idIdioma"];
+}
+else{
+	$idIdiomaTags="3";
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -19,6 +40,9 @@
 
         <!-- Custom CSS -->
 		<link rel="stylesheet" href="css/patros.css" >
+
+		<!-- CSS Propiestarios -->
+		<link rel="stylesheet" type="text/css" href="css/cssPropios.css">
         
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -33,21 +57,22 @@
 		<div class="container-fluid navbar-fixed-top" style="height: 25px; z-index:100;">
 
 				<div class="row">
-					<div class="col-md-2" style="padding-right: 0px;">
-						<h6 style="float: left;"><u>Correo: info@paprikatours.com</u></h6>
+					<div class="col-md-3 col-xs-12" style="padding-right: 0px; padding-left: 110px; color: #fff;">
+						<h6 id="correoFijo" ><span class="glyphicon glyphicon-envelope"> </span> qasdfasd@aaaaaatours.com</h6>
 					</div>
-					<div class="col-md-8" style="padding-left: 0px;">
-						<h6 style="float: left;">Telefono: 00 51 54 600139</h6>
+					<div class="col-md-7 col-xs-12" style="padding-left: 0px; ">
+						<h6 style="float: left; color: #fff; margin-top: 4px;"><span class="glyphicon glyphicon-phone"> </span> 00 51 54 600139</h6>
 					</div>
-					<div class="col-md2">
-						<select onfocus="this.blur()" id="idiomas" class="form-control" style="height: 25px; width: 120px; float: right; background-color: #ec7f5d; border: none; color: fff; padding-top: 0px;">
+
+					<div class="col-md-2 col-xs-12">
+						<select id="idiomas" class="form-control" >
 							<!-- comobo de idomas de base de datos -->
 						</select>
 					</div>
 				</div>
 		</div>
 		<!-- Navigation -->
-		<nav class="navbar navbar-inverse navbar-fixed-top" style="z-index:1;">
+		<nav class="navbar navbar-inverse navbar-fixed-top" style="z-index:1; margin-bottom: 0px; padding-bottom: 0px;">
 			<div class="container">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -56,32 +81,58 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="company logo"/></a>
+					<a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="company logo" /></a>
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav navbar-right custom-menu">
-						<li><a href="index.html#home">Home</a></li>
-						<li><a href="index.html#about">About</a></li>
-						<li><a href="index.html#services">Services</a></li>
-						<li><a href="index.html#meet-team">Team</a></li>
-						<li><a href="index.html#portfolio1">Portofolio</a></li>
-						<li><a href="index.html#contact">Contact</a></li>
-						<li class="active"><a href="blog.html">Blog</a></li>
-						<li><a href="single-post.html">Single</a></li>
+					<div class="miMenu" style="float: right;">
+						<nav>
+							<ul id="listaMenu" style="margin-bottom: 0px;">
+							</ul>
+						</nav>
+						<!-- <li class="active"><a href="#home">Home</a></li>
+						<li><a href="#about">About</a></li>
+						<li class="dropdown">
+        					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1
+        					<span class="caret"></span></a>
+        						<ul class="dropdown-menu">
+         							 <li><a href="#">Page 1-1</a></li>
+         							 <li><a href="#">Page 1-2</a></li>
+         							 <li><a href="#">Page 1-3</a></li>
+       							 </ul>
+      					</li>
+						<li><a href="#meet-team">Team</a></li>
+						<li><a href="#portfolio1">Portofolio</a></li>
+						<li><a href="#contact">Contact</a></li>
+						<li><a href="blog.html">Blog</a></li>
+						<li><a href="single-post.html">Single</a></li> -->
+						<!-- <li>
+							<a href="#">data</a>
+							<ul>
+								<li>
+									<a href="">data2 </a>
+								</li>
+							</ul>
+						</li> -->
 					</ul>
 				</div>
 			</div>
 		</nav>
 
 		<!-- Page Content -->
-		<section class="container blog">
+		<section class="container-fluid blog" >
+
+			<div id="prueba">
+				
+			</div>
 			<div class="row">
 		        <!-- Blog Column -->
-		        <div class="col-md-8">
+		        <div class="col-md-8" style=" padding-left: 90px;">
 		            <h1 class="page-header sidebar-title">
-		                Company Blog
+		                <?php  $listaTagsDestinos=new ControlesTags();
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($idIdiomaTags,'H2Lavel','h2_destinos'); 
+							?>	
 		            </h1>
-		            <div id="listaDestinos">
+		            <div id="listaTestimonios">
 		            	
 		            </div>
 		            <!-- First Blog Post -->
@@ -89,84 +140,29 @@
 		        </div>
 		            <!-- Blog Sidebar Column -->
 		            <aside class="col-md-4 sidebar-padding">
-		                <div class="blog-sidebar">
-		                    <div class="input-group searchbar">
-		                        <input type="text" class="form-control searchbar" placeholder="Search for...">
-		                        <span class="input-group-btn">
-		                        <button class="btn btn-default" type="button">Search</button>
-		                        </span>
-		                    </div><!-- /input-group -->
-		                </div>
-		                <!-- Blog Categories -->
-		                <div class="blog-sidebar">
-		                    <h4 class="sidebar-title"><i class="fa fa-list-ul"></i> Categories</h4>
-		                    <hr>
-		                    <ul class="sidebar-list">
-		                        <li><a href="#">Applications</a></li>
-		                        <li><a href="#">Photography</a></li>
-		                        <li><a href="#">Art Design</a></li>
-		                        <li><a href="#">Graphic Design</a></li>
-		                        <li><a href="#">Category Name</a></li>
-		                    </ul>
-		                </div>
 		                <!-- Recent Posts -->
 		                <div class="blog-sidebar">
-		                    <h4 class="sidebar-title"><i class="fa fa-align-left"></i> Recent Posts</h4>
+		                    <h4 class="sidebar-title"><i class="fa fa-map-marker"> </i> <?php  $listaTagsDestinos=new ControlesTags();
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($idIdiomaTags,'H2Lavel','h2_destinos'); 
+							?></h4>
 		                    <hr style="margin-bottom: 5px;">
 
-		                    <div class="media">
-		                        <a class="pull-left" href="#">
-		                            <img class="img-responsive media-object" src="images/blog1.jpg" alt="Media Object">
-		                        </a>
-		                        <div class="media-body">
-		                            <h4 class="media-heading"><a href="#">Post title 1</a></h4>
-		                            This is some sample text. This is some sample text. This is some sample text.
-		                        </div>
-		                    </div>
+		                    <div id=div_destinos>
+								<!-- lista destinos -->
+								
+								<?php
+									$testimonio = new Testimonio();
+									// print_r($_SESSION["idIdioma"]);
+									$añosTestimonio=$testimonio->testimoniosAños($_SESSION["idIdioma"]);
+									// print_r($añosTestimonio);
+									echo " <h2> Lista de Testimonios</h2>";
+									for ($i=0; $i <count($añosTestimonio) ; $i++) { 
+										echo "<li> <button type='button' value=".$añosTestimonio[$i]["Años"]." class='testimonios btn btn-link'>".$añosTestimonio[$i]["Años"]."</button></li>";
+									}
+								?>
 
-		                    <div class="media">
-		                        <a class="pull-left" href="#">
-		                            <img class="img-responsive media-object" src="images/blog2.jpg" alt="Media Object">
-		                        </a>
-		                        <div class="media-body">
-		                            <h4 class="media-heading"><a href="#">Post title 2</a></h4>
-		                            This is some sample text. This is some sample text. This is some sample text.
-		                        </div>
-		                    </div>
-
-		                    <div class="media">
-		                        <a class="pull-left" href="#">
-		                            <img class="img-responsive media-object" src="images/blog3.jpg" alt="Media Object">
-		                        </a>
-		                        <div class="media-body">
-		                            <h4 class="media-heading"><a href="#">Post title 3</a></h4>
-		                            This is some sample text. This is some sample text. This is some sample text.
-		                        </div>
-		                    </div>
-		                    <div class="media">
-		                        <a class="pull-left" href="#">
-		                            <img class="img-responsive media-object" src="images/blog1.jpg" alt="Media Object">
-		                        </a>
-		                        <div class="media-body">
-		                            <h4 class="media-heading"><a href="#">Post title 4</a></h4>
-		                            This is some sample text. This is some sample text. This is some sample text.
-		                        </div>
-		                    </div>
+							</div>
 		                </div>
-
-		                <div class="blog-sidebar">
-		                    <h4 class="sidebar-title"><i class="fa fa-comments"></i> Recent Comments</h4>
-		                    <hr style="margin-bottom: 5px;">
-		                     <ul class="sidebar-list">
-		                        <li><h5 class="blog-title">Author Name</h5><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
-		                        </li>
-		                        <li><h5 class="blog-title">Author Name</h5><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
-		                        </li>
-		                        <li><h5 class="blog-title">Author Name</h5><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
-		                        </li>
-							</ul>
-						</div>
-
 					</aside>
 				</div>
 		    </section>
@@ -178,7 +174,9 @@
 					<div class="col-md-12">
 						<div class="col-lg-12">
 							<div class="text-center color-elements">
-							<h2>Contact Us</h2>
+							<h2><?php  $listaTagsDestinos=new ControlesTags();
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($idIdiomaTags,'H2LavelDestinos','txt_contacto'); 
+							?></h2>
 							</div>
 						</div>
 						<div class="col-lg-6 col-md-8">
@@ -186,29 +184,39 @@
 								<div class="row">
 									<div class="col-sm-6 height-contact-element">
 										<div class="form-group">
-											<input type="text" name="first_name" class="form-control custom-labels" id="name" placeholder="FULL NAME" required data-validation-required-message="Please write your name!"/>
+											<input type="text" name="first_name" class="form-control custom-labels" id="name" placeholder="<?php  $listaTagsDestinos=new ControlesTags();
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($idIdiomaTags,'form_lvl','form_texto'); 
+							?>" required data-validation-required-message="Please write your name!"/>
 											<p class="help-block text-danger"></p>
 										</div>
 									</div>
 									<div class="col-sm-6 height-contact-element">
 										<div class="form-group">
-											<input type="email" name="email" class="form-control custom-labels" id="email" placeholder="EMAIL" required data-validation-required-message="Please write your email!"/>
+											<input type="email" name="email" class="form-control custom-labels" id="email" placeholder="<?php  $listaTagsDestinos=new ControlesTags();
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($idIdiomaTags,'form_lvl','form_email'); 
+							?>" required data-validation-required-message="Please write your email!"/>
 											<p class="help-block text-danger"></p>
 										</div>
 									</div>
 									<div class="col-sm-12 height-contact-element">
 										<div class="form-group">
-											<input type="text" name="message" class="form-control custom-labels" id="message" placeholder="WHAT'S ON YOUR MIND" required data-validation-required-message="Please write a message!"/>
+											<input type="text" name="message" class="form-control custom-labels" id="message" placeholder="<?php  $listaTagsDestinos=new ControlesTags();
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($idIdiomaTags,'form_lvl','form_pensando'); 
+							?>" required data-validation-required-message="Please write a message!"/>
 										</div>
 									</div>
 									<div class="col-sm-3 col-xs-6 height-contact-element">
 										<div class="form-group">
-											<input type="submit" class="btn btn-md btn-custom btn-noborder-radius" value="Send It"/>
+											<input type="submit" class="btn btn-md btn-custom btn-noborder-radius" value="<?php  $listaTagsDestinos=new ControlesTags();
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($idIdiomaTags,'form_lvl','form_envio'); 
+							?>"/>
 										</div>
 									</div>
 									<div class="col-sm-3 col-xs-6 height-contact-element">
 										<div class="form-group">
-											<button type="button" class="btn btn-md btn-noborder-radius btn-custom" name="reset">RESET
+											<button type="button" class="btn btn-md btn-noborder-radius btn-custom" name="reset"><?php  $listaTagsDestinos=new ControlesTags();
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($idIdiomaTags,'form_lvl','form_resetear'); 
+							?>
 											</button>
 										</div>
 									</div>
@@ -228,7 +236,9 @@
 								<div class="col-md-12 height-contact-element">
 									<div class="form-group">
 										<i class="fa fa-2x fa-map-marker"></i>
-										<span class="text">LOCATION</span>
+										<span class="text"><?php  $listaTagsDestinos=new ControlesTags();
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($idIdiomaTags,'form_lvl','form_ubicacion'); 
+							?></span>
 									</div>
 								</div>
 								<div class="col-md-12 height-contact-element">
@@ -253,7 +263,9 @@
 		<section id="follow-us">
 			<div class="container"> 
 				<div class="text-center height-contact-element">
-					<h2>FOLLOW US</h2>
+					<h2><?php  $listaTagsDestinos=new ControlesTags();
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($idIdiomaTags,'form_lvl','form_siguenos'); 
+							?></h2>
 				</div>
 				<img class="img-responsive displayed" src="images/short.png" alt="short" />
 				<div class="text-center height-contact-element">

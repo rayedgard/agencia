@@ -58,6 +58,30 @@ class Banner
 
         }
     }
+
+
+    public function bannerSubcategoria($idDestino)
+    {
+        $this->pdo = new Conexion();
+        try
+        {
+            $result = array();
+            
+            $stm = $this->pdo->prepare('SELECT b.id,b.titulo,b.detalle,b.foto,b.subcategoria_id,s.nombre AS subcategoria_nombre FROM banner b INNER JOIN subcategoria s ON s.id=b.subcategoria_id WHERE b.subcategoria_id='.$idDestino);
+            $stm->execute();
+            
+            foreach($stm->fetchAll(PDO::FETCH_ASSOC) as $r)
+            {
+                array_push($result, $r);
+            }
+            return $result;
+        } 
+        catch (Exception $ex) 
+        {
+            die($ex->getMessage());
+
+        }
+    }
     
     /**
      * lista la el id y titulo para cargar en un combo

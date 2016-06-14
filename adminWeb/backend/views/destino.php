@@ -1,7 +1,7 @@
 <script src="../js/modales.js"></script>
 <?php
 require_once 'models/Destino.php';
-require_once 'models/idioma.php';
+require_once 'models/Idioma.php';
 
 $p = desencripta($_GET['p'],"rayedgard");
 
@@ -282,8 +282,15 @@ else
 												<input type="hidden" name="MAX_FILE_SIZE" value="900000">
 												<p class="help-block">Formatos PNG, JPG, GIF.</p>
 												<input type="text" name="foto1" id="exampleInputFile" value="<?php echo $destino->__GET('foto'); ?>" hidden/>
-										</div>	
+											</div>	
+											<div class="col-sm-4">
 
+												 <img src="images/destino/<?php echo $destino->__GET('foto');  ?>" height="60" width="60"/> 
+													
+
+											</div>	
+
+										</div>
 
 
 
@@ -309,7 +316,7 @@ else
 														
 												<!--CAMBIO EN name y value-->
 												
-												<textarea  name="mapa"  id="txtarea6"  class="form-control1"><?php echo $destino->__GET('mapa'); ?></textarea> 
+												<input type="text" name="mapa" value="<?php echo $destino->__GET('mapa'); ?>" class="form-control1" id="focusedinput" placeholder="inserte la url del mapa" title="inserte la url del mapa" required="">	
 
 											</div>										
 										</div>

@@ -106,6 +106,35 @@ class ControlesTags
 
         }
     }
+
+    public function ListarTagsLavelStr($idIdioma,$link,$control)
+    {
+        $this->pdo = new Conexion();
+        try
+        {
+            $result = array();
+            
+            $stm = $this->pdo->prepare('SELECT *  FROM controlestags  WHERE idioma_id='.$idIdioma.' AND tipoTag="'.$link.'"  and identificador = "'.$control.'"' );
+            $stm->execute();
+            // print_r( $stm);
+            foreach($stm->fetchAll(PDO::FETCH_ASSOC) as $r)
+            {
+               array_push($result,$r);
+            }
+            $data="";
+            for ($i=0; $i <count($result) ; $i++) { 
+                $data=$result[$i]['nombre'];
+            }
+            // echo $data;
+            return $data;
+           
+        } 
+        catch (Exception $ex) 
+        {
+            die($ex->getMessage());
+
+        }
+    }
  
     
 }

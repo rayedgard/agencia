@@ -1,11 +1,26 @@
+$("#idiomas").on("change",function(){
+	
+	ids= $(this).prop('value');
 
-var idIdioma;
+	$.ajax({
+		type:"POST",
+		url: "adminWeb/backend/php/cambioIdioma.php",
+		data:{"id":ids},
+		success:function(respuesta){
+			if (respuesta = 'true') {
+				document.location.href = "index.html";
+			}
+		}
+	});
+})
 
-var idiomas ={
+var idIdioma ="";
+
+var idiomasViajes ={
 
 	init:function(){
    		//window.addEventListener('load', mostrarIdiomas);
-   		window.onload = idiomas.comboIdiomas();
+   		window.onload = idiomasViajes.comboIdiomas();
    		//$("#btn_login").click(appLogin.validarBoxs);
    		// $(document).ready(app.init);
 	},
@@ -13,63 +28,27 @@ var idiomas ={
 	comboIdiomas:function(){
 			$.ajax({
 			type:"POST",
-			url: "../adminWeb/backend/php/listarIdiomas.php",
-			datatype:"json",
+			url: "adminWeb/backend/php/comboIdiomas.php",
+			data:{"id":idIdioma},
 			success:function(respuesta){
 				$("#idiomas").html(respuesta);
 				idIdioma= $("#idiomas").prop('value');
 				
-				// idioma2 = $("#idiomas").prop('id');
-				// alert(idIdioma);
-
-				banerGeneral.init();
-				galeriaGeneral.init();
-				destinosIndex.init();
-				perfilesIndex.init();
-				viajesIndex.init();
+				totalViajes.init();
 				menuIdiomas.init();
-				$("#idiomas").on("change",function(){
-					// var valor = $(this).val();
-					// clase='".'+valor+'"';
-					// var id = $(clase).attr("id");
-					idIdioma= $(this).prop('value');
-					// alert(idIdioma);
-					// alert(id);
-					banerGeneral.init();
-					destinosIndex.init();
-					perfilesIndex.init();
-					viajesIndex.init();
-					menuIdiomas.init();
 
-				})
-			}
-		});
-
-	},
-}
-
-var banerGeneral = {
-
-	init:function(){
-   		//window.addEventListener('load', mostrarIdiomas);
-   		window.onload = banerGeneral.mostrarBanerGeneral();
-   		//$("#btn_login").click(appLogin.validarBoxs);
-   		// $(document).ready(app.init);
-	},
-
-	mostrarBanerGeneral:function(){
-			var id = idIdioma;
-			// alert(estadoIdioma)
-
-			$.ajax({
-			type:"POST",
-			url: "../adminWeb/backend/php/listarBanerGeneral.php",
-			data:{"id":id},
-			success:function(respuesta){
-				// alert(respuesta);
-				$("#banerGeneral").html(respuesta);
 				// $("#idiomas").on("change",function(){
-				// 	// ajax
+				// 	// var valor = $(this).val();
+				// 	// clase='".'+valor+'"';
+				// 	// var id = $(clase).attr("id");
+				// 	idIdioma= $(this).prop('value');
+				// 	// alert(idIdioma);
+				// 	// alert(id);
+				// 	totalViajes.init();
+				// 	menuIdiomas.init();
+				// 	// perfilesIndex.init();
+				// 	// viajesIndex.init();
+
 				// })
 			}
 		});
@@ -77,63 +56,11 @@ var banerGeneral = {
 	},
 }
 
-var galeriaGeneral = {
+var totalViajes = {
 
 	init:function(){
 
-   		window.onload = galeriaGeneral.mostrarGaleriaGeneral();
-	},
-
-	mostrarGaleriaGeneral:function(){
-
-			$.ajax({
-			type:"POST",
-			url: "../adminWeb/backend/php/listarGaleriaGeneral.php",
-			success:function(respuesta){
-				// alert(respuesta);
-				$("#galeriaIndex").html(respuesta);
-				// $("#idiomas").on("change",function(){
-				// 	// ajax
-				// })
-			}
-		});
-
-	},
-}
-
-var destinosIndex = {
-
-	init:function(){
-
-   		window.onload = destinosIndex.mostrarDestinosIndex();
-	},
-
-	mostrarDestinosIndex:function(){
-			var id = idIdioma;
-
-			// alert(id);
-
-			$.ajax({
-			type:"POST",
-			url: "../adminWeb/backend/php/listarDestinos.php",
-			data:{"idIdioma":id, "accion":"index"},
-			success:function(respuesta){
-				// alert(respuesta);
-				$("#destinosIndex").html(respuesta);
-				// $("#idiomas").on("change",function(){
-				// 	// ajax
-				// })
-			}
-		});
-
-	},
-}
-
-var viajesIndex = {
-
-	init:function(){
-
-   		window.onload = viajesIndex.mostrarViajesIndex();
+   		window.onload = totalViajes.mostrarViajesIndex();
 	},
 
 	mostrarViajesIndex:function(){
@@ -143,39 +70,11 @@ var viajesIndex = {
 
 			$.ajax({
 			type:"POST",
-			url: "../adminWeb/backend/php/listarCategoria.php",
-			data:{"idIdioma":id, "index":"" },
+			url: "adminWeb/backend/php/listarCategoria.php",
+			data:{"idIdioma":id, "accion":"viajes"},
 			success:function(respuesta){
 				// alert(respuesta);
-				$("#viajesIndex").html(respuesta);
-				// $("#idiomas").on("change",function(){
-				// 	// ajax
-				// })
-			}
-		});
-
-	},
-}
-
-var perfilesIndex = {
-
-	init:function(){
-
-   		window.onload = perfilesIndex.mostrarPefilesIndex();
-	},
-
-	mostrarPefilesIndex:function(){
-			var id = idIdioma;
-
-			// alert(id);
-
-			$.ajax({
-			type:"POST",
-			url: "../adminWeb/backend/php/listarPerfiles.php",
-			data:{"idIdioma":id, "index":""},
-			success:function(respuesta){
-				// alert(respuesta);
-				$("#perfilesIndex").html(respuesta);
+				$("#listaViajes").html(respuesta);
 				// $("#idiomas").on("change",function(){
 				// 	// ajax
 				// })
@@ -197,13 +96,14 @@ var menuIdiomas={
 		var id = idIdioma;
 		$.ajax({
 			type:'POST',
-			url:'../adminWeb/backend/php/IdiomaMenu.php',
+			url:'adminWeb/backend/php/IdiomaMenu.php',
 			data:{"idIdioma":id, "accion":"actionIdioma" },
 			// data:'actionIdioma',
 
 			success:function(rs)
 			{
-				$("ul#listaMenu").html(rs);
+				// alert(rs);
+				$("#listaMenu").html(rs);
 			}
 
 
@@ -214,7 +114,7 @@ var menuIdiomas={
   		var id = idIdioma;
   	$.ajax({
   		type:'POST',
-  		url:'../adminWeb/backend/php/IdiomaMenu.php',
+  		url:'adminWeb/backend/php/IdiomaMenu.php',
   		data:{"idIdioma":id, "accion":"actionIdiomaLavels" },
   		// data:'actionIdiomaLavels',
   		success:function(rs)
@@ -251,7 +151,4 @@ var menuIdiomas={
   },
   //-----------------------------
 }
-
-$(document).ready(idiomas.init);
-// $(document).ready(menuIdiomas.init());
-
+$(document).ready(idiomasViajes.init);

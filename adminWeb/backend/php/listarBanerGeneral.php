@@ -40,10 +40,27 @@ class listarBanerGeneral
             // $titulo = '<h3>'.$bannergeneral[$i]["titulo"].'</h3> </div> </div> </div> ';
             // $descripcion = '<h4>'.$bannergeneral[$i]["detalle"].'</h4> </div> </li>';
             // -webkit-animation-delay: 6s; -moz-animation-delay: 6s; -o-animation-delay: 6s; -ms-animation-delay: 6s; animation-delay: 6s; 
-            $tiempo=6;
+
+            
+            
+            $nImagenes = count($banerLista);
+
+            // if ( 36 % $nImagenes == 0) {
+            //     $tiempoL = 36 / $nImagenes;
+            // }else{
+
+                $r = 36 / $nImagenes;
+                // print_r($r);
+                // $c = 36 % $nImagenes;
+                $tiempoL = $r;
+
+            // }
+            // print_r($tiempoL."/////////////////////////////////////////");
+
+            $tiempo=0;
             for ($i=0; $i < count($banerLista) ; $i++) {
-					$imagen='<li><span style="background-image: url(../adminWeb/backend/images/bannergeneral/'.$banerLista[$i]["foto"].');  -webkit-animation-delay: '.$tiempo.'s; -moz-animation-delay: '.$tiempo.'s; -o-animation-delay: '.$tiempo.'s; -ms-animation-delay: '.$tiempo.'s; animation-delay: '.$tiempo.'s;"> Imagen</span> <div class="container" style="-webkit-animation-delay: '.$tiempo.'s; -moz-animation-delay: '.$tiempo.'s; -o-animation-delay: '.$tiempo.'s; -ms-animation-delay: '.$tiempo.'s; animation-delay: '.$tiempo.'s;"> <div class="row" style="-webkit-animation-delay: '.$tiempo.'s; -moz-animation-delay: '.$tiempo.'s; -o-animation-delay: '.$tiempo.'s; -ms-animation-delay: '.$tiempo.'s; animation-delay: '.$tiempo.'s;"> <div class="col-lg-12" style="-webkit-animation-delay: '.$tiempo.'s; -moz-animation-delay: '.$tiempo.'s; -o-animation-delay: '.$tiempo.'s; -ms-animation-delay: '.$tiempo.'s; animation-delay: '.$tiempo.'s;"> <div class="text-center" style="-webkit-animation-delay: '.$tiempo.'s; -moz-animation-delay: '.$tiempo.'s; -o-animation-delay: '.$tiempo.'s; -ms-animation-delay: '.$tiempo.'s; animation-delay: '.$tiempo.'s;">';
-                    $tiempo= $tiempo + 6;
+					$imagen='<li><span style="background-image: url(adminWeb/backend/images/bannergeneral/'.$banerLista[$i]["foto"].');  -webkit-animation-delay: '.$tiempo.'s; -moz-animation-delay: '.$tiempo.'s; -o-animation-delay: '.$tiempo.'s; -ms-animation-delay: '.$tiempo.'s; animation-delay: '.$tiempo.'s;"> Imagen</span> <div class="container" style="-webkit-animation-delay: '.$tiempo.'s; -moz-animation-delay: '.$tiempo.'s; -o-animation-delay: '.$tiempo.'s; -ms-animation-delay: '.$tiempo.'s; animation-delay: '.$tiempo.'s;"> <div class="row" style="-webkit-animation-delay: '.$tiempo.'s; -moz-animation-delay: '.$tiempo.'s; -o-animation-delay: '.$tiempo.'s; -ms-animation-delay: '.$tiempo.'s; animation-delay: '.$tiempo.'s;"> <div class="col-lg-12" style="-webkit-animation-delay: '.$tiempo.'s; -moz-animation-delay: '.$tiempo.'s; -o-animation-delay: '.$tiempo.'s; -ms-animation-delay: '.$tiempo.'s; animation-delay: '.$tiempo.'s;"> <div class="text-center" style="-webkit-animation-delay: '.$tiempo.'s; -moz-animation-delay: '.$tiempo.'s; -o-animation-delay: '.$tiempo.'s; -ms-animation-delay: '.$tiempo.'s; animation-delay: '.$tiempo.'s;">';
+                    $tiempo= $tiempo + $tiempoL;
                     $titulo = '<h3>'.$banerLista[$i]["titulo"].'</h3> </div> </div> </div> ';
                     $descripcion = '<h4>'.$banerLista[$i]["detalle"].'</h4> </div> </li>';
             		$lista = $imagen.$titulo.$descripcion;

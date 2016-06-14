@@ -91,6 +91,29 @@ class Perfil
         }
     }
 
+    public function buscarPerfil($id)
+    {
+        $this->pdo = new Conexion();
+        try
+        {
+            $result = array();
+            
+            $stm = $this->pdo->prepare('SELECT p.id,p.nombre,p.cargo,p.telefono,p.correo,p.foto,p.detalle,p.idioma_id,p.estado FROM perfil p WHERE p.estado=1 and p.id ='.$id);
+            $stm->execute();
+            
+            foreach($stm->fetchAll(PDO::FETCH_ASSOC) as $r)
+            {
+                array_push($result, $r);
+            }
+            return $result;
+        } 
+        catch (Exception $ex) 
+        {
+            die($ex->getMessage());
+
+        }
+    }
+
 
     /**
      * lista la el id y nombre para cargar en un combo

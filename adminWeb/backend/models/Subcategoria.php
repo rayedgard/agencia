@@ -80,6 +80,57 @@ class Subcategoria
         }
     }
     
+
+        public function ListarPorCategoria($id)
+    {
+        $this->pdo = new Conexion();
+        try
+        {
+            $result = array();
+            
+            $stm = $this->pdo->prepare('SELECT s.id,s.nombre,s.detalle,s.foto FROM subcategoria s WHERE s.categoria_id ='.$id);
+            $stm->execute();
+            // print_r($stm);
+            
+            foreach($stm->fetchAll(PDO::FETCH_ASSOC) as $rr)
+            {
+                array_push($result, $rr);
+            }
+            return $result;
+        } 
+        catch (Exception $ex) 
+        {
+            die($ex->getMessage());
+
+        }
+    }
+
+
+    public function mostrarSubCategoria($id)
+    {
+        $this->pdo = new Conexion();
+        try
+        {
+            $result = array();
+            
+            $stm = $this->pdo->prepare('SELECT s.id,s.nombre,s.detalle,s.foto,s.mapa,s.video,s.tarifa,s.incluye,s.hoteles,s.restaurante,s.perfil_id,s.categoria_id,s.estado,c.nombre AS categoria_nombre,p.nombre AS perfil_nombre,i.nombre AS idioma_nombre FROM subcategoria s INNER JOIN categoria c ON c.id=s.categoria_id   INNER JOIN perfil p ON p.id=s.perfil_id INNER JOIN idioma i ON i.id = c.idioma_id WHERE s.id ='.$id);
+            $stm->execute();
+            // print_r($stm);
+            
+            foreach($stm->fetchAll(PDO::FETCH_ASSOC) as $rr)
+            {
+                array_push($result, $rr);
+            }
+            return $result;
+        } 
+        catch (Exception $ex) 
+        {
+            die($ex->getMessage());
+
+        }
+    }
+
+
     /**
      * lista la el id y nombre para cargar en un combo
      * retorna: id, nombre

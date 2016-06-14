@@ -1,4 +1,17 @@
 <!DOCTYPE html>
+<?php
+//llamar clases del model
+require_once 'adminWeb/backend/models/Destino.php';
+require_once 'adminWeb/backend/models/Testimonio.php';
+require_once 'adminWeb/backend/models/Galeriadestino.php';
+require_once 'adminWeb/backend/models/Bannerdestino.php';
+require_once 'adminWeb/backend/models/ControlesTag.php';
+$ruta = fopen("adminWeb/config/ruta.txt","r");
+$linea = fgets($ruta);
+fclose($ruta);
+// include($_SERVER['DOCUMENT_ROOT'].$linea);
+?>
+
 <html lang="es">
 	<head>
 		<meta charset="utf-8">
@@ -13,46 +26,38 @@
 		<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href="css/patros.css" >
+		<!-- CSS Propiestarios -->
+		<link rel="stylesheet" type="text/css" href="css/cssPropios.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.min.css" />
+		<!-- <script type="text/javascript" src="/js/funcionesDestino.js"></script> -->
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 		<!--[if lt IE 9]>
 			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-			<![endif]-->
-			<style>
-				/*select {
-				     background: transparent;
-				     border: none;
-				     font-size: 14px;
-				     height: 30px;
-				     padding: 5px;
-				     width: 250px;
-				     text-decoration: none;
-				  }
-				select:active, select:active * { outline: none !important; -moz-outline-style: none !important; }
-				select:focus, select:focus * { outline: none !important; -moz-outline-style: none !important; }*/
-			</style>
+			<![endif]-->			
 	</head>
 
 	<body data-spy="scroll">
 		<div class="container-fluid navbar-fixed-top" style="height: 25px; z-index:100;">
 
 				<div class="row">
-					<div class="col-md-2" style="padding-right: 0px;">
-						<h6 style="float: left;"><u>Correo: info@paprikatours.com</u></h6>
+					<div class="col-md-3 col-xs-12" style="padding-right: 0px; padding-left: 110px; color: #fff;">
+						<h6 id="correoFijo" ><span class="glyphicon glyphicon-envelope"> </span> qasdfasd@aaaaaatours.com</h6>
 					</div>
-					<div class="col-md-8" style="padding-left: 0px;">
-						<h6 style="float: left;">Telefono: 00 51 54 600139</h6>
+					<div class="col-md-7 col-xs-12" style="padding-left: 0px; ">
+						<h6 style="float: left; color: #fff; margin-top: 4px;"><span class="glyphicon glyphicon-phone"> </span> 00 51 54 600139</h6>
 					</div>
-					<div class="col-md2">
-						<select onfocus="this.blur()" id="idiomas" class="form-control" style="height: 25px; width: 120px; float: right; background-color: #ec7f5d; border: none; color: fff; padding-top: 0px;">
+
+					<div class="col-md-2 col-xs-12">
+						<select id="idiomas" class="form-control" >
 							<!-- comobo de idomas de base de datos -->
 						</select>
 					</div>
 				</div>
 		</div>
 		<!-- Navigation -->
-				<nav class="navbar navbar-inverse navbar-fixed-top" style="z-index:1;">
+		<nav class="navbar navbar-inverse navbar-fixed-top" style="z-index:1; margin-bottom: 0px; padding-bottom: 0px;">
 			<div class="container">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -64,7 +69,11 @@
 					<a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="company logo" /></a>
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav navbar-right custom-menu" id="listaMenu">
+					<div class="miMenu" style="float: right;">
+						<nav>
+							<ul id="listaMenu" style="margin-bottom: 0px;">
+							</ul>
+						</nav>
 						<!-- <li class="active"><a href="#home">Home</a></li>
 						<li><a href="#about">About</a></li>
 						<li class="dropdown">
@@ -98,313 +107,278 @@
 		<header id="home" class="carousel slide">
 			<ul class="cb-slideshow" id="banerGeneral">
 			
-			<!-- <li>
-				<span style="background-image: url(../adminWeb/backend/images/bannergeneral/icpna1.jpg);  -webkit-animation-delay: 6s; -moz-animation-delay: 6s; -o-animation-delay: 6s; -ms-animation-delay: 6s; animation-delay: 6s;"> Imagen</span> 
-				<div class="container" style="-webkit-animation-delay: 6s; -moz-animation-delay: 6s; -o-animation-delay: 6s; -ms-animation-delay: 6s; animation-delay: 6s;"> 
-					<div class="row" style="-webkit-animation-delay: 6s; -moz-animation-delay: 6s; -o-animation-delay: 6s; -ms-animation-delay: 6s; animation-delay: 6s;"> 
-						<div class="col-lg-12" style="-webkit-animation-delay: 6s; -moz-animation-delay: 6s; -o-animation-delay: 6s; -ms-animation-delay: 6s; animation-delay: 6s;"> 
-							<div class="text-center" style="-webkit-animation-delay: 6s; -moz-animation-delay: 6s; -o-animation-delay: 6s; -ms-animation-delay: 6s; animation-delay: 6s;">
-								<h3>gdfgdf</h3> 
-							</div> 
-						</div>
-					</div> 
-					<h4>gddgffdg</h4> 
-				</div> 
-			</li> -->
-			<!-- <li><span style="background-image: url(../adminWeb/backend/images/bannergeneral/icpna1.jpg);  -webkit-animation-delay: 6s; -moz-animation-delay: 6s; -o-animation-delay: 6s; -ms-animation-delay: 6s; animation-delay: 6s;"> Imagen</span> <div class="container" style="-webkit-animation-delay: 6s; -moz-animation-delay: 6s; -o-animation-delay: 6s; -ms-animation-delay: 6s; animation-delay: 6s;"> <div class="row" style="-webkit-animation-delay: 6s; -moz-animation-delay: 6s; -o-animation-delay: 6s; -ms-animation-delay: 6s; animation-delay: 6s;"> <div class="col-lg-12" style="-webkit-animation-delay: 6s; -moz-animation-delay: 6s; -o-animation-delay: 6s; -ms-animation-delay: 6s; animation-delay: 6s;"> <div class="text-center" style="-webkit-animation-delay: 6s; -moz-animation-delay: 6s; -o-animation-delay: 6s; -ms-animation-delay: 6s; animation-delay: 6s;"><h3>gdfgdf</h3> </div> </div> </div> <h4>gddgffdg</h4> </div> </li><li><span style="background-image: url(../adminWeb/backend/images/bannergeneral/machu-picchu-2016.jpg);  -webkit-animation-delay: 12s; -moz-animation-delay: 12s; -o-animation-delay: 12s; -ms-animation-delay: 12s; animation-delay: 12s;"> Imagen</span> <div class="container" style="-webkit-animation-delay: 12s; -moz-animation-delay: 12s; -o-animation-delay: 12s; -ms-animation-delay: 12s; animation-delay: 12s;"> <div class="row" style="-webkit-animation-delay: 12s; -moz-animation-delay: 12s; -o-animation-delay: 12s; -ms-animation-delay: 12s; animation-delay: 12s;"> <div class="col-lg-12" style="-webkit-animation-delay: 12s; -moz-animation-delay: 12s; -o-animation-delay: 12s; -ms-animation-delay: 12s; animation-delay: 12s;"> <div class="text-center" style="-webkit-animation-delay: 12s; -moz-animation-delay: 12s; -o-animation-delay: 12s; -ms-animation-delay: 12s; animation-delay: 12s;"><h3>asdada</h3> </div> </div> </div> <h4>dasda</h4> </div> </li> -->
-				<!-- <li><span>image1</span>
-					<div class="container">
-						<div class="row">
-							<div class="col-lg-12">
-								<div class="text-center"><h3>SMART BUSINESS SOLUTIONS!</h3></div>
-							</div>
-						</div>
-						<h4>PATROS – Free HTML5/CSS3 Responsive Website Template.</h4>
-					</div>
-				</li>
-				<li><span>image2</span>
-					<div class="container">
-						<div class="row">
-							<div class="col-lg-12">
-								<div class="text-center"><h3>PREMIUM CREATIVE CONTENT!</h3></div>
-							</div>
-						</div>
-						<h4>Lorem Ipsum is simply dummy text of typesetting industry.</h4>
-					</div>
-				</li>
-				<li><span>image3</span>
-					<div class="container">
-						<div class="row">
-							<div class="col-lg-12">
-								<div class="text-center"><h3>UNIQUE DESIGN!</h3></div>
-							</div>
-						</div>
-						<h4>Lorem Ipsum is simply dummy text of typesetting industry.</h4>
-					</div>
-				</li>
-				<li><span>Image 04</span>
-					<div class="container">
-						<div class="row">
-							<div class="col-lg-12">
-								<div class="text-center"><h3>WEB AND GRAPHICS DESIGN</h3></div>
-							</div>
-						</div>
-						<h4>Lorem Ipsum is simply dummy text of typesetting industry.</h4>
-					</div>
-				</li>
-				<li><span>Image 05</span>
-					<div class="container">
-						<div class="row">
-							<div class="col-lg-12">
-								<div class="text-center"><h3>DIGITAL MARKETING SOLUTIONS</h3></div>
-							</div>
-						</div>
-						<h4>Lorem Ipsum is simply dummy text of typesetting industry.</h4>
-					</div>
-				</li>
-				<li><span>Image 06</span>
-					<div class="container">
-						<div class="row">
-							<div class="col-lg-12">
-								<div class="text-center"><h3>SEARCH ENGINE OPTIMIZATION!</h3></div>
-							</div>
-						</div>
-						<h4>Lorem Ipsum is simply dummy text of typesetting industry.</h4>
-					</div>
-				</li> -->
+				<?php
+					include($_SERVER['DOCUMENT_ROOT'].$linea);
+
+					$idDestino=$_POST['id_fijo'];
+
+					$baner = new Bannerdestino();
+
+					$banerLista = $baner->listarDestino($idDestino);
+
+					$tiempo=0;
+					$listaBaner="";
+					$nImagenes = count($banerLista);
+
+					// if ( 36 % $nImagenes == 0) {
+					// 	$tiempoL = 36 / $nImagenes;
+					// }else{
+						$r = 36 / $nImagenes;
+						// $c = 36 % $nImagenes;
+						$tiempoL = $r;
+					// }
+											// print_r($tiempoL);
+
+		            for ($i=0; $i < $nImagenes ; $i++) {
+		            		if($i == 0)
+		            		{
+		            			$imagen='<li> <span style="background-image: url(adminWeb/backend/images/bannerPaquete/'.$banerLista[$i]["foto"].'); > Imagen</span> 
+
+										<div class="container"> 
+											<div class="row"> 
+												<div class="col-lg-12"> 
+													<div class="text-center">';
+			                    $titulo = '<h3>'.$banerLista[$i]["titulo"].'</h3> </div> </div> </div> ';
+			                    $descripcion = '<h4>'.$banerLista[$i]["detalle"].'</h4> </div> </li>';
+			                    $tiempo= $tiempo + $tiempoL;
+			                    $lista = $imagen.$titulo.$descripcion;
+		            		}
+		            		else{
+
+								$imagen='<li>
+								<span style="background-image: url(adminWeb/backend/images/bannerPaquete/'.$banerLista[$i]["foto"].');  -webkit-animation-delay: '.$tiempo.'s; -moz-animation-delay: '.$tiempo.'s; -o-animation-delay: '.$tiempo.'s; -ms-animation-delay: '.$tiempo.'s; animation-delay: '.$tiempo.'s;"> Imagen</span> <div class="container" style="-webkit-animation-delay: '.$tiempo.'s; -moz-animation-delay: '.$tiempo.'s; -o-animation-delay: '.$tiempo.'s; -ms-animation-delay: '.$tiempo.'s; animation-delay: '.$tiempo.'s;"> <div class="row" style="-webkit-animation-delay: '.$tiempo.'s; -moz-animation-delay: '.$tiempo.'s; -o-animation-delay: '.$tiempo.'s; -ms-animation-delay: '.$tiempo.'s; animation-delay: '.$tiempo.'s;"> <div class="col-lg-12" style="-webkit-animation-delay: '.$tiempo.'s; -moz-animation-delay: '.$tiempo.'s; -o-animation-delay: '.$tiempo.'s; -ms-animation-delay: '.$tiempo.'s; animation-delay: '.$tiempo.'s;"> <div class="text-center" style="-webkit-animation-delay: '.$tiempo.'s; -moz-animation-delay: '.$tiempo.'s; -o-animation-delay: '.$tiempo.'s; -ms-animation-delay: '.$tiempo.'s; animation-delay: '.$tiempo.'s;">';
+								
+								$tiempo= $tiempo + $tiempoL;
+			                    $titulo = '<h3>'.$banerLista[$i]["titulo"].'</h3> </div> </div> </div> ';
+			                    $descripcion = '<h4>'.$banerLista[$i]["detalle"].'</h4> </div> </li>';
+			            		$lista = $imagen.$titulo.$descripcion;
+
+		            		}
+		                    $listaBaner= $listaBaner.$lista;
+		                }
+		                echo $listaBaner;
+				?>
+
 			</ul>
 			<div class="intro-scroller">
 				<a class="inner-link" href="#about">
-					<div class="mouse-icon" style="opacity: 1;">
+					<div class="mouse-icon" style="opacity: 0.6;">
 						<div class="wheel"></div>
 					</div>
 				</a> 
 			</div>          
 		</header>
 			
-		<!-- Page Content -->
-		<section id="about">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-offset-1 col-md-10">
-						<div class="text-center">
-							<h2>About Us</h2>
-							<img class="img-responsive displayed" src="images/short.png" alt="Company about"/>
-							<div class="row">
-								<div class="col-md-12">
-									<p>
-									Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley. It has survived not only five centuries, but also the leap into electronic typesetting, remaining <span class="color-elements">essentially unchanged.</span>
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
+		<div class="container-fluid">
+			
+			<div class="row">
+				<div class="col-md-8" style=" padding-left: 90px;">
+					<?php
 
-		<section id="services">
-			<div class="orangeback">
-				<div class="container">
-					<div class="text-center homeport2"><h2>Services</h2></div>
-					<div class="row">
-						<div class="col-md-12 homeservices1" id="destinosIndex">
-							<!-- <div class="col-md-3 portfolio-item">
-								<div class="text-center">
-									<span class="fa-stack fa-lg">
-										<img src="../adminWeb/backend/images/bannerDestino/bnr1.jpg" class="img-responsive img-circle" style="width:100%; height:100%; ">
-									</span>
-									<h3><a href="#">Strategy</a></h3>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-								</div>
-							</div>
-							<div class="col-md-3 portfolio-item">
-								<div class="text-center">
-									<a href="javascript:void(0);">
-									<span class="fa-stack fa-lg">
-									  <i class="fa fa-circle fa-stack-2x"></i>
-									  <i class="fa fa-users fa-stack-1x"></i>
-									</span>
-									</a>
-									<h3><a href="#">User Friendly</a></h3>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-								</div>
-							</div>
-							<div class="col-md-3 portfolio-item">
-								<div class="text-center">
-									<a href="javascript:void(0);">
-									<span class="fa-stack fa-lg">
-									  <i class="fa fa-circle fa-stack-2x"></i>
-									  <i class="fa fa-code fa-stack-1x"></i>
-									</span>
-									</a>
-									<h3><a href="#">Clean Code</a></h3>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-								</div>
-							</div>
-							<div class="col-md-3 portfolio-item">
-								<div class="text-center">
-									<a href="javascript:void(0);">
-									<span class="fa-stack fa-lg">
-									  <i class="fa fa-circle fa-stack-2x"></i>
-									  <i class="fa fa-cogs fa-stack-1x"></i>
-									</span>
-									</a>
-									<h3><a href="#">Flexibility</a></h3>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-								</div>
-							</div> -->
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
+					//instanciado objeto
+					$destinos=new Destino();
+					if (isset($_POST['id_fijo'])) {
+						$idDestino=$_POST['id_fijo'];
 
-		<section id="bloghome">
-			<div class="container">
-				<div class="text-center"><h2>Latest Blog Posts</h2>
-					<img class="img-responsive displayed" src="images/short.png" alt="about">
-				</div>
-				<div class="row">
-					<div class="col-md-12 homeport1" id="viajesIndex">
-						<!-- <div class="col-md-4 col-sm-12 col-xs-12 portfolio-item">
-							<figure class="effect-oscar">
-								<img src="images/blog1.jpg" alt="img09" class="img-responsive" />
-								<figcaption>
-									<h2>Blog Post Long Title</h2>
-									<a href="#">View more</a>
-								</figcaption>           
-							</figure>
-							<p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet.</p>
-							<div class="text-center"><a class="btn btn-primary btn-noborder-radius hvr-bounce-to-bottom">Read More</a></div>
-						</div>
-						<div class="col-md-4 col-sm-12 col-xs-12 portfolio-item">
-							<figure class="effect-oscar">
-								<img src="images/blog2.jpg" alt="img09" class="img-responsive"/>
-								<figcaption>
-									<h2>Blog Post Long Title</h2>
-									<a href="#">View more</a>
-								</figcaption>           
-							</figure>
-							<p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet.</p>
-							<div class="text-center"><a class="btn btn-primary btn-noborder-radius hvr-bounce-to-bottom">Read More</a></div>
-						</div>
-						<div class="col-md-4 col-sm-12 col-xs-12 portfolio-item">
-							<figure class="effect-oscar">
-								<img src="images/blog3.jpg" alt="img09" class="img-responsive"/>
-								<figcaption>
-									<h2>Blog Post Long Title</h2>
-									<a href="#">View more</a>
-								</figcaption>           
-							</figure>
-							<p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet.</p>
-							<div class="text-center"><a class="btn btn-primary btn-noborder-radius hvr-bounce-to-bottom">Read More</a></div>
-						</div> -->
-					</div>
-				</div>
-			</div>
-		</section>
+						$DestinoLista=$destinos->ListarDestinoArray($idDestino);
+						// print_r($DestinoLista);
+						for ($i=0; $i <count($DestinoLista) ; $i++) { 
+							echo "<h2>".$DestinoLista[$i]['nombre']."</h2>";
+							echo "<h3>".$DestinoLista[$i]['etiqueta']."</h3>";
+							echo "<h5>".$DestinoLista[$i]['detalle']."</h5>";
 
-		<section id="meet-team">
-			<div class="container">
-				<div class="text-center">
-				<h2>Team Members</h2>
-				<img class="img-responsive displayed" src="images/short.png" alt="about">
+							echo '<ul class="nav nav-tabs" id="tages"> <li class="active"><a data-toggle="tab" href="#clima">Clima</a></li> <li><a data-toggle="tab" href="#comollegar">Como llegar</a></li> <li><a data-toggle="tab" href="#servicios">Servicios</a></li> </ul> <div class="tab-content"> <div id="clima" class="tab-pane fade in active"> <br> <h4>'.$DestinoLista[$i]['clima'].'</h4> </div> <div id="comollegar" class="tab-pane fade"> <br> <h4>'.$DestinoLista[$i]['comollegar'].' </h4> </div> <div id="servicios" class="tab-pane fade"> <br> <h4>'.$DestinoLista[$i]['servicios'].' </h4> </div> </div>';
+							// echo "<h5>".$DestinoLista[$i]['clima']."</h5>";
+							// echo "<h5>".$DestinoLista[$i]['comollegar']."</h5>";
+							// echo "<h5>".$DestinoLista[$i]['servicios']."</h5>";
+							$dataIdDestino=$DestinoLista[$i]['idioma_id'];
+						}
+					}
+					
+					?>
 				</div>
-				<div class="row teamspace" id="perfilesIndex">
-					<!-- <div class="col-xs-12 col-sm-6 col-md-3">
-						<div class="team-member">
-							<div class="team-img">
-								<img class="img-responsive" src="images/person1.jpg" alt="">
-							</div>
-							<div class="team-info">
-								<h3>Christian Peri</h3>
-								<span>Co-Founder</span>
-							</div>
-							<p>Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater</p>
-							<ul class="social-icons">
-								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-xs-12 col-sm-6 col-md-3">
-						<div class="team-member">
-							<div class="team-img">
-								<img class="img-responsive" src="images/person1.jpg" alt="">
-							</div>
-							<div class="team-info">
-								<h3>Jane Manz</h3>
-								<span>Project Manager</span>
-							</div>
-							<p>Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater</p>
-							<ul class="social-icons">
-								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-xs-12 col-sm-6 col-md-3">
-						<div class="team-member">
-							<div class="team-img">
-								<img class="img-responsive" src="images/person1.jpg" alt="">
-							</div>
-							<div class="team-info">
-								<h3>Paulinho Rubos</h3>
-								<span>Designer</span>
-							</div>
-							<p>Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater</p>
-							<ul class="social-icons">
-								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-xs-12 col-sm-6 col-md-3">
-						<div class="team-member">
-							<div class="team-img">
-								<img class="img-responsive" src="images/person1.jpg" alt="">
-							</div>
-							<div class="team-info">
-								<h3>Loreto Andas</h3>
-								<span>Developer</span>
-							</div>
-							<p>Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater</p>
-							<ul class="social-icons">
-								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-								<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-							</ul>
-						</div>
-					</div> -->
-				</div>
-			</div>
-		</section>
+				<aside class="col-md-4 sidebar-padding">
+		                
+		                <!-- Blog Categories -->
+		                <div class="blog-sidebar">
+		                    <h4 class="sidebar-title"><i class="fa fa-list-ul"></i> <?php 
+		                    $listaTagsDestinos=new ControlesTags();
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($dataIdDestino,'H2LavelDestinos','txt_reserva'); 
+				?></h4>
+		                    <hr>
+		                    <div id="div_reservas">					
+		    				<form class="form-inline" >
+		    					<div class="form-group">
+									<label class="sr-only" for="">Nombre</label>  
+									
+									<input id="" name="" type="text" placeholder="<?php 
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($dataIdDestino,'H2LavelDestinos','txt_nombre'); 
+							?>" class="form-control">
+								</div>
+								<div class="form-group" >
+									<label class="sr-only" for="">Email</label>    
 
+									<input id="" name="" type="email" placeholder="<?php 
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($dataIdDestino,'H2LavelDestinos','txt_correo'); 
+							?>" class="form-control">
+								</div>
+								<hr>
+								<div class="form-group">
+									<label class="sr-only" for="">Pais</label>  
+									<input id="" name="" type="text" placeholder="<?php 
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($dataIdDestino,'H2LavelDestinos','txt_pais'); 
+							?>" class="form-control">
+								</div>
+		   					
+		    				
+		    				    <div class="form-group">
+									<label class="sr-only" for="">Telefono</label>  
+									<input id="" name="" type="text" placeholder="<?php 
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($dataIdDestino,'H2LavelDestinos','txt_telefono');?>" class="form-control input-md">
+								</div>
+								<br>
+								<br>
+								
+								
+								<div class="form-group">
+
+									<label><?php 
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($dataIdDestino,'H2LavelDestinos','txt_fechaInicio'); 
+							?></label>
+									<br>
+					                <div class='input-group date' id='datetimepicker1' style="width: 340px; z-index:0;">
+					                    <input type='text' class="form-control" />
+					                    <span class="input-group-addon">
+					                        <span class="glyphicon glyphicon-calendar"></span>
+					                    </span>
+					                </div>
+					            </div>
+								<br>
+								<br>
+								<div class="form-group">
+						            <label class="text" for=""><?php 
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($dataIdDestino,'H2LavelDestinos','txt_alojamiento'); 
+							?></label>
+									<br>
+						            <label class="radio-inline">
+									  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> <?php 
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($dataIdDestino,'H2LavelDestinos','txt_economico'); 
+							?> </label>
+									<label class="radio-inline">
+									  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> <?php echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($dataIdDestino,'H2LavelDestinos','txt_medio'); 
+							?>
+									</label>
+									<label class="radio-inline">
+									  <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> <?php 
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($dataIdDestino,'H2LavelDestinos','txt_lujoso'); 
+							?>
+									</label>
+								</div>
+								
+								<br>
+								<br>
+				
+		            		 	<div class="form-group">
+										<label class="col-md-12 control-label" for="textarea"></label>
+					  					<div class="col-md-12">                     
+											<textarea class="form-control" id="textarea" name="textarea">Mensaje</textarea>
+										</div>
+								</div>
+
+								<br>
+								<br>
+								<div align="center">
+			    					<button class="btn btn-info btn-lg btn-block"><?php 
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($dataIdDestino,'H2LavelDestinos','txt_reserva'); 
+							?> </button>
+
+								</div>
+
+							</form>
+
+						</div>
+		                </div>
+		                <!-- Recent Posts -->
+		                <div class="blog-sidebar">
+		                    <h4 class="sidebar-title"><i class="fa fa-map-marker"> </i> <?php 
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($dataIdDestino,'H2Lavel','h2_destinos'); 
+							?> </h4>
+		                    <hr style="margin-bottom: 5px;">
+
+		                    <div id=div_destinos>
+								<!-- lista destinos -->
+								
+								<?php
+									$destinos = new Destino();
+
+									$DestinoListaTotal=$destinos->ListarDestinoArrayTodo();
+									for ($i=0; $i <count($DestinoListaTotal) ; $i++) { 
+										echo " <ul><i class='fa fa-thumb-tack' aria-hidden='true'> </i>  ".$DestinoListaTotal[$i]['nombre']."
+													<li>
+													".$DestinoListaTotal[$i]['etiqueta']."
+													</li>
+											</ul>";
+									}
+								?>
+
+							</div>
+		                </div>
+
+		                <div class="blog-sidebar">
+		                    <h4 class="sidebar-title"><i class="fa fa-comments"></i> <?php 
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($dataIdDestino,'H2LavelDestinos','txt_testimonios'); 
+							?></h4>
+		                    <hr style="margin-bottom: 5px;">
+							<div id="div_testimonios">
+								
+								<div style="width: 380px; height: 400px; overflow-y: scroll;">
+									<ul>
+								<?php 
+								$dataTestimonio=new Testimonio();
+								$testimonioLista=$dataTestimonio->ListarArray();
+								for ($i=0; $i <count($testimonioLista) ; $i++) { 
+									echo "<li><img  class='img-responsive img-thumbnail' src='adminWeb/backend/images/testimonio/".$testimonioLista[$i]['foto']." '></li>";
+									echo "<li>".$testimonioLista[$i]['nombre']."</li>";
+									echo "<li>".$testimonioLista[$i]['detalle']."</li>";
+									echo "<li>".$testimonioLista[$i]['correo']."&nbsp &nbsp ".$testimonioLista[$i]['fecha']."</li> <hr>";
+
+								}
+
+
+								?>
+								</ul>
+								</div>
+							</div>
+						</div>
+
+					</aside>
+			</div>
+
+		</div>
+	</div>
 
 		<section id="portfolio1">
 		<div class="container">
 		<div class="row">
 			<div class="text-center">
-			<h2>Portfolio</h2>
+			<h2><?php 
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($dataIdDestino,'H2LavelDestinos','txt_galeria'); 
+							?></h2>
 			<img class="img-responsive displayed" src="images/short.png" alt="about">
 			</div>
-
-			<ul class="filter nav nav-pills">
-			  <li data-value="all" ><a class="active" href="#">All</a></li>
-			  <li data-value="development"><a href="#">Development</a></li>
-			  <li data-value="webdesign"><a href="#">Web Design</a></li>
-			  <li data-value="mobileapps"><a href="#">Mobile Apps</a></li>
-			</ul>
  
 			<ul class="port2" id="galeriaIndex">
+
+				<?php
+					$galeriaDestino = new Galeriadestino();
+
+					$arreglo = $galeriaDestino->galeriaporDestino($idDestino);
+
+					for ($i=0; $i < count($arreglo); $i++) { 
+						echo '<li data-type="development" data-id="id-1" class="port3"> <a href="#" id="development1"><img src="adminWeb/backend/images/galeriaDestino/'.$arreglo[$i]['nombre'].'" alt=""></a></li>';
+
+						 }
+				?>
 			  <!-- <li data-type="development" data-id="id-1" class="port3">
 				<a href="#" id="development1"><img src="images/port1.jpg" alt=""></a></li>
 			  <li data-type="webdesign" data-id="id-2" class="port3">
@@ -439,7 +413,9 @@
 					<div class="col-md-12">
 						<div class="col-lg-12">
 							<div class="text-center color-elements">
-							<h2>Contact Us</h2>
+							<h2><?php 
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($dataIdDestino,'H2LavelDestinos','txt_contacto'); 
+							?></h2>
 							</div>
 						</div>
 						<div class="col-lg-6 col-md-8">
@@ -447,29 +423,39 @@
 								<div class="row">
 									<div class="col-sm-6 height-contact-element">
 										<div class="form-group">
-											<input type="text" name="first_name" class="form-control custom-labels" id="name" placeholder="FULL NAME" required data-validation-required-message="Please write your name!"/>
+											<input type="text" name="first_name" class="form-control custom-labels" id="name" placeholder="<?php 
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($dataIdDestino,'form_lvl','form_texto'); 
+							?>" required data-validation-required-message="Please write your name!"/>
 											<p class="help-block text-danger"></p>
 										</div>
 									</div>
 									<div class="col-sm-6 height-contact-element">
 										<div class="form-group">
-											<input type="email" name="email" class="form-control custom-labels" id="email" placeholder="EMAIL" required data-validation-required-message="Please write your email!"/>
+											<input type="email" name="email" class="form-control custom-labels" id="email" placeholder="<?php 
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($dataIdDestino,'form_lvl','form_email'); 
+							?>" required data-validation-required-message="Please write your email!"/>
 											<p class="help-block text-danger"></p>
 										</div>
 									</div>
 									<div class="col-sm-12 height-contact-element">
 										<div class="form-group">
-											<input type="text" name="message" class="form-control custom-labels" id="message" placeholder="WHAT'S ON YOUR MIND" required data-validation-required-message="Please write a message!"/>
+											<input type="text" name="message" class="form-control custom-labels" id="message" placeholder="<?php 
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($dataIdDestino,'form_lvl','form_pensando'); 
+							?>" required data-validation-required-message="Please write a message!"/>
 										</div>
 									</div>
 									<div class="col-sm-3 col-xs-6 height-contact-element">
 										<div class="form-group">
-											<input type="submit" class="btn btn-md btn-custom btn-noborder-radius" value="Send It"/>
+											<input type="submit" class="btn btn-md btn-custom btn-noborder-radius" value="<?php 
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($dataIdDestino,'form_lvl','form_envio'); 
+							?>"/>
 										</div>
 									</div>
 									<div class="col-sm-3 col-xs-6 height-contact-element">
 										<div class="form-group">
-											<button type="button" class="btn btn-md btn-noborder-radius btn-custom" name="reset">RESET
+											<button type="button" class="btn btn-md btn-noborder-radius btn-custom" name="reset"><?php 
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($dataIdDestino,'form_lvl','form_resetear'); 
+							?>
 											</button>
 										</div>
 									</div>
@@ -489,7 +475,9 @@
 								<div class="col-md-12 height-contact-element">
 									<div class="form-group">
 										<i class="fa fa-2x fa-map-marker"></i>
-										<span class="text">LOCATION</span>
+										<span class="text"><?php 
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($dataIdDestino,'form_lvl','form_ubicacion'); 
+							?></span>
 									</div>
 								</div>
 								<div class="col-md-12 height-contact-element">
@@ -514,7 +502,9 @@
 		<section id="follow-us">
 			<div class="container"> 
 				<div class="text-center height-contact-element">
-					<h2>FOLLOW US</h2>
+					<h2><?php 
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($dataIdDestino,'form_lvl','form_siguenos'); 
+							?></h2>
 				</div>
 				<img class="img-responsive displayed" src="images/short.png" alt="short" />
 				<div class="text-center height-contact-element">
@@ -546,6 +536,8 @@
 		<!-- Bootstrap Core JavaScript -->
 		<script src="js/bootstrap.min.js"></script>
 
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
+
 		<!-- Google Map -->
 		<script src="//maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=true&amp;libraries=places"></script>
 
@@ -555,7 +547,18 @@
 
 		<!--Jquery Smooth Scrolling-->
 		<script>
+
+	        
+
 			$(document).ready(function(){
+
+				$('#tages a').click(function (e) {
+				  e.preventDefault()
+				  $(this).tab('show')
+				})
+
+				$('#datetimepicker1').datepicker();
+
 				$('.custom-menu a[href^="#"], .intro-scroller .inner-link').on('click',function (e) {
 					e.preventDefault();
 
@@ -878,7 +881,7 @@
 
 </script>
 
-<script type="text/javascript" src="js/funcionesWeb.js"></script> 
+<script type="text/javascript" src="js/funcionesViajes.js"></script> 
 
 </body>
 </html>

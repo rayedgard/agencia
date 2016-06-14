@@ -64,6 +64,82 @@ class Testimonio
 
         }
     }
+
+
+    /*
+    funcion listar todas los registros , devuelve un arreglo
+    */
+     public function ListarArray()
+    {
+        $this->pdo = new Conexion();
+        try
+        {
+            $result = array();
+            
+            $stm = $this->pdo->prepare('SELECT t.id,t.nombre,t.correo,t.fecha,t.detalle,t.foto,t.idioma_id,t.estado,i.nombre AS idioma_nombre FROM testimonio t INNER JOIN idioma i ON i.id=t.idioma_id WHERE t.estado=1');
+            $stm->execute();
+            
+            foreach($stm->fetchAll(PDO::FETCH_ASSOC) as $r)
+            {
+                array_push($result,$r);
+            }
+            return $result;
+        } 
+        catch (Exception $ex) 
+        {
+            die($ex->getMessage());
+
+        }
+    }
+
+
+    public function testimoniosAños($id)
+    {
+        $this->pdo = new Conexion();
+        try
+        {
+            $result = array();
+            
+            $stm = $this->pdo->prepare('SELECT YEAR(`testimonio`.`fecha`) AS Años FROM `testimonio` WHERE `testimonio`.`idioma_id` = '.$id.' GROUP  BY Años');
+            $stm->execute();
+            
+            foreach($stm->fetchAll(PDO::FETCH_ASSOC) as $r)
+            {
+                array_push($result,$r);
+            }
+            return $result;
+        } 
+        catch (Exception $ex) 
+        {
+            die($ex->getMessage());
+
+        }
+    }
+
+
+    public function busquedaAños($id, $año)
+    {
+        $this->pdo = new Conexion();
+        try
+        {
+            $result = array();
+            
+            $stm = $this->pdo->prepare('SELECT * FROM `testimonio`  WHERE YEAR(`testimonio`.`fecha`)= '.$año.' AND `testimonio`.`idioma_id` = '.$id.' AND `testimonio`.`estado` = 1');
+            $stm->execute();
+            
+            foreach($stm->fetchAll(PDO::FETCH_ASSOC) as $r)
+            {
+                array_push($result,$r);
+            }
+            return $result;
+        } 
+        catch (Exception $ex) 
+        {
+            die($ex->getMessage());
+
+        }
+    }
+
     
     /**
      * lista la el id y nombre para cargar en un combo
