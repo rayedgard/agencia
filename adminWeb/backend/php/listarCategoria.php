@@ -32,8 +32,6 @@ class listaCategoria
 		try
         {
             $listaModelo = array();
-             
-            $listaModelo = $categoria->ListarCategoria($idIdioma);
 
             $arregloBotones = $controles->ListarTags($idIdioma,"BtnLavel");
 
@@ -45,6 +43,9 @@ class listaCategoria
             // print_r($_POST["accion"]);
             if ($_POST["accion"]=="index") {
 
+                // ListaCategoria
+                $listaModelo = $categoria->ListaCategoria($idIdioma);
+
                 for ($i=0; $i < count($listaModelo) ; $i++) { 
 
                         // $descrip = strip_tags($listaModelo[$i]["detalle"]);
@@ -52,9 +53,9 @@ class listaCategoria
                     // $imagen = '<div class="col-md-4 col-sm-12 col-xs-12 portfolio-item"> <figure class="effect-oscar"> <img src="../adminWeb/backend/images/perfil/'.$listaModelo[$i]["foto"].'" alt="img09" class="img-responsive" /> ';
                          
                         $imagen = '<div class="col-md-4 col-sm-12 col-xs-12 portfolio-item"> <figure class="effect-oscar"> <img src="adminWeb/backend/images/categoria/'.$listaModelo[$i]["foto"].'" alt="img09" class="img-responsive" /> ';
-                        $nombre = '<figcaption> <h2>'.$listaModelo[$i]["nombre"].'</h2> <a href="#">View more</a> </figcaption> </figure>';
+                        $nombre = '<figcaption> <h2>'.$listaModelo[$i]["nombre"].'</h2></figcaption> </figure>';
                         // $detalle = '<p class="text-center">'.$listaModelo[$i]["nombre"].'</p> <div class="text-center"><a class="btn btn-primary btn-noborder-radius hvr-bounce-to-bottom">Read More</a></div> </div>';
-                        $detalle = '<div class="text-center"><a class="btn btn-primary btn-noborder-radius hvr-bounce-to-bottom" style="background-color: #58AAF5;">'.$arregloBotones[0]["nombre"].'</a></div> </div>';
+                        $detalle = '<form method="post" action="Listado_de_Categorias.php"> <div class="text-center"><a class="btn btn-primary btn-noborder-radius hvr-bounce-to-bottom" style="background-color: #58AAF5;"><input type="submit" style="border:none ; background:transparent; " id="'.$listaModelo[$i]["id"].'" class="linkDestino" value="'.$arregloBotones[0]["nombre"].'" > </a> <input type="text" style="visibility:hidden; height: 0px; width:0px;" name="id_fijo" value="'.$listaModelo[$i]["id"].'"></div> </form></div>';
                         $lista = $imagen.$nombre.$detalle;
                          
                         $listaPaquetes = $listaPaquetes.$lista;                      
@@ -62,6 +63,8 @@ class listaCategoria
             }
 
             if ($_POST["accion"]=="viajes") {
+
+                $listaModelo = $categoria->ListarCategoria($idIdioma);
                 
                 for ($i=0; $i < count($listaModelo) ; $i++) { 
 

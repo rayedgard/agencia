@@ -199,10 +199,10 @@ else{
 									<label>Retorno</label>
 									<br>
 					                <div class='input-group date' id='datetimepicker1' style="width: 340px; z-index:0;">
-					                    <input type='text' class="form-control" />
-					                    <span class="input-group-addon">
+					                    <input type='date' class="form-control" />
+					                    <!-- <span class="input-group-addon">
 					                        <span class="glyphicon glyphicon-calendar"></span>
-					                    </span>
+					                    </span> -->
 					                </div>
 					            </div>
 								<br>

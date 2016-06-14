@@ -62,7 +62,7 @@ class listarIdiomas
                 }
         }else{
 
-            $_SESSION["idIdioma"] = $id;  
+            $_SESSION["idIdioma"] = 3;  
 
         try
         {
@@ -77,6 +77,8 @@ class listarIdiomas
                          
                         $combo = "<option class='".$idiomaCombo[$i]['nombre']."' value='".$idiomaCombo[$i]['id']."'> ".$idiomaCombo[$i]['nombre']."</option>";
                         if ($idiomaCombo[$i]['id']== $_SESSION["idIdioma"]) {
+                            print_r("ttttttttttttttttt".$idiomaCombo[$i]['id']);
+                            print_r($_SESSION["idIdioma"]);
                             $_SESSION["idioma"]= $idiomaCombo[$i]['nombre'];
                             // $_SESSION["idIdioma"]= $idiomaCombo[$i]['id'];
                             $comoLleno = $combo.''.$comoLleno;

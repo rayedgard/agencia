@@ -15,7 +15,7 @@ $linea = fgets($ruta);
 fclose($ruta);
 // $idIdiomaTags="3";
 //--------------------
-
+$direccionMapa ="";
 if (isset($_SESSION["idIdioma"])) {
 $idIdiomaTags=$_SESSION["idIdioma"];
 }
@@ -41,6 +41,7 @@ else{
 		<link rel="stylesheet" href="css/patros.css" >
 		<!-- CSS Propiestarios -->
 		<link rel="stylesheet" type="text/css" href="css/cssPropios.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.min.css" />
 		<!-- <script type="text/javascript" src="/js/funcionesDestino.js"></script> -->
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -176,6 +177,8 @@ else{
 
 						$arrayPrograma=$programa->programaSubcategoria($idsubcategoria);
 
+						$direccionMapa = $arraySubcategoria[0]['mapa'];
+
 						$tabla='<div class="table-responsive"> <table class="table"> <tr> <th> Inicio</th>  <th> Fin</th> <th> Disponibilidad</th></tr>';
 						$desplegable='<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">';
 						// print_r($arraySubcategoria);
@@ -206,6 +209,8 @@ else{
 							echo "<h4>".$arraySubcategoria[$i]['tarifa']."</h4>";
 							echo "<h3> Itinerario</h3>";
 							echo $desplegable;
+
+							echo '<ul class="nav nav-tabs" id="tages"> <li class="active"><a data-toggle="tab" href="#Incluye">Incluye</a></li> <li><a data-toggle="tab" href="#Hoteles">Hoteles</a></li> <li><a data-toggle="tab" href="#Restaurantes">Restaurantes</a></li> </ul> <div class="tab-content"> <div id="Incluye" class="tab-pane fade in active"> <br> <h4>'.$arraySubcategoria[$i]['incluye'].'</h4> </div> <div id="Hoteles" class="tab-pane fade"> <br> <h4>'.$arraySubcategoria[$i]['hoteles'].' </h4> </div> <div id="Restaurantes" class="tab-pane fade"> <br> <h4>'.$arraySubcategoria[$i]['restaurante'].' </h4> </div> </div>';
 							// echo "<h4>".$DestinoLista[$i]['comollegar']."</h4>";
 							// echo "<h4>".$DestinoLista[$i]['servicios']."</h4>";
 
@@ -342,10 +347,10 @@ else{
 									<label>Retorno</label>
 									<br>
 					                <div class='input-group date' id='datetimepicker1' style="width: 340px; z-index:0;">
-					                    <input type='text' class="form-control" />
-					                    <span class="input-group-addon">
+					                    <input type='date' class="form-control" />
+					                    <!-- <span class="input-group-addon">
 					                        <span class="glyphicon glyphicon-calendar"></span>
-					                    </span>
+					                    </span> -->
 					                </div>
 					            </div>
 								<br>
@@ -491,7 +496,10 @@ else{
 
 		<div id="location">
 			<div class="row prodmap">
-				<div id="map-canvas-holder" class="map_holder" style="height: 400px;"></div>
+				<?php
+					echo '<iframe src="'. $direccionMapa . '" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>';
+				?>
+				
 			</div>
 		</div>
 
@@ -639,6 +647,13 @@ else{
 		<!--Jquery Smooth Scrolling-->
 		<script>
 			$(document).ready(function(){
+				$('#tages a').click(function (e) {
+				  e.preventDefault()
+				  $(this).tab('show')
+				});
+
+				// $('#datetimepicker1').datepicker();
+
 				$('.custom-menu a[href^="#"], .intro-scroller .inner-link').on('click',function (e) {
 					e.preventDefault();
 
@@ -706,7 +721,8 @@ else{
 
 		<script type="text/javascript">
 	$(document).ready(function(){
-		inicializemap()
+		// inicializemap()
+		// $('#datetimepicker1').datepicker();
 
 		$('#accordion').on('submit', function(e){
 			e.preventDefault();
