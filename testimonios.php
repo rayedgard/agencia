@@ -142,11 +142,13 @@ else{
 		            <aside class="col-md-4 sidebar-padding">
 		                <!-- Recent Posts -->
 		                <div class="blog-sidebar">
-		                    <h4 class="sidebar-title"><i class="fa fa-map-marker"> </i> <?php  $listaTagsDestinos=new ControlesTags();
-				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($idIdiomaTags,'H2Lavel','h2_destinos'); 
+		                    <h4 class="sidebar-title"><i class="fa fa-map-marker"> </i> <?php  $listaTagsDestinos=new   ControlesTags();
+				 			$reservas=$listaTagsDestinos->ListarTagsLavelStr($idIdiomaTags,'H2LavelTestimonios','txt_listaTestimonios'); 
 							?></h4>
 		                    <hr style="margin-bottom: 5px;">
-
+		                     <?php 
+				 			 $reservas=$listaTagsDestinos->ListarTagsLavelStr($idIdiomaTags,'H2LavelTestimonios','txt_listaTestimonios'); 
+							?>
 		                    <div id=div_destinos>
 								<!-- lista destinos -->
 								
@@ -155,7 +157,7 @@ else{
 									// print_r($_SESSION["idIdioma"]);
 									$añosTestimonio=$testimonio->testimoniosAños($_SESSION["idIdioma"]);
 									// print_r($añosTestimonio);
-									echo " <h2> Lista de Testimonios</h2>";
+									echo " <h2> ".$reservas."</h2>";
 									for ($i=0; $i <count($añosTestimonio) ; $i++) { 
 										echo "<li> <button type='button' value=".$añosTestimonio[$i]["Años"]." class='testimonios btn btn-link'>".$añosTestimonio[$i]["Años"]."</button></li>";
 									}
