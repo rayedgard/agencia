@@ -196,7 +196,9 @@ else{
 								
 								<div class="form-group">
 
-									<label>Retorno</label>
+									<label><?php  $listaTagsDestinos=new ControlesTags();
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($idIdiomaTags,'H2LavelAll','cap_retorno'); 
+							?></label>
 									<br>
 					                <div class='input-group date' id='datetimepicker1' style="width: 340px; z-index:0;">
 					                    <input type='text' class="form-control" />
@@ -287,8 +289,8 @@ else{
 								$dataTestimonio=new Testimonio();
 								$testimonioLista=$dataTestimonio->ListarArray();
 								for ($i=0; $i <count($testimonioLista) ; $i++) { 
-									echo "<li><img  class='img-responsive img-thumbnail' src='adminWeb/backend/images/testimonio/".$testimonioLista[$i]['foto']." '></li>";
-									echo "<li>".$testimonioLista[$i]['nombre']."</li>";
+									// echo "<li><img  class='img-responsive img-thumbnail' src='adminWeb/backend/images/testimonio/".$testimonioLista[$i]['foto']." '></li>";
+									echo "<li><h3><i class='fa fa-thumbs-up' aria-hidden='true'>&nbsp</i>".$testimonioLista[$i]['nombre']."</h3></li>";
 									echo "<li>".$testimonioLista[$i]['detalle']."</li>";
 									echo "<li>".$testimonioLista[$i]['correo']."&nbsp &nbsp ".$testimonioLista[$i]['fecha']."</li> <hr>";
 

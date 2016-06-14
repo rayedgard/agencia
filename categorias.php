@@ -160,6 +160,11 @@ else{
 			<div class="row">
 				<div class="col-md-8" style=" padding-left: 90px;">
 					<?php
+					$listaTagsDestinos=new ControlesTags();
+					  $reservas=$listaTagsDestinos->ListarTagsLavelStr($idIdiomaTags,'H2LavelTestimonios','txt_listaTestPrograma'); 
+					  $reservas2=$listaTagsDestinos->ListarTagsLavelStr($idIdiomaTags,'H2LavelTestimonios','txt_listaTestTarifa'); 
+					 $reservas3=$listaTagsDestinos->ListarTagsLavelStr($idIdiomaTags,'H2LavelTestimonios','txt_listaTestItinerario'); 
+					  //print_r($reservaItinerario);
 					//instanciado objeto
 					$subcategoria=new Subcategoria();
 
@@ -173,10 +178,12 @@ else{
 						$arraySubcategoria=$subcategoria->mostrarSubCategoria($idsubcategoria);
 
 						$arrayItinerario=$itinerario->ItinerarioSubcategoria($idsubcategoria);
-
+						$reservas4=$listaTagsDestinos->ListarTagsLavelStr($idIdiomaTags,'H2LavelTestimonios','cap_inicio');
+						$reservas5=$listaTagsDestinos->ListarTagsLavelStr($idIdiomaTags,'H2LavelTestimonios','cap_fin'); 
+						$reservas6=$listaTagsDestinos->ListarTagsLavelStr($idIdiomaTags,'H2LavelTestimonios','cap_disponibilidad');  
 						$arrayPrograma=$programa->programaSubcategoria($idsubcategoria);
-
-						$tabla='<div class="table-responsive"> <table class="table"> <tr> <th> Inicio</th>  <th> Fin</th> <th> Disponibilidad</th></tr>';
+						$reservas3=$listaTagsDestinos->ListarTagsLavelStr($idIdiomaTags,'H2LavelTestimonios','txt_listaTestItinerario'); 
+						$tabla='<div class="table-responsive"> <table class="table"> <tr> <th>'.$reservas4.'</th>  <th> '.$reservas5.'</th> <th> '.$reservas6.'</th></tr>';
 						$desplegable='<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">';
 						// print_r($arraySubcategoria);
 						$cuerpo="";
@@ -192,7 +199,7 @@ else{
 							
 							echo "<h2>".$arraySubcategoria[$i]['nombre']."</h2>";
 							echo "<h3>".$arraySubcategoria[$i]['detalle']."</h3>";
-							echo "<h3> Programa</h3>";
+							echo "<h3> ". $reservas."</h3>";
 							echo $tabla;
 
 							for ($j=0; $j < count($arrayItinerario); $j++) { 
@@ -201,16 +208,18 @@ else{
 							}
 
 							$desplegable=$desplegable.$listasJuntas.'</div>';
-
-							echo "<h3> Tarifa</h3>";
+							echo "<h3> ".$reservas2."</h3>";
 							echo "<h4>".$arraySubcategoria[$i]['tarifa']."</h4>";
-							echo "<h3> Itinerario</h3>";
+							  
+							echo "<h3>".$reservas3."</h3>";
 							echo $desplegable;
 							// echo "<h4>".$DestinoLista[$i]['comollegar']."</h4>";
 							// echo "<h4>".$DestinoLista[$i]['servicios']."</h4>";
 
 
 							// <div class="panel panel-default"> <div class="panel-heading" role="tab" id="headingOne"> <h4 class="panel-title"> <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> Collapsible Group Item 1 </a> </h4> </div> <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne"> <div class="panel-body"> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. </div> </div> </div> 
+
+							echo "<iframe width='100%' height='400' src='https://www.youtube.com/embed/".$arraySubcategoria[$i]['video']."' frameborder='0' allowfullscreen></iframe>";
 						}
 					}
 					
@@ -240,7 +249,9 @@ else{
 								?>
 								
 								<div class="col-md-12" align="center">
-									<button type="button" class="btn btn-primary" style="background:#58AAF5;" data-toggle="modal" data-target=".bs-example-modal-lg">Leer mas</button>
+									<button type="button" class="btn btn-primary" style="background:#58AAF5;" data-toggle="modal" data-target=".bs-example-modal-lg"> <?php  $listaTagsDestinos=new ControlesTags();
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($idIdiomaTags,'BtnLavel','btn_leerMas'); 
+							?></button>
 								</div>
 							</div>
 						</div>
@@ -253,7 +264,9 @@ else{
 					  					<!-- <div class="modal-content"> -->
 									      <div class="modal-header">
 									        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-									        <h4 class="modal-title">Autor</h4>
+									        <h4 class="modal-title"> <?php  $listaTagsDestinos=new ControlesTags();
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($idIdiomaTags,'H4LavelCategoria','txt_autor'); 
+							?></h4>
 									      </div>
 									      <div class="modal-body">
 									    		<div class="contend">
@@ -278,7 +291,9 @@ else{
 									    		</div>
 									      </div>
 									      <div class="modal-footer">
-									        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									        <button type="button" class="btn btn-default" data-dismiss="modal"> <?php  $listaTagsDestinos=new ControlesTags();
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($idIdiomaTags,'H2LavelTestimonios','btn_close'); 
+							?></button>
 									      </div>
 									    <!-- </div> -->
 									  <!-- </div> -->
@@ -339,7 +354,9 @@ else{
 								
 								<div class="form-group">
 
-									<label>Retorno</label>
+									<label><?php  $listaTagsDestinos=new ControlesTags();
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($idIdiomaTags,'H2LavelAll','cap_retorno'); 
+							?></label>
 									<br>
 					                <div class='input-group date' id='datetimepicker1' style="width: 340px; z-index:0;">
 					                    <input type='text' class="form-control" />
@@ -426,8 +443,8 @@ else{
 								$dataTestimonio=new Testimonio();
 								$testimonioLista=$dataTestimonio->ListarArray();
 								for ($i=0; $i <count($testimonioLista) ; $i++) { 
-									echo "<li><img  class='img-responsive img-thumbnail' src='../../agencia/adminWeb/backend/images/testimonio/".$testimonioLista[$i]['foto']." '></li>";
-									echo "<li>".$testimonioLista[$i]['nombre']."</li>";
+									// echo "<li><img  class='img-responsive img-thumbnail' src='../../agencia/adminWeb/backend/images/testimonio/".$testimonioLista[$i]['foto']." '></li>";
+									echo "<li><h3><i class='fa fa-thumbs-up' aria-hidden='true'>&nbsp</i>".$testimonioLista[$i]['nombre']."</h3></li>";
 									echo "<li>".$testimonioLista[$i]['detalle']."</li>";
 									echo "<li>".$testimonioLista[$i]['correo']."&nbsp &nbsp ".$testimonioLista[$i]['fecha']."</li> <hr>";
 
@@ -450,7 +467,9 @@ else{
 		<div class="container">
 		<div class="row">
 			<div class="text-center">
-			<h2>Portfolio</h2>
+			<h2><?php  $listaTagsDestinos=new ControlesTags();
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($idIdiomaTags,'H2Lavel','h2_galeria'); 
+							?></h2>
 			<img class="img-responsive displayed" src="images/short.png" alt="about">
 			</div>
  
