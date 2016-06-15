@@ -44,7 +44,7 @@ var idiomas ={
 			url: "adminWeb/backend/php/listarIdiomas.php",
 			data:{"id":idIdioma},
 			success:function(respuesta){
-				$("#idiomas").html(respuesta);
+				$("#idiomas").append(respuesta);
 				idIdioma= $("#idiomas").prop('value');
 				
 				// idioma2 = $("#idiomas").prop('id');

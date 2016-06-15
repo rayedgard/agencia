@@ -75,7 +75,7 @@ class listaCategoria
                         $imagen='<form method="post" action="Listado_de_Categorias.php"><div class="row blogu"> <div class="col-sm-4 col-md-4 "> <div class="blog-thumb"> <a href="#"> <img class="img-responsive" src="adminWeb/backend/images/categoria/'.$listaModelo[$i]["foto"].'" alt="photo"> </a> </div> </div> <div class="col-sm-8 col-md-8"> <h2 class="blog-title">';
                         $titulo = '<input type="submit" style="border:none ; background:transparent; color:#3BC496
 ; " id="'.$listaModelo[$i]["id"].'" class="linkDestino" value="'.$listaModelo[$i]["nombre"].'" >';
-                        $id='<input type="text" style="visibility:hidden" name="id_fijo" value="'.$listaModelo[$i]["id"].'">';
+                        $id='<input type="text" style="visibility:hidden; height: 0px; width: 0px;" name="id_fijo" value="'.$listaModelo[$i]["id"].'">';
                         $descripcion = '</h2> </div> </div> <br> <hr></form>';
                         $lista = $imagen.$titulo.$id.$descripcion;
                         $listaPaquetes= $listaPaquetes.$lista;

@@ -23,19 +23,6 @@
 			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 			<![endif]-->
-			<style>
-				/*select {
-				     background: transparent;
-				     border: none;
-				     font-size: 14px;
-				     height: 30px;
-				     padding: 5px;
-				     width: 250px;
-				     text-decoration: none;
-				  }
-				select:active, select:active * { outline: none !important; -moz-outline-style: none !important; }
-				select:focus, select:focus * { outline: none !important; -moz-outline-style: none !important; }*/
-			</style>
 	</head>
 
 	<body data-spy="scroll">
@@ -50,14 +37,26 @@
 					</div>
 
 					<div class="col-md-2 col-xs-12">
-						<select id="idiomas" class="form-control" >
+						<!-- <img src='adminWeb/backend/images/idiomas/en-dd9e149e.png'> -->
+						 <!--  <div class="dropdown">
+						    <button class="btn btn-link dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Tutorials
+						    <span class="caret"></span></button>
+						    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+						      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">HTML </a></li>
+						      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CSS</a></li>
+						      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>
+						    </ul>
+						  </div> -->
+						<select id="idiomas" class="form-group">
+							<!-- <option href="" html="<img src='adminWeb/backend/images/idiomas/en-dd9e149e.png' />">por defecto</option> -->
 							<!-- comobo de idomas de base de datos -->
 						</select>
+
 					</div>
 				</div>
 		</div>
 		<!-- Navigation -->
-		<nav class="navbar navbar-inverse navbar-fixed-top" style="z-index:1; margin-bottom: 0px; padding-bottom: 0px;">
+		<nav class="navbar navbar-inverse navbar-fixed-top" id="navegadorId" style="z-index:1; margin-bottom: 0px; padding-bottom: 0px; background: transparent;">
 			<div class="container">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -66,7 +65,12 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="company logo" /></a>
+					<!-- <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="company logo" /></a> -->
+					<div id="logo-div" style="margin-top: 10px;">
+					   <a id="logo-img" href="index.html" >
+					      <img style=" width:150px; height:150px;" src="adminWeb/images/logo.png" >
+					   </a>
+					</div>    
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<div class="miMenu" style="float: right;">
@@ -74,30 +78,6 @@
 							<ul id="listaMenu" style="margin-bottom: 0px;">
 							</ul>
 						</nav>
-						<!-- <li class="active"><a href="#home">Home</a></li>
-						<li><a href="#about">About</a></li>
-						<li class="dropdown">
-        					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1
-        					<span class="caret"></span></a>
-        						<ul class="dropdown-menu">
-         							 <li><a href="#">Page 1-1</a></li>
-         							 <li><a href="#">Page 1-2</a></li>
-         							 <li><a href="#">Page 1-3</a></li>
-       							 </ul>
-      					</li>
-						<li><a href="#meet-team">Team</a></li>
-						<li><a href="#portfolio1">Portofolio</a></li>
-						<li><a href="#contact">Contact</a></li>
-						<li><a href="blog.html">Blog</a></li>
-						<li><a href="single-post.html">Single</a></li> -->
-						<!-- <li>
-							<a href="#">data</a>
-							<ul>
-								<li>
-									<a href="">data2 </a>
-								</li>
-							</ul>
-						</li> -->
 					</ul>
 				</div>
 			</div>
@@ -445,7 +425,7 @@
 		<div id="location">
 			<div class="row prodmap">
 				<!-- <div id="map-canvas-holder" class="map_holder" style="height: 400px;"></div> -->
-				<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d62065.4527046694!2d-71.93924905!3d-13.5300193!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2spe!4v1465832225060" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+				<!-- <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d62065.4527046694!2d-71.93924905!3d-13.5300193!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2spe!4v1465832225060" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe> -->
 			</div>
 		</div>
 
@@ -571,6 +551,38 @@
 	
 		<!--Jquery Smooth Scrolling-->
 		<script>
+
+			jQuery(function(){
+		        jQuery(window).scroll(function(){
+		            if(jQuery(this).scrollTop() > 200) {
+		                jQuery('#logo-img img')
+		                    .css({'width':'50px','height':'50px'})
+		                    .attr('src','adminWeb/images/logo.png');
+		            }
+		            if(jQuery(this).scrollTop() < 200) {
+		                jQuery('#logo-img img')
+		                    .css({'width':'150px',
+		                        'height':'150px',
+		                        '-webkit-transition':'all 0.5s ease',
+		                        '-moz-transition':'all 0.5s ease',
+		                        '-ms-transition':'all 0.5s ease',
+		                        '-o-transition':'all 0.5s ease',
+		                        'transition':'all 0.5s ease'
+		                        })    
+		                    .attr('src','adminWeb/images/logo.png');
+		            }
+
+		            if(jQuery(this).scrollTop() > 200) {
+		                jQuery('#navegadorId')
+		                	.css({'background': '#EC7F5D'});
+		            }
+		             if(jQuery(this).scrollTop() < 200) {
+		                jQuery('#navegadorId')
+		                	.css({'background': 'transparent'});
+		            }
+		        });
+		    });
+
 			$(document).ready(function(){
 				$('.custom-menu a[href^="#"], .intro-scroller .inner-link').on('click',function (e) {
 					e.preventDefault();

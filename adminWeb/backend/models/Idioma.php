@@ -64,7 +64,7 @@ class Idioma
         {
             $result = array();
             // echo('SELECT '.$rows. ' FROM '.$table.' WHERE '.$where.' and idioma.id = "2"');
-            $stm = $this->pdo->prepare('SELECT idioma.id, idioma.nombre FROM '.$table.' WHERE '.$where);
+            $stm = $this->pdo->prepare('SELECT idioma.id, idioma.nombre, idioma.icono FROM '.$table.' WHERE '.$where);
             $stm->execute();
             
             foreach($stm->fetchAll(PDO::FETCH_ASSOC) as $r)

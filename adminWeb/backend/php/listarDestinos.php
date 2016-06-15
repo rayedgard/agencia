@@ -55,7 +55,7 @@ class listarDestinos
 
 
                         $imagen='<form method="post" action="destinos.php"> <div class="col-md-3 portfolio-item"> <div class="text-center"> <span class="fa-stack fa-lg"> <img src="adminWeb/backend/images/destino/'.$listaDestinos[$i]["foto"].'" class="img-responsive img-circle" style="width:100%; height:100%; border-radius: 50%;"> </span>';
-                        $titulo = '<h3> <a><input type="submit" style="border:none ; background:transparent;" id="'.$listaDestinos[$i]["id"].'" class="linkDestino" value="'.$listaDestinos[$i]["nombre"].'" ><input type="text" style="visibility:hidden" name="id_fijo" value="'.$listaDestinos[$i]["id"].'"></a></h3>';
+                        $titulo = '<h3> <a><input type="submit" style="border:none ; background:transparent;" id="'.$listaDestinos[$i]["id"].'" class="linkDestino" value="'.$listaDestinos[$i]["nombre"].'" ><input type="text" style="visibility:hidden; height: 0px; width: 0px;" name="id_fijo" value="'.$listaDestinos[$i]["id"].'"></a></h3>';
                         // $titulo = '<h3><a href="#">'.$listaDestinos[$i]["nombre"].'</a></h3>';
                         $id='<input type="text" style="visibility:hidden" name="id_fijo" value="'.$listaDestinos[$i]["id"].'">';
                         $descripcion = '<p style="color: #fff;">'.$descrip.'</p></div> </div> </form>';
@@ -92,7 +92,7 @@ class listarDestinos
                         $imagen='<form method="post" action="destinos.php"><div class="row blogu"> <div class="col-sm-4 col-md-4 "> <div class="blog-thumb"> <a href="#"> <img class="img-responsive" src="adminWeb/backend/images/destino/'.$listaDestinos[$i]["foto"].'" alt="photo"> </a> </div> </div> <div class="col-sm-8 col-md-8"> <h2 class="blog-title">';
                         $titulo = '<input type="submit" style="border:none ; background:transparent; color:#3BC496
 ; " id="'.$listaDestinos[$i]["id"].'" class="linkDestino" value="'.$listaDestinos[$i]["nombre"].'" >';
-                        $id='<input type="text" style="visibility:hidden" name="id_fijo" value="'.$listaDestinos[$i]["id"].'">';
+                        $id='<input type="text" style="visibility:hidden; height: 0px; width: 0px;" name="id_fijo" value="'.$listaDestinos[$i]["id"].'">';
                         $descripcion = '</h2> <p style="color: #000">'.$descrip.'</p> </div> </div> <br> <hr></form>';
                         $lista = $imagen.$titulo.$id.$descripcion;
                         $listaDestinosIndex= $listaDestinosIndex.$lista;

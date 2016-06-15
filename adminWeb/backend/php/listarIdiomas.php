@@ -35,6 +35,7 @@ class listarIdiomas
                     $idiomaCombo = array();
                      
                     $idiomaCombo = $idioma->ListarIdioma();
+                    // print_r($idiomaCombo);
 
                     $comoLleno="";
                     $combo="";
@@ -43,7 +44,7 @@ class listarIdiomas
                     // $_SESSION["idIdioma"]= $id;
                     for ($i=0; $i < count($idiomaCombo) ; $i++) { 
                          
-                        $combo = "<option class='".$idiomaCombo[$i]['nombre']."' value='".$idiomaCombo[$i]['id']."'> ".$idiomaCombo[$i]['nombre']."</option>";
+                        $combo = "<option class='".$idiomaCombo[$i]['nombre']."' value='".$idiomaCombo[$i]['id']."'> ".$idiomaCombo[$i]['nombre']."<img src='adminWeb/backend/images/idiomas/".$idiomaCombo[$i]['icono']."'></option>";
                         if ($idiomaCombo[$i]['nombre']== $_SESSION["idioma"]) {
                             $_SESSION["idioma"]= $idiomaCombo[$i]['nombre'];
                             $comoLleno = $combo.''.$comoLleno;
@@ -75,10 +76,8 @@ class listarIdiomas
                 // print_r($_SESSION["idioma"]);
                     for ($i=0; $i < count($idiomaCombo) ; $i++) { 
                          
-                        $combo = "<option class='".$idiomaCombo[$i]['nombre']."' value='".$idiomaCombo[$i]['id']."'> ".$idiomaCombo[$i]['nombre']."</option>";
+                        $combo = "<option class='".$idiomaCombo[$i]['nombre']."' value='".$idiomaCombo[$i]['id']."'> ".$idiomaCombo[$i]['nombre']."<img src='adminWeb/backend/images/idiomas/".$idiomaCombo[$i]['icono']."'></option>";
                         if ($idiomaCombo[$i]['id']== $_SESSION["idIdioma"]) {
-                            print_r("ttttttttttttttttt".$idiomaCombo[$i]['id']);
-                            print_r($_SESSION["idIdioma"]);
                             $_SESSION["idioma"]= $idiomaCombo[$i]['nombre'];
                             // $_SESSION["idIdioma"]= $idiomaCombo[$i]['id'];
                             $comoLleno = $combo.''.$comoLleno;

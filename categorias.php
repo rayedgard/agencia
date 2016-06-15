@@ -197,6 +197,12 @@ else{
 						// print_r($arraySubcategoria);
 						$cuerpo="";
 						$listasJuntas="";
+						//traduccion ultima tabla
+						$listaTagsDestinos33=new ControlesTags();
+					  $reservasIncluye=$listaTagsDestinos33->ListarTagsLavelStr($idIdiomaTags,'Box_destinos','BoxDestinos_incluye'); 
+					  $reservasHoteles=$listaTagsDestinos33->ListarTagsLavelStr($idIdiomaTags,'Box_destinos','BoxDestinos_Hoteles');
+					  $reservasRestaurantes=$listaTagsDestinos33->ListarTagsLavelStr($idIdiomaTags,'Box_destinos','BoxDestinos_Restaurantes');
+
 						for ($i=0; $i <count($arraySubcategoria) ; $i++) {
 							$perfil = $arraySubcategoria[$i]["perfil_id"];
 							for ($d=0; $d < count($arrayPrograma); $d++) { 
@@ -223,7 +229,7 @@ else{
 							echo "<h3>".$reservas3."</h3>";
 							echo $desplegable;
 
-							echo '<ul class="nav nav-tabs" id="tages"> <li class="active"><a data-toggle="tab" href="#Incluye">Incluye</a></li> <li><a data-toggle="tab" href="#Hoteles">Hoteles</a></li> <li><a data-toggle="tab" href="#Restaurantes">Restaurantes</a></li> </ul> <div class="tab-content"> <div id="Incluye" class="tab-pane fade in active"> <br> <h4>'.$arraySubcategoria[$i]['incluye'].'</h4> </div> <div id="Hoteles" class="tab-pane fade"> <br> <h4>'.$arraySubcategoria[$i]['hoteles'].' </h4> </div> <div id="Restaurantes" class="tab-pane fade"> <br> <h4>'.$arraySubcategoria[$i]['restaurante'].' </h4> </div> </div> <hr>';
+							echo '<ul class="nav nav-tabs" id="tages"> <li class="active"><a data-toggle="tab" href="#Incluye">'.$reservasIncluye.'</a></li> <li><a data-toggle="tab" href="#Hoteles">'.$reservasHoteles.'</a></li> <li><a data-toggle="tab" href="#Restaurantes">'.$reservasRestaurantes.'</a></li> </ul> <div class="tab-content"> <div id="Incluye" class="tab-pane fade in active"> <br> <h4>'.$arraySubcategoria[$i]['incluye'].'</h4> </div> <div id="Hoteles" class="tab-pane fade"> <br> <h4>'.$arraySubcategoria[$i]['hoteles'].' </h4> </div> <div id="Restaurantes" class="tab-pane fade"> <br> <h4>'.$arraySubcategoria[$i]['restaurante'].' </h4> </div> </div> <hr>';
 							// echo "<h4>".$DestinoLista[$i]['comollegar']."</h4>";
 							// echo "<h4>".$DestinoLista[$i]['servicios']."</h4>";
 
