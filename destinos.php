@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <?php
 //llamar clases del model
-require_once '../agencia/adminWeb/backend/models/Destino.php';
-require_once '../agencia/adminWeb/backend/models/Testimonio.php';
-require_once '../agencia/adminWeb/backend/models/Galeriadestino.php';
-require_once '../agencia/adminWeb/backend/models/Bannerdestino.php';
-require_once '../agencia/adminWeb/backend/models/ControlesTag.php';
-$ruta = fopen("../agencia/adminWeb/config/ruta.txt","r");
+require_once 'adminWeb/backend/models/Destino.php';
+require_once 'adminWeb/backend/models/Testimonio.php';
+require_once 'adminWeb/backend/models/Galeriadestino.php';
+require_once 'adminWeb/backend/models/Bannerdestino.php';
+require_once 'adminWeb/backend/models/ControlesTag.php';
+$ruta = fopen("adminWeb/config/ruta.txt","r");
 $linea = fgets($ruta);
 fclose($ruta);
+$direccionMapa ="";
 // include($_SERVER['DOCUMENT_ROOT'].$linea);
 ?>
 
@@ -28,7 +29,6 @@ fclose($ruta);
 		<link rel="stylesheet" href="css/patros.css" >
 		<!-- CSS Propiestarios -->
 		<link rel="stylesheet" type="text/css" href="css/cssPropios.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.min.css" />
 		<!-- <script type="text/javascript" src="/js/funcionesDestino.js"></script> -->
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -181,6 +181,7 @@ fclose($ruta);
 						$idDestino=$_POST['id_fijo'];
 
 						$DestinoLista=$destinos->ListarDestinoArray($idDestino);
+						$direccionMapa = $DestinoLista[0]['mapa'];
 						// print_r($DestinoLista);
 						
 						for ($i=0; $i <count($DestinoLista) ; $i++) { 
@@ -251,10 +252,10 @@ fclose($ruta);
 							?></label>
 									<br>
 					                <div class='input-group date' id='datetimepicker1' style="width: 340px; z-index:0;">
-					                    <input type='text' class="form-control" />
-					                    <span class="input-group-addon">
+					                    <input type='date' class="form-control" />
+					                    <!-- <span class="input-group-addon">
 					                        <span class="glyphicon glyphicon-calendar"></span>
-					                    </span>
+					                    </span> -->
 					                </div>
 					            </div>
 								<br>
@@ -408,7 +409,9 @@ fclose($ruta);
 
 		<div id="location">
 			<div class="row prodmap">
-				<div id="map-canvas-holder" class="map_holder" style="height: 400px;"></div>
+				<?php
+					echo '<iframe src="'. $direccionMapa . '" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>';
+				?>
 			</div>
 		</div>
 
@@ -552,9 +555,6 @@ fclose($ruta);
 
 		<!--Jquery Smooth Scrolling-->
 		<script>
-
-	        
-
 			$(document).ready(function(){
 
 				$('#tages a').click(function (e) {
@@ -562,7 +562,7 @@ fclose($ruta);
 				  $(this).tab('show')
 				})
 
-				$('#datetimepicker1').datepicker();
+				// $('#datetimepicker1').datepicker();
 
 				$('.custom-menu a[href^="#"], .intro-scroller .inner-link').on('click',function (e) {
 					e.preventDefault();
@@ -631,7 +631,7 @@ fclose($ruta);
 
 		<script type="text/javascript">
 	$(document).ready(function(){
-		inicializemap()
+		// inicializemap()
 
 		$('#contactForm').on('submit', function(e){
 			e.preventDefault();

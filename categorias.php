@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <?php
 //llamar clases del model
-require_once '../agencia/adminWeb/backend/models/Subcategoria.php';
-require_once '../agencia/adminWeb/backend/models/Banner.php';
-require_once '../agencia/adminWeb/backend/models/Categoria.php';
-require_once '../agencia/adminWeb/backend/models/Programa.php';
-require_once '../agencia/adminWeb/backend/models/Itinerario.php';
-require_once '../agencia/adminWeb/backend/models/Testimonio.php';
-require_once '../agencia/adminWeb/backend/models/Galeria.php';
-require_once '../agencia/adminWeb/backend/models/Perfil.php';
-require_once '../agencia/adminWeb/backend/models/ControlesTag.php';
-$ruta = fopen("../agencia/adminWeb/config/ruta.txt","r");
+require_once'adminWeb/backend/models/Subcategoria.php';
+require_once'adminWeb/backend/models/Banner.php';
+require_once'adminWeb/backend/models/Categoria.php';
+require_once'adminWeb/backend/models/Programa.php';
+require_once'adminWeb/backend/models/Itinerario.php';
+require_once'adminWeb/backend/models/Testimonio.php';
+require_once'adminWeb/backend/models/Galeria.php';
+require_once'adminWeb/backend/models/Perfil.php';
+require_once'adminWeb/backend/models/ControlesTag.php';
+$ruta = fopen("adminWeb/config/ruta.txt","r");
 $linea = fgets($ruta);
 fclose($ruta);
 // $idIdiomaTags="3";
 //--------------------
-
+$direccionMapa ="";
 if (isset($_SESSION["idIdioma"])) {
 $idIdiomaTags=$_SESSION["idIdioma"];
 }
@@ -41,6 +41,7 @@ else{
 		<link rel="stylesheet" href="css/patros.css" >
 		<!-- CSS Propiestarios -->
 		<link rel="stylesheet" type="text/css" href="css/cssPropios.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.min.css" />
 		<!-- <script type="text/javascript" src="/js/funcionesDestino.js"></script> -->
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -119,7 +120,7 @@ else{
 		            for ($i=0; $i < $nImagenes ; $i++) {
 		            		if($i == 0)
 		            		{
-		            			$imagen='<li> <span style="background-image: url(../adminWeb/backend/images/bannerPaquete/'.$banerLista[$i]["foto"].'); > Imagen</span> 
+		            			$imagen='<li> <span style="background-image: url(adminWeb/backend/images/bannerPaquete/'.$banerLista[$i]["foto"].'); > Imagen</span> 
 
 										<div class="container"> 
 											<div class="row"> 
@@ -133,7 +134,7 @@ else{
 		            		else{
 
 								$imagen='<li>
-								<span style="background-image: url(../adminWeb/backend/images/bannerPaquete/'.$banerLista[$i]["foto"].');  -webkit-animation-delay: '.$tiempo.'s; -moz-animation-delay: '.$tiempo.'s; -o-animation-delay: '.$tiempo.'s; -ms-animation-delay: '.$tiempo.'s; animation-delay: '.$tiempo.'s;"> Imagen</span> <div class="container" style="-webkit-animation-delay: '.$tiempo.'s; -moz-animation-delay: '.$tiempo.'s; -o-animation-delay: '.$tiempo.'s; -ms-animation-delay: '.$tiempo.'s; animation-delay: '.$tiempo.'s;"> <div class="row" style="-webkit-animation-delay: '.$tiempo.'s; -moz-animation-delay: '.$tiempo.'s; -o-animation-delay: '.$tiempo.'s; -ms-animation-delay: '.$tiempo.'s; animation-delay: '.$tiempo.'s;"> <div class="col-lg-12" style="-webkit-animation-delay: '.$tiempo.'s; -moz-animation-delay: '.$tiempo.'s; -o-animation-delay: '.$tiempo.'s; -ms-animation-delay: '.$tiempo.'s; animation-delay: '.$tiempo.'s;"> <div class="text-center" style="-webkit-animation-delay: '.$tiempo.'s; -moz-animation-delay: '.$tiempo.'s; -o-animation-delay: '.$tiempo.'s; -ms-animation-delay: '.$tiempo.'s; animation-delay: '.$tiempo.'s;">';
+								<span style="background-image: url(adminWeb/backend/images/bannerPaquete/'.$banerLista[$i]["foto"].');  -webkit-animation-delay: '.$tiempo.'s; -moz-animation-delay: '.$tiempo.'s; -o-animation-delay: '.$tiempo.'s; -ms-animation-delay: '.$tiempo.'s; animation-delay: '.$tiempo.'s;"> Imagen</span> <div class="container" style="-webkit-animation-delay: '.$tiempo.'s; -moz-animation-delay: '.$tiempo.'s; -o-animation-delay: '.$tiempo.'s; -ms-animation-delay: '.$tiempo.'s; animation-delay: '.$tiempo.'s;"> <div class="row" style="-webkit-animation-delay: '.$tiempo.'s; -moz-animation-delay: '.$tiempo.'s; -o-animation-delay: '.$tiempo.'s; -ms-animation-delay: '.$tiempo.'s; animation-delay: '.$tiempo.'s;"> <div class="col-lg-12" style="-webkit-animation-delay: '.$tiempo.'s; -moz-animation-delay: '.$tiempo.'s; -o-animation-delay: '.$tiempo.'s; -ms-animation-delay: '.$tiempo.'s; animation-delay: '.$tiempo.'s;"> <div class="text-center" style="-webkit-animation-delay: '.$tiempo.'s; -moz-animation-delay: '.$tiempo.'s; -o-animation-delay: '.$tiempo.'s; -ms-animation-delay: '.$tiempo.'s; animation-delay: '.$tiempo.'s;">';
 								
 								$tiempo= $tiempo + $tiempoL;
 			                    $titulo = '<h3>'.$banerLista[$i]["titulo"].'</h3> </div> </div> </div> ';
@@ -182,8 +183,16 @@ else{
 						$reservas5=$listaTagsDestinos->ListarTagsLavelStr($idIdiomaTags,'H2LavelTestimonios','cap_fin'); 
 						$reservas6=$listaTagsDestinos->ListarTagsLavelStr($idIdiomaTags,'H2LavelTestimonios','cap_disponibilidad');  
 						$arrayPrograma=$programa->programaSubcategoria($idsubcategoria);
+
+
+						$direccionMapa = $arraySubcategoria[0]['mapa'];
+
+						
+
 						$reservas3=$listaTagsDestinos->ListarTagsLavelStr($idIdiomaTags,'H2LavelTestimonios','txt_listaTestItinerario'); 
-						$tabla='<div class="table-responsive"> <table class="table"> <tr> <th>'.$reservas4.'</th>  <th> '.$reservas5.'</th> <th> '.$reservas6.'</th></tr>';
+						$tabla='<div class="table-responsive"> <table class="table"> <tr> <th> Inicio</th>  <th> Fin</th> <th> Disponibilidad</th></tr>';
+
+
 						$desplegable='<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">';
 						// print_r($arraySubcategoria);
 						$cuerpo="";
@@ -213,6 +222,8 @@ else{
 							  
 							echo "<h3>".$reservas3."</h3>";
 							echo $desplegable;
+
+							echo '<ul class="nav nav-tabs" id="tages"> <li class="active"><a data-toggle="tab" href="#Incluye">Incluye</a></li> <li><a data-toggle="tab" href="#Hoteles">Hoteles</a></li> <li><a data-toggle="tab" href="#Restaurantes">Restaurantes</a></li> </ul> <div class="tab-content"> <div id="Incluye" class="tab-pane fade in active"> <br> <h4>'.$arraySubcategoria[$i]['incluye'].'</h4> </div> <div id="Hoteles" class="tab-pane fade"> <br> <h4>'.$arraySubcategoria[$i]['hoteles'].' </h4> </div> <div id="Restaurantes" class="tab-pane fade"> <br> <h4>'.$arraySubcategoria[$i]['restaurante'].' </h4> </div> </div> <hr>';
 							// echo "<h4>".$DestinoLista[$i]['comollegar']."</h4>";
 							// echo "<h4>".$DestinoLista[$i]['servicios']."</h4>";
 
@@ -242,7 +253,7 @@ else{
 
 									$arreglo=$perf->buscarPerfil($perfil);
 									for ($i=0; $i <count($arreglo) ; $i++) { 
-										echo " <div align='center' class='col-md-4'><img  class='img-responsive img-circle' style='height: 120px; width: 120px; ' src='../../agencia/adminWeb/backend/images/perfil/".$arreglo[$i]['foto']."'> </div> 
+										echo " <div align='center' class='col-md-4'><img  class='img-responsive img-circle' style='height: 120px; width: 120px; ' src='adminWeb/backend/images/perfil/".$arreglo[$i]['foto']."'> </div> 
 					
 											<div class='col-md-8'><h4>".$arreglo[$i]['nombre']."</h4> <h6>".$arreglo[$i]['cargo']."</h6> <h6>".$arreglo[$i]['telefono']."</h6> <h6>".$arreglo[$i]['correo']."</h6> <h6><i class='fa fa-star' aria-hidden='true'></i><i class='fa fa-star' aria-hidden='true'></i><i class='fa fa-star' aria-hidden='true'></i><i class='fa fa-star-o' aria-hidden='true'></i><i class='fa fa-star-o' aria-hidden='true'></i></h6></div>";
 									}
@@ -277,7 +288,7 @@ else{
 
 																$arreglo=$perf->buscarPerfil($perfil);
 																for ($i=0; $i <count($arreglo) ; $i++) { 
-																	echo " <div align='center'><img  class='img-responsive img-circle' style='height: 200px; width: 200px; ' src='../../agencia/adminWeb/backend/images/perfil/".$arreglo[$i]['foto']."'> </div> <h4>".$arreglo[$i]['nombre']."</h4> <h6>".$arreglo[$i]['cargo']."</h6> <h6>".$arreglo[$i]['telefono']."</h6> <h6>".$arreglo[$i]['correo']."</h6>";
+																	echo " <div align='center'><img  class='img-responsive img-circle' style='height: 200px; width: 200px; ' src='adminWeb/backend/images/perfil/".$arreglo[$i]['foto']."'> </div> <h4>".$arreglo[$i]['nombre']."</h4> <h6>".$arreglo[$i]['cargo']."</h6> <h6>".$arreglo[$i]['telefono']."</h6> <h6>".$arreglo[$i]['correo']."</h6>";
 																
 															?>
 									    				</div>
@@ -359,10 +370,10 @@ else{
 							?></label>
 									<br>
 					                <div class='input-group date' id='datetimepicker1' style="width: 340px; z-index:0;">
-					                    <input type='text' class="form-control" />
-					                    <span class="input-group-addon">
+					                    <input type='date' class="form-control" />
+					                    <!-- <span class="input-group-addon">
 					                        <span class="glyphicon glyphicon-calendar"></span>
-					                    </span>
+					                    </span> -->
 					                </div>
 					            </div>
 								<br>
@@ -443,7 +454,8 @@ else{
 								$dataTestimonio=new Testimonio();
 								$testimonioLista=$dataTestimonio->ListarArray();
 								for ($i=0; $i <count($testimonioLista) ; $i++) { 
-									// echo "<li><img  class='img-responsive img-thumbnail' src='../../agencia/adminWeb/backend/images/testimonio/".$testimonioLista[$i]['foto']." '></li>";
+
+									
 									echo "<li><h3><i class='fa fa-thumbs-up' aria-hidden='true'>&nbsp</i>".$testimonioLista[$i]['nombre']."</h3></li>";
 									echo "<li>".$testimonioLista[$i]['detalle']."</li>";
 									echo "<li>".$testimonioLista[$i]['correo']."&nbsp &nbsp ".$testimonioLista[$i]['fecha']."</li> <hr>";
@@ -482,7 +494,7 @@ else{
 					$arreglo = $galeriaSubcategoria->galeriaSubcategoria($idsubcategoria);
 
 					for ($i=0; $i < count($arreglo); $i++) { 
-						echo '<li data-type="development" data-id="id-1" class="port3"> <a href="#" id="development1"><img src="../../agencia/adminWeb/backend/images/galeriaPaquete/'.$arreglo[$i]['nombre'].'" alt=""></a></li>';
+						echo '<li data-type="development" data-id="id-1" class="port3"> <a href="#" id="development1"><img src="adminWeb/backend/images/galeriaPaquete/'.$arreglo[$i]['nombre'].'" alt=""></a></li>';
 
 						 }
 				?>
@@ -510,7 +522,10 @@ else{
 
 		<div id="location">
 			<div class="row prodmap">
-				<div id="map-canvas-holder" class="map_holder" style="height: 400px;"></div>
+				<?php
+					echo '<iframe src="'. $direccionMapa . '" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>';
+				?>
+				
 			</div>
 		</div>
 
@@ -658,6 +673,13 @@ else{
 		<!--Jquery Smooth Scrolling-->
 		<script>
 			$(document).ready(function(){
+				$('#tages a').click(function (e) {
+				  e.preventDefault()
+				  $(this).tab('show')
+				});
+
+				// $('#datetimepicker1').datepicker();
+
 				$('.custom-menu a[href^="#"], .intro-scroller .inner-link').on('click',function (e) {
 					e.preventDefault();
 
@@ -725,7 +747,8 @@ else{
 
 		<script type="text/javascript">
 	$(document).ready(function(){
-		inicializemap()
+		// inicializemap()
+		// $('#datetimepicker1').datepicker();
 
 		$('#accordion').on('submit', function(e){
 			e.preventDefault();

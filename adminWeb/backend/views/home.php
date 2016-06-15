@@ -8,38 +8,15 @@
 
 
 
+	<div>
+		
+	<img src="images/menu.png">
+	</div>
+
+		<div class="col_3" style="text-align: justify;">
 
 
-		<div class="col_3">
-
-
-			
-
-			<div class="col-md-3 widget widget1">
-				<div class="r3_counter_box">
-					<a href="index.php?p=<?php echo urlencode(encripta('rol.php','rayedgard')); ?>"><i class="fa fa-calendar"></i></a>
-					<div class="stats">
-					  <h5 style="font-size:1em;">Roles</h5>								  
-					  <div class="grow grow2">
-						<p>Roles</p>
-					  </div>
-					</div>
-				</div>
-			</div>
-			
-
-
-			<div class="col-md-3 widget widget1">
-				<div class="r3_counter_box">
-					<a href="#"><i class="fa fa-calendar-o"></i></a>
-					<div class="stats">
-					 <h5 style="font-size:1em;"> Cambios de Rol</h5>								  
-					  <div class="grow grow3">
-						<p>Cambios de Rol</p>
-					  </div>
-					</div>
-				</div>
-			 </div>
+			ITDECSA es una empresa que está orientada a realizar soluciones informáticas y tecnológicas, consultoría, soporte informático y tecnológico; con el fin de suplir el mercado empresarial y personal, innovando día a día con productos y servicios de alta calidad, con precios competitivos y con un dinamismo comercial; con perspectiva a llegar a posicionarnos dentro del mercado como una empresa líder y versátil. ITDECSA tiene como objetivo innovador satisfacer a nuestros clientes generando el incremento del valor de su empresa, a través de las soluciones informáticas con el uso de herramientas y tecnologías adaptables a las necesidades más exigentes, fomentando desarrollo y crecimiento mediante un equipo de profesionales altamente competitivo
 
 
 

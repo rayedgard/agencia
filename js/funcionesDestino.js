@@ -56,6 +56,7 @@ var idiomasDestinos ={
 				
 				totalDestinos.init();
 				menuIdiomas.init();
+				mostraTestimonios.init();
 
 				// $("#prueba").html("<? $id= "+idIdioma+" ?>");
 
@@ -73,6 +74,40 @@ var idiomasDestinos ={
 				// 	// perfilesIndex.init();
 				// 	// viajesIndex.init();
 
+				// })
+			}
+		});
+
+	},
+}
+
+var mostraTestimonios ={
+	init:function(){
+   		//window.addEventListener('load', mostrarIdiomas);
+   		window.onload = mostraTestimonios.mostrarTest();
+   		//$("#btn_login").click(appLogin.validarBoxs);
+   		// $(document).ready(app.init);
+	},
+
+	mostrarTest:function(){
+			id= idIdioma;
+			// var estadoIdioma= $("#idiomas").val();
+			// alert(estadoIdioma)
+			var f = new Date();
+			fecha =f.getFullYear();
+			$.ajax({
+			type:"POST",
+		url: "adminWeb/backend/php/listarTestimonio.php",
+		data:{'fecha':fecha,"id":id},
+			success:function(respuesta){
+				// alert(respuesta);
+				$("#listaTestimonios").html(respuesta);
+				// $(".linkDestino").on('click',function(){
+				// 	idDestino= $(this).prop('id');
+				// 	document.location.href = "destinos.html?identidcador="+idDestino;
+				// });
+				// $("#idiomas").on("change",function(){
+				// 	// ajax
 				// })
 			}
 		});

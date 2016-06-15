@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <?php
 //llamar clases del model
-require_once '../agencia/adminWeb/backend/models/Subcategoria.php';
-require_once '../agencia/adminWeb/backend/models/Testimonio.php';
-require_once '../agencia/adminWeb/backend/models/Categoria.php';
-require_once '../agencia/adminWeb/backend/models/ControlesTag.php';
-$ruta = fopen("../agencia/adminWeb/config/ruta.txt","r");
+require_once 'adminWeb/backend/models/Subcategoria.php';
+require_once 'adminWeb/backend/models/Testimonio.php';
+require_once 'adminWeb/backend/models/Categoria.php';
+require_once 'adminWeb/backend/models/ControlesTag.php';
+$ruta = fopen("adminWeb/config/ruta.txt","r");
 $linea = fgets($ruta);
 fclose($ruta);
 
@@ -148,7 +148,7 @@ else  {
 
 		            		for ($i=0; $i < count($arreglo); $i++) { 
 
-								echo '<form method="post" action="categorias.php"><div class="row blogu"> <div class="col-sm-4 col-md-4 "> <div class="blog-thumb"> <a href="#"> <img class="img-responsive" src="adminWeb/backend/images/destino/'.$arreglo[$i]["foto"].'" alt="photo"> </a> </div> </div> <div class="col-sm-8 col-md-8"> <h2 class="blog-title"><input type="submit" style="border:none ; background:transparent; color:#3BC496; " id="'.$arreglo[$i]["id"].'" class="linkDestino" value="'.$arreglo[$i]["nombre"].'"><input type="text" style="visibility:hidden" name="id_fijo" value="'.$arreglo[$i]["id"].'"></h2> <p style="color: #000">'.$arreglo[$i]["detalle"].'</p> </div> </div> <br> <hr></form>';		            			
+								echo '<form method="post" action="categorias.php"><div class="row blogu"> <div class="col-sm-4 col-md-4 "> <div class="blog-thumb"> <a href="#"> <img class="img-responsive" src="adminWeb/backend/images/subcategoria/'.$arreglo[$i]["foto"].'" alt="photo"> </a> </div> </div> <div class="col-sm-8 col-md-8"> <h2 class="blog-title"><input type="submit" style="border:none ; background:transparent; color:#3BC496; " id="'.$arreglo[$i]["id"].'" class="linkDestino" value="'.$arreglo[$i]["nombre"].'"><input type="text" style="visibility:hidden" name="id_fijo" value="'.$arreglo[$i]["id"].'"></h2> <p style="color: #000">'.$arreglo[$i]["detalle"].'</p> </div> </div> <br> <hr></form>';		            			
 		            		}
 
 // 		            		<form method="post" action="destinos.php"><div class="row blogu"> <div class="col-sm-4 col-md-4 "> <div class="blog-thumb"> <a href="#"> <img class="img-responsive" src="../adminWeb/backend/images/destino/tour-machu-picchu-4.jpg" alt="photo"> </a> </div> </div> <div class="col-sm-8 col-md-8"> <h2 class="blog-title"><input type="submit" style="border:none ; background:transparent; color:#3BC496
@@ -220,10 +220,10 @@ else  {
 							?></label>
 									<br>
 					                <div class='input-group date' id='datetimepicker1' style="width: 340px; z-index:0;">
-					                    <input type='text' class="form-control" />
-					                    <span class="input-group-addon">
+					                    <input type='date' class="form-control" />
+					                    <!-- <span class="input-group-addon">
 					                        <span class="glyphicon glyphicon-calendar"></span>
-					                    </span>
+					                    </span> -->
 					                </div>
 					            </div>
 								<br>

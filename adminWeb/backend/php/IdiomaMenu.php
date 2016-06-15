@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../models/Categoria.php';
 require_once '../models/Destino.php';
 require_once '../models/Subcategoria.php';
@@ -106,7 +107,7 @@ if($_POST["accion"]=='actionIdioma')
                             for ($h=0; $h <count($categoriaList) ; $h++) { 
                                 $dataCategoria=$categoriaList[$h]['nombre'];
                                 $dataIdCategoria=$categoriaList[$h]['id'];
-                                $combo3= "<li> <a href='#".$dataCategoria."' id='".$dataIdCategoria."'>".$dataCategoria."</a>";
+                                $combo3= "<li> <a><form method='post' action='Listado_de_Categorias.php' mane='form".$h."'><input type='submit' style='border:none ; background:transparent;' id='".$categoriaList[$h]['id']."' class='linkDestino' value='".$categoriaList[$h]['nombre']."'> <input type='text' style='visibility:hidden; height: 0px; width: 0px;' name='id_fijo' value='".$categoriaList[$h]['id']."'> </form> </a>";
                                 
                                 $subCategoriaList=$subCategoria->ListarPorCategoria($categoriaList[$h]['id']);
                                 $subCate="";
