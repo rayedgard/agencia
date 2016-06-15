@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'conexion.php';
 require_once '../backend/models/Login.php';
 //accedemos al método singleton que es quién crea la instancia

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <?php
 //llamar clases del model
-require_once '../agencia/adminWeb/backend/models/Subcategoria.php';
-require_once '../agencia/adminWeb/backend/models/Testimonio.php';
-require_once '../agencia/adminWeb/backend/models/Categoria.php';
-require_once '../agencia/adminWeb/backend/models/ControlesTag.php';
-$ruta = fopen("../agencia/adminWeb/config/ruta.txt","r");
+require_once 'adminWeb/backend/models/Subcategoria.php';
+require_once 'adminWeb/backend/models/Testimonio.php';
+require_once 'adminWeb/backend/models/Categoria.php';
+require_once 'adminWeb/backend/models/ControlesTag.php';
+$ruta = fopen("adminWeb/config/ruta.txt","r");
 $linea = fgets($ruta);
 fclose($ruta);
 
@@ -149,6 +149,7 @@ else  {
 		            		for ($i=0; $i < count($arreglo); $i++) { 
 
 								echo '<form method="post" action="categorias.php"><div class="row blogu"> <div class="col-sm-4 col-md-4 "> <div class="blog-thumb"> <a href="#"> <img class="img-responsive" src="adminWeb/backend/images/destino/'.$arreglo[$i]["foto"].'" alt="photo"> </a> </div> </div> <div class="col-sm-8 col-md-8"> <h2 class="blog-title"><input type="submit" style="border:none ; background:transparent; color:#3BC496; " id="'.$arreglo[$i]["id"].'" class="linkDestino" value="'.$arreglo[$i]["nombre"].'"><input type="text" style="visibility:hidden; height: 0px; width: 0px;" name="id_fijo" value="'.$arreglo[$i]["id"].'"></h2> '.$arreglo[$i]["detalle"].' </div> </div> <br> <hr></form>';		            			
+
 		            		}
 
 // 		            		<form method="post" action="destinos.php"><div class="row blogu"> <div class="col-sm-4 col-md-4 "> <div class="blog-thumb"> <a href="#"> <img class="img-responsive" src="../adminWeb/backend/images/destino/tour-machu-picchu-4.jpg" alt="photo"> </a> </div> </div> <div class="col-sm-8 col-md-8"> <h2 class="blog-title"><input type="submit" style="border:none ; background:transparent; color:#3BC496

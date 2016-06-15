@@ -1,1 +1,1 @@
-/agencia/adminWeb/config/conexion.php
+/adminWeb/config/conexion.php

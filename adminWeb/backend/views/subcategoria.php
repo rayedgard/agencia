@@ -3,6 +3,7 @@
 require_once 'models/Subcategoria.php';
 require_once 'models/Categoria.php';
 require_once 'models/Perfil.php';
+require_once 'models/Idioma.php';
 
 $p = desencripta($_GET['p'],"rayedgard");
 
@@ -12,6 +13,7 @@ $p = desencripta($_GET['p'],"rayedgard");
 $subcategoria = new Subcategoria();
 $categoria = new Categoria();
 $perfil=new Perfil();
+
 $titulo = "Gesti&oacute;n y Administraci&oacute;n de Paquetes/Tours";
 
 if(isset($_REQUEST['action']))
@@ -285,9 +287,16 @@ else
 												<input type="hidden" name="MAX_FILE_SIZE" value="900000">
 												<p class="help-block">Formatos PNG, JPG, GIF.</p>
 												<input type="text" name="foto1" id="exampleInputFile" value="<?php echo $subcategoria->__GET('foto'); ?>" hidden/>
-										</div>	
+											</div>	
 
+											<div class="col-sm-4">
 
+												 <img src="images/subcategoria/<?php echo $subcategoria->__GET('foto');  ?>" height="60" width="60"/> 
+													
+
+											</div>	
+
+										</div>
 
 
 
@@ -300,8 +309,9 @@ else
 
 														
 												<!--CAMBIO EN name y value-->
-												
-												<textarea  name="mapa"  id="txtarea6"  class="form-control1"><?php echo $subcategoria->__GET('mapa'); ?></textarea> 
+											
+
+												<input type="text" name="mapa" value="<?php echo $subcategoria->__GET('mapa'); ?>" class="form-control1" id="focusedinput" placeholder="inserte la url del mapa" title="inserte la url del mapa" required="">
 
 											</div>										
 										</div>

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <?php
 //llamar clases del model
-require_once '../agencia/adminWeb/backend/models/Destino.php';
-require_once '../agencia/adminWeb/backend/models/Testimonio.php';
-require_once '../agencia/adminWeb/backend/models/Galeriadestino.php';
-require_once '../agencia/adminWeb/backend/models/Bannerdestino.php';
-require_once '../agencia/adminWeb/backend/models/ControlesTag.php';
-$ruta = fopen("../agencia/adminWeb/config/ruta.txt","r");
+require_once 'adminWeb/backend/models/Destino.php';
+require_once 'adminWeb/backend/models/Testimonio.php';
+require_once 'adminWeb/backend/models/Galeriadestino.php';
+require_once 'adminWeb/backend/models/Bannerdestino.php';
+require_once 'adminWeb/backend/models/ControlesTag.php';
+$ruta = fopen("adminWeb/config/ruta.txt","r");
 $linea = fgets($ruta);
 fclose($ruta);
 $direccionMapa ="";

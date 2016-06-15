@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../models/Categoria.php';
 require_once '../models/Destino.php';
 require_once '../models/Subcategoria.php';
@@ -29,6 +30,7 @@ if($_POST["accion"]=='actionIdioma')
         $combo="";
         $combo2="";
         $botones=array();
+        $botones2=array();
         //cabecera destinos
 
 //-----------------------------------------------------
@@ -92,13 +94,16 @@ if($_POST["accion"]=='actionIdioma')
                             }
                             $finalCabecera="</ul></li>";
                         array_push($botones,$finalCabecera);
+                        for ($x=0; $x <count($botones) ; $x++) { 
+                echo $botones[$x];
+            }
                      }
                 
                      if($dataCont=='link_paquetes')
                      {
                          //listado botones paquetes
                             $cc2="<li> <a href='viajes.php'>". $nameCont." </a><ul>";
-                            array_push($botones,$cc2);
+                            array_push($botones2,$cc2);
                             for ($h=0; $h <count($categoriaList) ; $h++) { 
                                 $dataCategoria=$categoriaList[$h]['nombre'];
                                 $dataIdCategoria=$categoriaList[$h]['id'];
@@ -112,19 +117,22 @@ if($_POST["accion"]=='actionIdioma')
 
                                 $combo3=$combo3.$subCate;
 
-                                array_push($botones,$combo3);
+                                array_push($botones2,$combo3);
                                 }
-                                $finalPaquetes="</ul></li>";
-                            array_push($botones,$finalPaquetes);
+                                $finalPaquetes="</ul></ul></ul></li>";
+                            array_push($botones2,$finalPaquetes);
+                            for ($x=0; $x <count($botones2) ; $x++) { 
+                echo $botones2[$x];
+            }
                      }
 
             }
            // print_r(count($botones));
          
             //-----------------------
-            for ($x=0; $x <count($botones) ; $x++) { 
-                echo $botones[$x];
-            }
+            // for ($x=0; $x <count($botones) ; $x++) { 
+            //     echo $botones[$x];
+            // }
 
 
         } 

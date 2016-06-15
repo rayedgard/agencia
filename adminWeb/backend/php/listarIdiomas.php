@@ -1,6 +1,5 @@
 <?php 
-
-// session_start();
+session_start();
 
 include('../models/Idioma.php');
 

@@ -178,7 +178,7 @@ if(isset($_SESSION['usuario']))
 }
 else
 {
- echo "<meta http-equiv ='refresh' content='0;url=http://".$_SERVER["SERVER_NAME"]."/agencia/adminWeb/ '>";
+ echo "<meta http-equiv ='refresh' content='0;url=http://".$_SERVER["SERVER_NAME"]."/incaperuworld/adminWeb/ '>";
 }
 
 
@@ -216,18 +216,18 @@ if(isset($_GET['action']))
 					<ul class="nav nav-pills nav-stacked custom-nav">
 
 
-        				<li class="menu-list"><a href="#"><i class="lnr lnr-power-switch"></i><span>Configuraci&oacute;n</span></a>
+        				<li class="menu-list"><a href="#"><i class="lnr lnr-apartment"></i><span>Configuraci&oacute;n</span></a>
 
         					<ul class="sub-menu-list">
 							
 														
-								<li><a href="index.php?p=<?php echo urlencode(encripta('idioma.php','rayedgard')); ?>"><i class="lnr lnr-heart-pulse">&nbsp;</i>Idioma</a></li>
+								<li><a href="index.php?p=<?php echo urlencode(encripta('idioma.php','rayedgard')); ?>"><i class="lnr lnr-chart-bars">&nbsp;</i>Idioma</a></li>
 
 						
-								<li><a href="#"  name="?" class="modala"><i class="lnr lnr-heart-pulse">&nbsp;</i>Banner General</a></li>
+								<li><a href="#"  name="?" class="modala"><i class="lnr lnr-camera-video">&nbsp;</i>Banner General</a></li>
 
 																
-								<li><a href="#"  name="?" class="modalb"><i class="lnr lnr-heart-pulse">&nbsp;</i>Galeria General</a></li>
+								<li><a href="#"  name="?" class="modalb"><i class="lnr lnr-camera">&nbsp;</i>Galeria General</a></li>
 
 								<!--/////////////// CODIGO QUE LLAMA EL POPUP INICIAL ////////////////-->
 									  <script>
@@ -267,44 +267,44 @@ if(isset($_GET['action']))
         				</li>
 
 
-        				<li class="menu-list"><a href="#"><i class="lnr lnr-train"></i><span>Viajes</span></a>
+        				<li class="menu-list"><a href="#"><i class="lnr lnr-car"></i><span>Viajes</span></a>
 
         					<ul class="sub-menu-list">
 							
-								<li><a href="index.php?p=<?php echo urlencode(encripta('categoria.php','rayedgard')); ?>"><i class="lnr lnr-heart-pulse">&nbsp;</i>Categorias</a></li>
+								<li><a href="index.php?p=<?php echo urlencode(encripta('categoria.php','rayedgard')); ?>"><i class="lnr lnr-bus">&nbsp;</i>Categorias</a></li>
 
-								<li><a href="index.php?p=<?php echo urlencode(encripta('subcategoria.php','rayedgard')); ?>"><i class="lnr lnr-power-switch">&nbsp;</i>Paquetes</a></li>
+								<li><a href="index.php?p=<?php echo urlencode(encripta('subcategoria.php','rayedgard')); ?>"><i class="lnr lnr-bicycle">&nbsp;</i>Paquetes</a></li>
 									
-								<li><a href="index.php?p=<?php echo urlencode(encripta('destino.php','rayedgard')); ?>"><i class="lnr lnr-power-switch">&nbsp;</i>Destinos</a></li>
+								<li><a href="index.php?p=<?php echo urlencode(encripta('destino.php','rayedgard')); ?>"><i class="lnr lnr-train">&nbsp;</i>Destinos</a></li>
 									
 							</ul>
 
         				</li>
 
 
-        				<li class="menu-list"><a href="#"><i class="lnr lnr-train"></i><span>Perfiles</span></a>
+        				<li class="menu-list"><a href="#"><i class="lnr lnr-users"></i><span>Perfiles</span></a>
 
         					<ul class="sub-menu-list">
 							
-								<li><a href="index.php?p=<?php echo urlencode(encripta('usuario.php','rayedgard')); ?>"><i class="lnr lnr-heart-pulse">&nbsp;</i>Usuarios</a></li>
+								<li><a href="index.php?p=<?php echo urlencode(encripta('usuario.php','rayedgard')); ?>"><i class="lnr lnr-users">&nbsp;</i>Usuarios</a></li>
 
-								<li><a href="index.php?p=<?php echo urlencode(encripta('perfil.php','rayedgard')); ?>"><i class="lnr lnr-power-switch">&nbsp;</i>Perfiles</a></li>
+								<li><a href="index.php?p=<?php echo urlencode(encripta('perfil.php','rayedgard')); ?>"><i class="lnr lnr-user">&nbsp;</i>Perfiles</a></li>
 									
-								<li><a href="index.php?p=<?php echo urlencode(encripta('gia.php','rayedgard')); ?>"><i class="lnr lnr-power-switch">&nbsp;</i>Guias</a></li>
+								<li><a href="index.php?p=<?php echo urlencode(encripta('gia.php','rayedgard')); ?>"><i class="lnr lnr-shirt">&nbsp;</i>Guias</a></li>
 									
 							</ul>
 
         				</li>
 
-        				<li class="menu-list"><a href="#"><i class="lnr lnr-train"></i><span>Actividades</span></a>
+        				<li class="menu-list"><a href="#"><i class="lnr lnr-earth"></i><span>Actividades</span></a>
 
         					<ul class="sub-menu-list">
 
-        						<li><a href="index.php?p=<?php echo urlencode(encripta('testimonio.php','rayedgard')); ?>"><i class="lnr lnr-heart-pulse">&nbsp;</i>Testimonios</a></li>
+        						<li><a href="index.php?p=<?php echo urlencode(encripta('testimonio.php','rayedgard')); ?>"><i class="lnr lnr-smartphone">&nbsp;</i>Testimonios</a></li>
 							
-								<li><a href="index.php?p=<?php echo urlencode(encripta('evento.php','rayedgard')); ?>"><i class="lnr lnr-heart-pulse">&nbsp;</i>Eventos</a></li>
+								<li><a href="index.php?p=<?php echo urlencode(encripta('evento.php','rayedgard')); ?>"><i class="lnr lnr-volume-high">&nbsp;</i>Eventos</a></li>
 
-								<li><a href="index.php?p=<?php echo urlencode(encripta('noticia.php','rayedgard')); ?>"><i class="lnr lnr-heart-pulse">&nbsp;</i>Noticias</a></li>
+								<li><a href="index.php?p=<?php echo urlencode(encripta('noticia.php','rayedgard')); ?>"><i class="lnr lnr-question-circle">&nbsp;</i>Noticias</a></li>
 
 
 							</ul>
