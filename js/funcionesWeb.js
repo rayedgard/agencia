@@ -216,6 +216,7 @@ var menuIdiomas={
 			{
 				// alert(rs);
 				$("#listaMenu").html(rs);
+				
 			}
 
 
