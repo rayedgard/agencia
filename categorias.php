@@ -70,7 +70,7 @@ else{
 				</div>
 		</div>
 		<!-- Navigation -->
-		<nav class="navbar navbar-inverse navbar-fixed-top" style="z-index:1; margin-bottom: 0px; padding-bottom: 0px;">
+		<nav class="navbar navbar-inverse navbar-fixed-top" id="navegadorId" style="z-index:1; margin-bottom: 0px; padding-bottom: 0px; background: transparent;">
 			<div class="container">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -79,7 +79,12 @@ else{
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="company logo" /></a>
+					<!-- <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="company logo" /></a> -->
+					<div id="logo-div" style="margin-top: 10px;">
+					   <a id="logo-img" href="index.html" >
+					      <img style=" width:150px; height:150px;" src="adminWeb/images/logo.png" >
+					   </a>
+					</div>  
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<div class="miMenu" style="float: right;">
@@ -678,6 +683,38 @@ else{
 
 		<!--Jquery Smooth Scrolling-->
 		<script>
+
+			jQuery(function(){
+		        jQuery(window).scroll(function(){
+		            if(jQuery(this).scrollTop() > 200) {
+		                jQuery('#logo-img img')
+		                    .css({'width':'50px','height':'50px'})
+		                    .attr('src','adminWeb/images/logo.png');
+		            }
+		            if(jQuery(this).scrollTop() < 200) {
+		                jQuery('#logo-img img')
+		                    .css({'width':'150px',
+		                        'height':'150px',
+		                        '-webkit-transition':'all 0.5s ease',
+		                        '-moz-transition':'all 0.5s ease',
+		                        '-ms-transition':'all 0.5s ease',
+		                        '-o-transition':'all 0.5s ease',
+		                        'transition':'all 0.5s ease'
+		                        })    
+		                    .attr('src','adminWeb/images/logo.png');
+		            }
+
+		            if(jQuery(this).scrollTop() > 200) {
+		                jQuery('#navegadorId')
+		                	.css({'background': '#EC7F5D'});
+		            }
+		             if(jQuery(this).scrollTop() < 200) {
+		                jQuery('#navegadorId')
+		                	.css({'background': 'transparent'});
+		            }
+		        });
+		    });
+
 			$(document).ready(function(){
 				$('#tages a').click(function (e) {
 				  e.preventDefault()

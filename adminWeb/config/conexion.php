@@ -6,7 +6,7 @@
    private $charset='utf8mb4';
    private $usuario = 'root';
 
-   private $contrasena = 'mysql'; 
+   private $contrasena = ''; 
 
    public function __construct() {
       //Sobreescribo el método constructor de la clase PDO.

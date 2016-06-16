@@ -1,4 +1,5 @@
 <?php
+session_start();
 //llamar clases del model
 // require_once '../adminWeb/backend/models/Destino.php';
 require_once 'adminWeb/backend/models/Testimonio.php';
@@ -14,6 +15,7 @@ include($_SERVER['DOCUMENT_ROOT'].$linea);
 
 if (isset($_SESSION["idIdioma"])) {
 $idIdiomaTags=$_SESSION["idIdioma"];
+print_r($_SESSION["idIdioma"]);
 }
 else{
 	$idIdiomaTags="3";
@@ -81,7 +83,12 @@ else{
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="company logo" /></a>
+					<!-- <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="company logo" /></a> -->
+					<div id="logo-div" style="margin-top: 10px;">
+					   <a id="logo-img" href="index.html" >
+					      <img style=" width:50px; height:50px;" src="adminWeb/images/logo.png" >
+					   </a>
+					</div>  
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<div class="miMenu" style="float: right;">
@@ -142,22 +149,22 @@ else{
 		            <aside class="col-md-4 sidebar-padding">
 		                <!-- Recent Posts -->
 		                <div class="blog-sidebar">
-		                    <h4 class="sidebar-title"><i class="fa fa-map-marker"> </i> <?php  $listaTagsDestinos=new   ControlesTags();
+		                    <h4 class="sidebar-title"><i class="fa fa-map-marker"> </i> 
+
+		                    <?php  
+		                    $listaTagsDestinos=new   ControlesTags();
 				 			$reservas=$listaTagsDestinos->ListarTagsLavelStr($idIdiomaTags,'H2LavelTestimonios','txt_listaTestimonios'); 
+				 			echo $reservas;
+
 							?></h4>
 		                    <hr style="margin-bottom: 5px;">
-		                     <?php 
-				 			 $reservas=$listaTagsDestinos->ListarTagsLavelStr($idIdiomaTags,'H2LavelTestimonios','txt_listaTestimonios'); 
-							?>
+
 		                    <div id=div_destinos>
 								<!-- lista destinos -->
-								
 								<?php
 									$testimonio = new Testimonio();
-									// print_r($_SESSION["idIdioma"]);
+
 									$añosTestimonio=$testimonio->testimoniosAños($_SESSION["idIdioma"]);
-									// print_r($añosTestimonio);
-									echo " <h2> ".$reservas."</h2>";
 									for ($i=0; $i <count($añosTestimonio) ; $i++) { 
 										echo "<li> <button type='button' value=".$añosTestimonio[$i]["Años"]." class='testimonios btn btn-link'>".$añosTestimonio[$i]["Años"]."</button></li>";
 									}

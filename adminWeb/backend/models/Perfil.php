@@ -75,7 +75,7 @@ class Perfil
         {
             $result = array();
             
-            $stm = $this->pdo->prepare('SELECT p.id,p.nombre,p.cargo,p.telefono,p.correo,p.foto,p.detalle,p.idioma_id,p.estado FROM perfil p WHERE p.estado=1 and p.idioma_id ='.$id);
+            $stm = $this->pdo->prepare('SELECT p.id,p.nombre,p.cargo,p.telefono,p.correo,p.foto,p.detalle,p.idioma_id,p.estado FROM perfil p WHERE p.estado=1 and p.idioma_id ='.$id.' ORDER BY RAND() LIMIT 4');
             $stm->execute();
             
             foreach($stm->fetchAll(PDO::FETCH_ASSOC) as $r)

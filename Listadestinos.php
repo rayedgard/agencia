@@ -80,7 +80,12 @@ else{
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="company logo" /></a>
+					<!-- <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="company logo" /></a> -->
+					<div id="logo-div" style="margin-top: 10px;">
+					   <a id="logo-img" href="index.html" >
+					      <img style=" width:50px; height:50px;" src="adminWeb/images/logo.png" >
+					   </a>
+					</div>  
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<div class="miMenu" style="float: right;">
