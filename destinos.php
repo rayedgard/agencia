@@ -43,7 +43,7 @@ $direccionMapa ="";
 
 				<div class="row">
 					<div class="col-md-3 col-xs-12" style="padding-right: 0px; padding-left: 110px; color: #fff;">
-						<h6 id="correoFijo" ><span class="glyphicon glyphicon-envelope"> </span> qasdfasd@aaaaaatours.com</h6>
+						<h6 id="correoFijo" ><span class="glyphicon glyphicon-envelope"> </span> informes@incaperuworld.com</h6>
 					</div>
 					<div class="col-md-7 col-xs-12" style="padding-left: 0px; ">
 						<h6 style="float: left; color: #fff; margin-top: 4px;"><span class="glyphicon glyphicon-phone"> </span> 00 51 54 600139</h6>
@@ -497,7 +497,7 @@ $direccionMapa ="";
 								<div class="col-md-12 height-contact-element">    
 									<div class="form-group">
 										<i class="fa fa-2x fa-envelope"></i>
-										<span class="text"><a href="malito:mail@demolink.org">mail(at)patros.com</a></span>
+										<span class="text"><a href="malito:mail@demolink.org">informes@incaperuworld.com</a></span>
 									</div>
 								</div>
 							</div>
