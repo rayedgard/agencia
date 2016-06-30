@@ -1,4 +1,5 @@
 <?php
+session_start();
 //llamar clases del model
 require_once 'adminWeb/backend/models/Subcategoria.php';
 require_once 'adminWeb/backend/models/Banner.php';

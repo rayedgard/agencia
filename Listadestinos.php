@@ -1,4 +1,5 @@
 <?php
+session_start();
 //llamar clases del model
 require_once 'adminWeb/backend/models/Destino.php';
 require_once 'adminWeb/backend/models/Testimonio.php';
