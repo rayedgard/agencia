@@ -130,7 +130,7 @@ else{
 		        <div class="col-md-8" style=" padding-left: 90px;">
 		            <h1 class="page-header sidebar-title">
 		              <?php  $listaTagsDestinos=new ControlesTags();
-				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($idIdiomaTags,'H3LavelViajes','txt_viajes'); 
+				 			echo $reservas=$listaTagsDestinos->ListarTagsLavelStr($idIdiomaTags,'H3LavelViajes','txt_viajes');echo $_SESSION["idIdioma"]; 
 							?>		
 		            </h1>
 		            <div id="listaViajes">

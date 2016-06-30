@@ -1,4 +1,4 @@
-﻿<?php 
+<?php 
  class Conexion extends PDO { 
    private $tipo_de_base = 'mysql';
    private $host = 'localhost';
@@ -6,7 +6,7 @@
    private $charset='utf8mb4';
    private $usuario = 'root';
 
-   private $contrasena = 'mysql'; 
+   private $contrasena = 'defcon'; 
 
    public function __construct() {
       //Sobreescribo el método constructor de la clase PDO.

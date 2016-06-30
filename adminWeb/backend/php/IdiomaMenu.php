@@ -38,23 +38,24 @@ if($_POST["accion"]=='actionIdioma')
         try
         {
             //listado de botones comunes
+          // print_r($contt);
             for ($i=0; $i < count($contt) ; $i++) { 
                      $dataCont=$contt[$i]['identificador'];
                      $nameCont=$contt[$i]['nombre'];
 
                      if ($dataCont!='link_destinos' && $dataCont!='link_paquetes') {
-                        
-                        if ($contt[$i]['nombre']=="testimonios" || $contt[$i]['nombre']=="Testimonials" || $contt[$i]['nombre']=="témoignages") {
-
-                            $combo = "<li> <a href='testimonios.php' id='".$contt[$i]['idioma_id']."'>".$contt[$i]['nombre']."</a></li>";
-                             
-                        }
-                       elseif($contt[$i]['nombre']=="Inicio" || $contt[$i]['nombre']=="Home" || $contt[$i]['nombre']=="Accueil")
+                        if($contt[$i]['nombre']=="Inicio" || $contt[$i]['nombre']=="Home" || $contt[$i]['nombre']=="Accueil")
                         {
                         $combo = "<li> <a href='index.html#Inicio' id='".$contt[$i]['idioma_id']."'>".$contt[$i]['nombre']."</a></li>";
                          
 
                         }
+                       if ($contt[$i]['nombre']=="testimonios" || $contt[$i]['nombre']=="Testimonials" || $contt[$i]['nombre']=="témoignages") {
+
+                            $combo = "<li> <a href='testimonios.php' id='".$contt[$i]['idioma_id']."'>".$contt[$i]['nombre']."</a></li>";
+                             
+                        }
+                       
                         elseif($contt[$i]['nombre']=="Nosotros" || $contt[$i]['nombre']=="About" || $contt[$i]['nombre']=="Nous")
                         {
                         $combo = "<li> <a href='index.html#Nosotros' id='".$contt[$i]['idioma_id']."'>".$contt[$i]['nombre']."</a></li>";
@@ -77,6 +78,7 @@ if($_POST["accion"]=='actionIdioma')
                         // array_push($botones,$combo);
                        
                         // print($combo);
+                      
                      }
 
                      if($dataCont=='link_destinos')
@@ -114,7 +116,7 @@ if($_POST["accion"]=='actionIdioma')
                                 for ($sc=0; $sc < count($subCategoriaList); $sc++) { 
                                     $subCate = "<ul><li> <a><form method='post' action='categorias.php' mane='form".$sc."'><input type='submit' style='border:none ; background:transparent;' id='".$subCategoriaList[$sc]['id']."' class='linkDestino' value='".$subCategoriaList[$sc]['nombre']."'> <input type='text' style='visibility:hidden; height: 0px; width: 0px;' name='id_fijo' value='".$subCategoriaList[$sc]['id']."'> </form> </a></li><ul></li>";
                                     }
-
+                                    
                                 $combo3=$combo3.$subCate;
 
                                 array_push($botones2,$combo3);
