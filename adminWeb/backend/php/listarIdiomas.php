@@ -43,9 +43,10 @@ class listarIdiomas
                     // $_SESSION["idIdioma"]= $id;
                     for ($i=0; $i < count($idiomaCombo) ; $i++) { 
                          
-                        $combo = "<option class='".$idiomaCombo[$i]['nombre']."' value='".$idiomaCombo[$i]['id']."'> ".$idiomaCombo[$i]['nombre']."<img src='adminWeb/backend/images/idiomas/".$idiomaCombo[$i]['icono']."'></option>";
+                        $combo = "<option class='".$idiomaCombo[$i]['nombre']."' value='".$idiomaCombo[$i]['id']."'> ".$idiomaCombo[$i]['nombre']."</option>";
                         if ($idiomaCombo[$i]['nombre']== $_SESSION["idioma"]) {
                             $_SESSION["idioma"]= $idiomaCombo[$i]['nombre'];
+                            $_SESSION["idIdioma"]= $idiomaCombo[$i]['id'];
                             $comoLleno = $combo.''.$comoLleno;
                         }else{
                             $comoLleno = $comoLleno." ".$combo;
@@ -75,9 +76,10 @@ class listarIdiomas
                 // print_r($_SESSION["idioma"]);
                     for ($i=0; $i < count($idiomaCombo) ; $i++) { 
                          
-                        $combo = "<option class='".$idiomaCombo[$i]['nombre']."' value='".$idiomaCombo[$i]['id']."'> ".$idiomaCombo[$i]['nombre']."<img src='adminWeb/backend/images/idiomas/".$idiomaCombo[$i]['icono']."'></option>";
+                        $combo = "<option class='".$idiomaCombo[$i]['nombre']."' value='".$idiomaCombo[$i]['id']."'> ".$idiomaCombo[$i]['nombre']."</option>";
                         if ($idiomaCombo[$i]['id']== $_SESSION["idIdioma"]) {
                             $_SESSION["idioma"]= $idiomaCombo[$i]['nombre'];
+                            $_SESSION["idIdioma"] = 3;  
                             // $_SESSION["idIdioma"]= $idiomaCombo[$i]['id'];
                             $comoLleno = $combo.''.$comoLleno;
                         }else{

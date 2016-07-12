@@ -38,7 +38,42 @@ if($_POST["accion"]=='actionIdioma')
         try
         {
             //listado de botones comunes
-          // print_r($contt);
+          
+          // in_array("needle", $contt);
+            if ($contt[4]["nombre"]=="Accueil") {
+           
+            // $temp= array();
+            // $temp2=array();
+            // $temp2=$contt;
+            // $temp=$contt[4];
+            // $contt[4]=$contt[0];
+            // $contt[0]=$temp;
+
+            //_________________________________
+            $menu1=array();
+            $menu2=array();
+            $menu1=$contt;
+            $contt[0]=$menu1[4];
+            $contt[1]=$menu1[0];
+            $contt[2]=$menu1[1];
+            $contt[3]=$menu1[2];
+            $contt[4]=$menu1[3];
+            $contt[5]=$menu1[5];
+            $contt[6]=$menu1[6];
+//-----------------------------------------------
+            // $Accueil=array();
+            // $nous=array();
+            // $equipe=array();
+            // $destinations=array();
+            // $paquets=array();  
+            // $temoignages=array();//--
+            // $contact=array();//--
+
+
+            // $temp2
+          }
+         // print_r($contt);
+
             for ($i=0; $i < count($contt) ; $i++) { 
                      $dataCont=$contt[$i]['identificador'];
                      $nameCont=$contt[$i]['nombre'];

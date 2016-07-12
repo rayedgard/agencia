@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+session_start();
 //llamar clases del model
 require_once'adminWeb/backend/models/Subcategoria.php';
 require_once'adminWeb/backend/models/Banner.php';
@@ -31,7 +32,7 @@ else{
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="">
 		<meta name="author" content="">
-		<title>PATROS - HTML5 FREE TEMPLATE</title>
+		<title>MUNDO INKA</title>
 		<!-- Bootstrap Core CSS -->
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<!-- Custom Fonts -->
@@ -56,7 +57,7 @@ else{
 
 				<div class="row">
 					<div class="col-md-3 col-xs-12" style="padding-right: 0px; padding-left: 110px; color: #fff;">
-						<h6 id="correoFijo" ><span class="glyphicon glyphicon-envelope"> </span> qasdfasd@aaaaaatours.com</h6>
+						<h6 id="correoFijo" ><span class="glyphicon glyphicon-envelope"> </span> informes@incaperuworld.com</h6>
 					</div>
 					<div class="col-md-7 col-xs-12" style="padding-left: 0px; ">
 						<h6 style="float: left; color: #fff; margin-top: 4px;"><span class="glyphicon glyphicon-phone"> </span> 00 51 54 600139</h6>
@@ -70,7 +71,7 @@ else{
 				</div>
 		</div>
 		<!-- Navigation -->
-		<nav class="navbar navbar-inverse navbar-fixed-top" style="z-index:1; margin-bottom: 0px; padding-bottom: 0px;">
+		<nav class="navbar navbar-inverse navbar-fixed-top" id="navegadorId" style="z-index:1; margin-bottom: 0px; padding-bottom: 0px; background: transparent;">
 			<div class="container">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -79,7 +80,12 @@ else{
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="company logo" /></a>
+					<!-- <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="company logo" /></a> -->
+					<div id="logo-div" style="margin-top: 10px;">
+					   <a id="logo-img" href="index.html" >
+					      <img style=" width:150px; height:150px;" src="adminWeb/images/logo.png" >
+					   </a>
+					</div>  
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<div class="miMenu" style="float: right;">
@@ -621,7 +627,7 @@ else{
 								<div class="col-md-12 height-contact-element">    
 									<div class="form-group">
 										<i class="fa fa-2x fa-envelope"></i>
-										<span class="text">info@company.com</span>
+										<span class="text">informes@incaperuworld.com</span>
 									</div>
 								</div>
 							</div>
@@ -654,10 +660,11 @@ else{
 			<div class="container">
 				<div class="row myfooter">
 					<div class="col-sm-6"><div class="pull-left">
-					© Copyright Company 2016 | <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a>
+					<!-- <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a> -->
+					© Derechos reservados 
 					</div></div>
 					<div class="col-sm-6">
-						<div class="pull-right">Designed by <a href="http://www.atis.al">ATIS</a></div>
+						<div class="pull-right">Designed by ITECSA</div>
 					</div>
 				</div>
 			</div>
@@ -678,6 +685,38 @@ else{
 
 		<!--Jquery Smooth Scrolling-->
 		<script>
+
+			jQuery(function(){
+		        jQuery(window).scroll(function(){
+		            if(jQuery(this).scrollTop() > 200) {
+		                jQuery('#logo-img img')
+		                    .css({'width':'50px','height':'50px'})
+		                    .attr('src','adminWeb/images/logo.png');
+		            }
+		            if(jQuery(this).scrollTop() < 200) {
+		                jQuery('#logo-img img')
+		                    .css({'width':'150px',
+		                        'height':'150px',
+		                        '-webkit-transition':'all 0.5s ease',
+		                        '-moz-transition':'all 0.5s ease',
+		                        '-ms-transition':'all 0.5s ease',
+		                        '-o-transition':'all 0.5s ease',
+		                        'transition':'all 0.5s ease'
+		                        })    
+		                    .attr('src','adminWeb/images/logo.png');
+		            }
+
+		            if(jQuery(this).scrollTop() > 200) {
+		                jQuery('#navegadorId')
+		                	.css({'background': '#EC7F5D'});
+		            }
+		             if(jQuery(this).scrollTop() < 200) {
+		                jQuery('#navegadorId')
+		                	.css({'background': 'transparent'});
+		            }
+		        });
+		    });
+
 			$(document).ready(function(){
 				$('#tages a').click(function (e) {
 				  e.preventDefault()

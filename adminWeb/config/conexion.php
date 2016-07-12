@@ -5,7 +5,6 @@
    private $nombre_de_base = 'agencia';
    private $charset='utf8mb4';
    private $usuario = 'root';
-
    private $contrasena = 'defcon'; 
 
    public function __construct() {
